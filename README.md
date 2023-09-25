@@ -37,7 +37,4 @@ npm i --save-dev @types/node
 ```
 
 ## to do
-create a global const map
-use a global const map on groundoverlay
-change visibility on groundoverlay with .setMap(map | null)
 use .kmz, .bsb, .kap, .tif files
