@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<script type='text/javascript'>
+			var map;
+			let historicalOverlay;
+
+			function initMap() {
+				const map = new google.maps.Map(document.getElementById('myMap'), {
+					//center: new google.maps.LatLng(40.74, -74.18),
+					center: { lat: 40.74, lng: -74.18 },
+					zoom: 17,
+					mapId: '8e0a97af9386fef',
+					styles: [{ elementType: "geometry", stylers: [{ color: "#242f3e" }] }]
+				});
+				//map.setTilt(45);
+				const viewGlyph = new google.maps.marker.PinView({
+					scale: 1.5,
+					background: 'yellow',
+					borderColor: 'green',
+					glyphColor: 'lightgreen',
+					//glyph: '',
+				});
+				const priceTag = document.createElement('div');
+				priceTag.className = 'price-tag';
+				priceTag.textContent = '$2.5M';
+
+				const image = {
+					url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+					// This marker is 20 pixels wide by 32 pixels high.
+					size: new google.maps.Size(20, 32),
+					// The origin for this image is (0, 0).
+					origin: new google.maps.Point(0, 0),
+					// The anchor for this image is the base of the flagpole at (0, 32).
+					anchor: new google.maps.Point(0, 32),
+				};
+
+				const beachMarker = new google.maps.Marker({
+					position: new google.maps.LatLng(40.74, -74.18),
+					map,
+					icon: image,
+					optimized: true
+				});
+				const markerView = new google.maps.marker.AdvancedMarkerView({
+					map,
+					collisionBehavior: google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY,
+					position: { lat: 40.74, lng: -74.18 },
+					content: viewGlyph.element,
+					//content: priceTag
+					icon: image,
+					title: "Gadelha",
+					altitude: 20,
+					zIndex: 0
+				});
+				markerView.setAnimation(google.maps.Animation.BOUNCE);
+				//marker.setMap(null);
+
+				//REQUIRED | REQUIRED_AND_HIDES_OPTIONAL | OPTIONAL_AND_HIDES_LOWER_PRIORITY
+				//const marker = new google.maps.marker.AdvancedMarkerElement({
+				//map,
+				//position: {lat: 37.4239163, lng: -122.0947209},
+				//});
+				//marker.addListener('click', ({domEvent, latLng}) => {
+				//const {target} = domEvent;
+				// Handle the click event.
+				// ...
+				//});
+
+
+
+
+
+
+				const imageBounds = {
+					north: 40.773941,
+					south: 40.712216,
+					east: -74.12544,
+					west: -74.22655,
+				};
+
+				historicalOverlay = new google.maps.GroundOverlay(
+					"https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
+					imageBounds
+				);
+				historicalOverlay.setMap(map);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				const contentString =
+					'<div id="content">' +
+					'<div id="siteNotice">' +
+					"</div>" +
+					'<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+					'<div id="bodyContent">' +
+					"<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
+					"sandstone rock formation in the southern part of the " +
+					"Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+					"south west of the nearest large town, Alice Springs; 450&#160;km " +
+					"(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+					"features of the Uluru - Kata Tjuta National Park. Uluru is " +
+					"sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+					"Aboriginal people of the area. It has many springs, waterholes, " +
+					"rock caves and ancient paintings. Uluru is listed as a World " +
+					"Heritage Site.</p>" +
+					'<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+					"https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
+					"(last visited June 22, 2009).</p>" +
+					"</div>" +
+					"</div>";
+				const infowindow = new google.maps.InfoWindow({
+					content: contentString,
+					ariaLabel: "Uluru",
+				});
+				markerView.addListener("click", () => {
+					infowindow.open({
+						anchor: marker,
+						map,
+					});
+				});
+			}
+		</script>
+
+		<!-- Google Maps Script Reference -->
+		<script
+			src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=API_KEY&libraries=marker,places&v=beta"
+			async defer></script>
+	</head>
+	<body>
+		<div id='myMap' style='position:relative;width:600px;height:400px;'></div>
+	</body>
+</html>

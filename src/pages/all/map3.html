@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script type='text/javascript'>
+      let historicalOverlay;
+
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("myMap"), {
+          zoom: 13,
+          center: new google.maps.LatLng( 40.74, -74.18 ),
+        });
+        const imageBounds = {
+          north: 40.773941,
+          south: 40.712216,
+          east: -74.12544,
+          west: -74.22655,
+        };
+
+        historicalOverlay = new google.maps.GroundOverlay(
+          "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
+          imageBounds
+        );
+        historicalOverlay.setMap(map);
+      }
+    </script>
+
+    <!-- Google Maps Script Reference -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=API_KEY&libraries=marker,places&v=beta"
+      async defer></script>
+  </head>
+
+  <body>
+    <div id='myMap' style='position:relative;width:600px;height:400px;'></div>
+  </body>
+
+</html>
