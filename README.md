@@ -37,4 +37,5 @@ npm i --save-dev @types/node
 ```
 
 ## to do
+show/hide mark without reload
 use .kmz, .bsb, .kap, .tif files
