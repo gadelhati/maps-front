@@ -1,5 +1,16 @@
-.all {
+.container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .1rem;
+    background-color: rebeccapurple;
+}
+
+.item {
+    flex-grow: 0;
+    flex-basis: auto;
 }
 
 button {

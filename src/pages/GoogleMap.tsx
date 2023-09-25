@@ -68,7 +68,7 @@ export const GoogleMap = (object: MapInterface) => {
         // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
     }
     return (
-        <div className='all'>
+        <div className='container'>
             <button onClick={showMarkIcon}>{showMark? "Hide Icon" : "Show Icon"}</button>
             <button onClick={showMap}>Show</button>
             <button onClick={hideMap}>Hide</button>
