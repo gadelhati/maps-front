@@ -69,10 +69,12 @@ export const GoogleMap = (object: MapInterface) => {
     }
     return (
         <div className='container'>
-            <button onClick={showMarkIcon}>{showMark? "Hide Icon" : "Show Icon"}</button>
-            <button onClick={showMap}>Show</button>
-            <button onClick={hideMap}>Hide</button>
-            <div className='divisao' id='myMap'></div>
+            <div className='item sidemenu'>
+                <button className={showMark? "colored" : "grayscale"} onClick={showMarkIcon}><img src={icon}></img></button>
+                <button className='menuitem' onClick={showMap}>Show</button>
+                <button className='menuitem' onClick={hideMap}>Hide</button>
+            </div>
+            <div className='item map' id='myMap'></div>
         </div>
     )
 }
