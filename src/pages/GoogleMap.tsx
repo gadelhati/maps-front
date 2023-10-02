@@ -1,59 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ChangeEvent } from 'react'
 import { MapInterface } from './all/map.interface'
-import { GoogleOverlay } from './GoogleBounds'
+import { GoogleOverlay } from './GoogleOverlay'
 import { GoogleMarker } from './GoogleMarker'
 // import { GoogleMarkerDefault } from './GoogleMarkerDefault'
 // import { Glyph } from './GoogleGliph'
 import icon from './../assets/lighthouse.png'
 import tt from '../assets/1511geotiff.png'
 import './GoogleMap.scss'
+import mar from './mark.json'
 
 export const GoogleMap = (object: MapInterface) => {
-    const [showMark, setShowMark] = useState<boolean>(true)
-    // const [showMap, setShowMap] = useState<boolean>(true)
+    let checked: boolean = false
+    const [collapse, setCollapse] = useState<boolean>(false)
+    // const [map, setMap] = useState<google.maps.Map>(true)
     let map: google.maps.Map
-    // let overlay: google.maps.GroundOverlay
-    let overlay2: google.maps.GroundOverlay
+    const [overlay, setOverlay] = useState<google.maps.GroundOverlay>(GoogleOverlay(tt, mar[0].south, mar[0].west, mar[0].north, mar[0].east))
     let marker: google.maps.Marker
-    
+
     useEffect(() => {
         initMap()
-    }, [showMark])
-    const showMarkIcon = () => {
-        setShowMark(!showMark)
+    }, [collapse])
+    const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+        checked = event.target.checked
+        marker.setVisible(event.target.checked)
     }
-    const showMap = () => {
-        // overlay.setMap(map)
-        overlay2.setMap(map)
+    const showMap = (map: google.maps.Map | null) => {
+        overlay.setMap(map)
     }
-    const hideMap = () => {
-        // overlay.setMap(null)
-        overlay2.setMap(null)
+    const hideHide = (visible: boolean) => {
+        marker.setVisible(visible)
     }
-
     const initMap = () => {
         map = new google.maps.Map(document.getElementById("myMap") as HTMLElement, {
             zoom: object.zoom,
             center: object.center,
             mapId: google.maps.MapTypeId.TERRAIN,
         });
-
-        const imageBounds: google.maps.LatLngBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(40.712216, -74.22655),
-            new google.maps.LatLng(40.773941, -74.12544)
-        );
-        // overlay = GoogleOverlay("https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg", imageBounds)
-
-        // const imageBounds2: google.maps.LatLngBounds = new google.maps.LatLngBounds(
-        //     new google.maps.LatLng(-38.000000, -59.000000),
-        //     new google.maps.LatLng(9.000000, -25.000000),
-        // );
-        const imageBounds2: google.maps.LatLngBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(-23.000000, -43.233330),
-            new google.maps.LatLng(-22.866670, -43.044440),
-        );
-        overlay2 = GoogleOverlay(tt, imageBounds2)
-
         const priceTag = document.createElement('div');
         priceTag.className = 'price-tag';
         priceTag.textContent = '$2.5M';
@@ -63,16 +45,23 @@ export const GoogleMap = (object: MapInterface) => {
         //     // origin: new google.maps.Point(0, 0),
         //     // anchor: new google.maps.Point(0, 32),
         // };
-        marker = GoogleMarker(showMark, map, object.center, icon)
+        marker = GoogleMarker(checked, map, object.center, icon)
+        marker.setVisible(checked)
+        overlay.setMap(map)
         // const markerDefault = GoogleMarkerDefault(map, object.center, priceTag)
         // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
     }
     return (
         <div className='container'>
             <div className='item sidemenu'>
-                <button className={showMark? "colored" : "grayscale"} onClick={showMarkIcon}><img src={icon}></img></button>
-                <button className='menuitem' onClick={showMap}>Show</button>
-                <button className='menuitem' onClick={hideMap}>Hide</button>
+                <button className={collapse ? "colored" : "grayscale"}><img src={icon}></img></button>
+                <div className='collapse'>
+                    <button className={'menuitem'} onClick={()=>setCollapse(!collapse)}>Collapse</button>
+                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap(map)}>Show</button>
+                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap(null)}>Hide</button>
+                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>hideHide(false)}>hideHide</button>
+                    <input type='checkbox' className={collapse ? "collapsed" : "collapsible"} onChange={handleChecked}></input>
+                </div>
             </div>
             <div className='item map' id='myMap'></div>
         </div>

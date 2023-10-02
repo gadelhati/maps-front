@@ -5,7 +5,7 @@ export const GoogleMarker = (visible: boolean, map: google.maps.Map, position: g
             map,
             icon: icon,
             optimized: true,
-            visible: visible,
+            // visible: visible,
         })
     )
 }

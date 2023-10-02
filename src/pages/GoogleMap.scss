@@ -29,6 +29,18 @@
         .grayscale {
             filter: grayscale(100%);
         }
+        .collapse {
+            display: flex;
+            flex-direction: column;
+            .collapsible {
+                display: none;
+                // background-color: red;
+            }
+            .collapsed {
+                display: block;
+                // background-color: green;
+            }
+        }
     }
     .map {
         height: 100vh;
