@@ -1,6 +1,7 @@
 @import './variables.scss';
 
 * {
+    z-index: 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -36,6 +37,31 @@
     }
     &:active {
         background-color: $azul;
+    }
+}
+
+.tabs {
+    // height: 1rem;
+    width: 100%;
+    background-color: $cinza;
+    .tab {
+        z-index: 0;
+        height: 2rem;
+        width: 10rem;
+        position: relative;
+        border: none;
+        border-top: .25rem solid $azul;
+        top: .25rem;
+        &:hover {
+            color: $azul;
+            top: 0rem;
+            opacity: 1;
+            transition: .5s;
+            background-color: $azulClaro;
+        }
+        &:active {
+            color: red;
+        }
     }
 }
 

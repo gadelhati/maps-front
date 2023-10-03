@@ -9,9 +9,10 @@ export const GenericInput = (group: any) => {
     }
     return (
         <>
-            <button onClick={() => indexs(1)}>1</button>
-            <button onClick={() => indexs(2)}>2</button>
-
+            <div className='tabs'>
+                <button className='tab' onClick={() => indexs(1)}>1</button>
+                <button className='tab' onClick={() => indexs(2)}>2</button>
+            </div>
             <div className={index === 1 ? 'inputgroup' : 'hide'}>
                 <span className='prefix'><input hidden={group.hidden} type="checkbox" />1{group.prefix && group.prefix}</span>
                 <input type={group.type}></input>
