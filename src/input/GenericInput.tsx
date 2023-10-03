@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../pages/GoogleMap.scss'
 
 export const GenericInput = (group: any) => {
-    const [index, setIndex] = useState<number>(0)
+    const [index, setIndex] = useState<number>(1)
 
     const indexs = (number: number) => {
         setIndex(number)
