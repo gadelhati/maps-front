@@ -6,7 +6,7 @@ import { GoogleMarker } from './GoogleMarker'
 // import { Glyph } from './GoogleGliph'
 import icon from './../../assets/lighthouse.png'
 import tt from './../../assets/1511geotiff.png'
-import './GoogleMap.scss'
+import './GoogleTemplate.scss'
 import mar from './mark.json'
 
 export const GoogleTemplate = (object: MapInterface) => {
