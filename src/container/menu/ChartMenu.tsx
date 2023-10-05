@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import './GoogleMap.scss'
+import './ChartMenu.scss'
 
 interface Chart {
     south: number,

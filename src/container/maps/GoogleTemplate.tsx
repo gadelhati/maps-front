@@ -1,15 +1,15 @@
 import { useEffect, useState, ChangeEvent } from 'react'
-import { MapInterface } from './all/map.interface'
+import { MapInterface } from '../all/map.interface'
 import { GoogleOverlay } from './GoogleOverlay'
 import { GoogleMarker } from './GoogleMarker'
 // import { GoogleMarkerDefault } from './GoogleMarkerDefault'
 // import { Glyph } from './GoogleGliph'
-import icon from './../assets/lighthouse.png'
-import tt from '../assets/1511geotiff.png'
+import icon from './../../assets/lighthouse.png'
+import tt from './../../assets/1511geotiff.png'
 import './GoogleMap.scss'
 import mar from './mark.json'
 
-export const GoogleMap = (object: MapInterface) => {
+export const GoogleTemplate = (object: MapInterface) => {
     let checked: boolean = false
     const [collapse, setCollapse] = useState<boolean>(false)
     // const [map, setMap] = useState<google.maps.Map>(true)

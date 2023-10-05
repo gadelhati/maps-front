@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../pages/GoogleMap.scss'
+import './GenericInput.scss'
 
 export const GenericInput = (group: any) => {
     const [index, setIndex] = useState<number>(1)
