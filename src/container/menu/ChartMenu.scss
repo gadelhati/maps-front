@@ -20,10 +20,23 @@
         margin-right: -2rem;
         background-color: $azul;
         border: .1rem solid $azul;
+        overflow: hidden;
+        img {
+            height: 100%;
+            position: relative;
+        }
+    }
+    .name {
+        color: $cinza;
+        position: absolute;
+        top: 0rem;
     }
     .left {
         transform: perspective( 20rem ) rotateY( 50deg );
         box-shadow: inset -3rem 0rem 3rem -1rem rgba(0,0,0,0.5);
+        .name {
+            left: 0rem;
+        }
     }
     .center {
         z-index: 1;
@@ -32,8 +45,10 @@
         box-shadow: 0rem 0rem 1rem .25rem rgba(0,0,0,0.5);
     }
     .right {
-        flex-direction: row-reverse;
         transform: perspective( 20rem ) rotateY( -50deg );
         box-shadow: inset 3rem 0rem 3rem -1rem rgba(0,0,0,0.5);
+        .name {
+            right: 0rem;
+        }
     }
 }

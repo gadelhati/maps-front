@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import chart1511 from './../../assets/1511geotiff.png'
 import './ChartMenu.scss'
 
 interface Chart {
@@ -26,7 +27,9 @@ export const ChartMenu = () => {
         <div className="templatemenu">
             <div className="chartmenu">
                 {loop.map((index: number) => (
-                    <div className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>{showMenu(index)}</div>
+                    <div className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>
+                        <img src={chart1511}></img><div className="name">{showMenu(index)}</div>
+                    </div>
                 ))}
                 <span>aqui: {JSON.stringify(chart)}</span>
             </div>
