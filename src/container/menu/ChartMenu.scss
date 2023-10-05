@@ -1,11 +1,18 @@
 @import './../variables.scss';
 
+.templatemenu {
+    position: absolute;
+    bottom: 2rem;
+}
+
 .chartmenu {
     width: 100vw;
-    background-image: linear-gradient($cinza, $preto, $preto);
+    // background-image: linear-gradient($cinza, $preto, $preto);
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin: 1rem 0rem 1rem 0rem;
+    // pointer-events: none;
     .chartmenuitem {
         z-index: 0;
         height: 5rem;

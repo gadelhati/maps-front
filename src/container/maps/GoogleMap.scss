@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+.template {
+    position: relative;
+    height: 100vh;
+}
+
 .container {
     display: flex;
     flex-direction: row;

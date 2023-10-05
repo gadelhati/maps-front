@@ -13,7 +13,7 @@ export const ChartMenu = () => {
     const loop: number[] = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     const [chart, setChart] = useState<number>(0)
 
-    useEffect(()=>{
+    useEffect(() => {
 
     }, [])
     const showMenu = (index: number) => {
@@ -22,12 +22,14 @@ export const ChartMenu = () => {
     const handleMouseEvent = (index: number) => {
         setChart(index)
     }
-    return(
-    <div className="chartmenu">
-        {loop.map((index: number)=>(
-            <div className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={()=>handleMouseEvent(index)}>{showMenu(index)}</div>
-        ))}
-        <span>aqui: {JSON.stringify(chart)}</span>
-    </div>
+    return (
+        <div className="templatemenu">
+            <div className="chartmenu">
+                {loop.map((index: number) => (
+                    <div className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>{showMenu(index)}</div>
+                ))}
+                <span>aqui: {JSON.stringify(chart)}</span>
+            </div>
+        </div>
     )
 }

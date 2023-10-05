@@ -52,18 +52,20 @@ export const GoogleTemplate = (object: MapInterface) => {
         // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
     }
     return (
-        <div className='container'>
-            <div className='item sidemenu'>
-                <button className={collapse ? "colored" : "grayscale"}><img src={icon}></img></button>
-                <div className='collapse'>
-                    <button className={'menuitem'} onClick={()=>setCollapse(!collapse)}>Collapse</button>
-                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap(map)}>Show</button>
-                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap(null)}>Hide</button>
-                    <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>hideHide(false)}>hideHide</button>
-                    <input type='checkbox' className={collapse ? "collapsed" : "collapsible"} onChange={handleChecked}></input>
+        <div className='template'>
+            <div className='container'>
+                <div className='item sidemenu'>
+                    <button className={collapse ? "colored" : "grayscale"}><img src={icon}></img></button>
+                    <div className='collapse'>
+                        <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => showMap(map)}>Show</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => showMap(null)}>Hide</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => hideHide(false)}>hideHide</button>
+                        <input type='checkbox' className={collapse ? "collapsed" : "collapsible"} onChange={handleChecked}></input>
+                    </div>
                 </div>
+                <div className='item map' id='myMap'></div>
             </div>
-            <div className='item map' id='myMap'></div>
         </div>
     )
 }
