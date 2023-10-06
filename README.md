@@ -37,5 +37,7 @@ npm i --save-dev @types/node
 ```
 
 ## to do
-show/hide mark without reload
 use .kmz, .bsb, .kap, .tif files
+control state of mark with useState
+control state of overlay with useState
+control state of map with useState
