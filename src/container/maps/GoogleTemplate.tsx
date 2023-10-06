@@ -8,6 +8,7 @@ import icon from './../../assets/lighthouse.png'
 import tt from './../../assets/1511geotiff.png'
 import './GoogleTemplate.scss'
 import mar from './mark.json'
+import { ChartMenu } from '../menu/ChartMenu'
 
 export const GoogleTemplate = (object: MapInterface) => {
     let checked: boolean = false
@@ -24,11 +25,11 @@ export const GoogleTemplate = (object: MapInterface) => {
         checked = event.target.checked
         marker.setVisible(event.target.checked)
     }
-    const showMap = (map: google.maps.Map | null) => {
-        overlay.setMap(map)
+    const showMap = () => {
+        overlay.setMap(overlay.getMap() === null ? map : null)
     }
-    const hideHide = (visible: boolean) => {
-        marker.setVisible(visible)
+    const showMark = () => {
+        marker.setVisible(marker.getVisible() === false ? true : false)
     }
     const initMap = () => {
         map = new google.maps.Map(document.getElementById("myMap") as HTMLElement, {
@@ -58,14 +59,15 @@ export const GoogleTemplate = (object: MapInterface) => {
                     <button className={collapse ? "colored" : "grayscale"}><img src={icon}></img></button>
                     <div className='collapse'>
                         <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
-                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => showMap(map)}>Show</button>
-                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => showMap(null)}>Hide</button>
-                        <button className={collapse ? "collapsed" : "collapsible"} onClick={() => hideHide(false)}>hideHide</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap}>Map</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMark}>Mark</button>
                         <input type='checkbox' className={collapse ? "collapsed" : "collapsible"} onChange={handleChecked}></input>
+                        {JSON.stringify(collapse)}
                     </div>
                 </div>
                 <div className='item map' id='myMap'></div>
             </div>
+            <ChartMenu setShow={showMap}></ChartMenu>
         </div>
     )
 }

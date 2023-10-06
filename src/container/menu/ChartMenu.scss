@@ -25,6 +25,9 @@
             height: 100%;
             position: relative;
         }
+        &:active {
+            transform: scale(1);
+        }
     }
     .name {
         color: $cinza;

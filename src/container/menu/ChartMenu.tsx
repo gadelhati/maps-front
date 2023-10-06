@@ -10,7 +10,7 @@ interface Chart {
     image: File
 }
 
-export const ChartMenu = () => {
+export const ChartMenu = ({setShow}: any) => {
     const loop: number[] = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     const [chart, setChart] = useState<number>(0)
 
@@ -23,11 +23,14 @@ export const ChartMenu = () => {
     const handleMouseEvent = (index: number) => {
         setChart(index)
     }
+    const show = () => {
+        setShow()
+    }
     return (
         <div className="templatemenu">
             <div className="chartmenu">
                 {loop.map((index: number) => (
-                    <div className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>
+                    <div key={index} onClick={setShow} className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>
                         <img src={chart1511}></img><div className="name">{showMenu(index)}</div>
                     </div>
                 ))}
