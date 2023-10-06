@@ -38,6 +38,4 @@ npm i --save-dev @types/node
 
 ## to do
 use .kmz, .bsb, .kap, .tif files
-control state of mark with useState
-control state of overlay with useState
 control state of map with useState
