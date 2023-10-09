@@ -27,11 +27,15 @@ export const GoogleTemplate = (object: MapInterface) => {
         marker.setVisible(event.target.checked)
     }
     const showMap = () => {
+        centralize(overlay.getBounds())
         overlay.setMap(overlay.getMap() === null ? map : null)
     }
     const showMark = () => {
         setMarkerI(!markerI)
         marker.setVisible(marker.getVisible() === false ? true : false)
+    }
+    const centralize = (center: google.maps.LatLngBounds | null) => {
+        if(center !== null) map.setCenter(center?.getCenter())
     }
     const initMap = () => {
         map = new google.maps.Map(document.getElementById("myMap") as HTMLElement, {
