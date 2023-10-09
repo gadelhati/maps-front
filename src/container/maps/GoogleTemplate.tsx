@@ -12,29 +12,28 @@ import './GoogleTemplate.scss'
 import mar from './mark.json'
 
 export const GoogleTemplate = (object: MapInterface) => {
-    let checked: boolean = false
     const [collapse, setCollapse] = useState<boolean>(false)
     const [map, setMap] = useState<google.maps.Map|null>(null)
     const [overlay] = useState<google.maps.GroundOverlay>(GoogleOverlay(urlImage, mar[0].south, mar[0].west, mar[0].north, mar[0].east))
-    const [marker] = useState<google.maps.Marker>(GoogleMarker(checked, icon, object.center))
-    const [markerI, setMarkerI] = useState<boolean>(false)
+    const [markerChecked, setMarkerChecked] = useState<boolean>(true)
+    const [marker] = useState<google.maps.Marker>(GoogleMarker(markerChecked, icon, object.center))
 
     useEffect(() => {
         initMap()
-    }, [collapse])
+    }, [])
     const showMap = () => {
         centralize(overlay.getBounds())
         overlay.setMap(overlay.getMap() === null ? map : null)
     }
     const showMark = () => {
-        setMarkerI(!markerI)
-        marker.setVisible(marker.getVisible() === false ? true : false)
+        setMarkerChecked(!markerChecked)
+        marker.setMap(marker.getMap() === null ? map : null)
     }
     const centralize = (center: google.maps.LatLngBounds | null) => {
         if(center !== null) map?.setCenter(center?.getCenter())
     }
     const initMap = () => {
-        setMap(GoogleMap("myMap", object.zoom, object.center, google.maps.MapTypeId.TERRAIN))
+        setMap(GoogleMap("map", object.zoom, object.center, google.maps.MapTypeId.TERRAIN))
         const priceTag = document.createElement('div');
         priceTag.className = 'price-tag';
         priceTag.textContent = '$2.5M';
@@ -55,11 +54,11 @@ export const GoogleTemplate = (object: MapInterface) => {
                 <div className='item sidemenu'>
                     <div className='collapse'>
                         <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
-                        <button className={!collapse ? "collapsible" : marker.getVisible() ? "collapsed colored" : "collapsed grayscale"} onClick={showMark}><img src={icon}></img></button>
+                        <button className={!collapse ? "collapsible" : marker.getMap() === null ? "collapsed grayscale" : "collapsed colored"} onClick={showMark}><img src={icon}></img></button>
                         <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap}>Map</button>
                     </div>
                 </div>
-                <div className='item map' id='myMap'></div>
+                <div className='item map' id='map'></div>
             </div>
             <ChartMenu setShow={showMap}></ChartMenu>
         </div>
