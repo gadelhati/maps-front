@@ -1,0 +1,16 @@
+[
+    {
+        "urlImage": "/public/1511geotiff.png",
+        "south": -23.000000,
+        "west": -43.233330,
+        "north": -22.866670,
+        "east": -43.044440
+    },
+    {
+        "urlImage": "/public/1512geotiff.png",
+        "south": -22.915000,
+        "west": -43.276666,
+        "north": -22.795000,
+        "east": -43.090000
+    }
+]

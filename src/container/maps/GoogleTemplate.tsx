@@ -7,14 +7,16 @@ import { GoogleMap } from './GoogleMap'
 // import { GoogleMarkerDefault } from './GoogleMarkerDefault'
 // import { Glyph } from './GoogleGliph'
 import icon from './../../assets/lighthouse.png'
-import urlImage from './../../assets/1511geotiff.png'
 import './GoogleTemplate.scss'
-import mar from './mark.json'
+import mar from './../mark.json'
 
 export const GoogleTemplate = (object: MapInterface) => {
     const [collapse, setCollapse] = useState<boolean>(false)
     const [map, setMap] = useState<google.maps.Map|null>(null)
-    const [overlay] = useState<google.maps.GroundOverlay>(GoogleOverlay(urlImage, mar[0].south, mar[0].west, mar[0].north, mar[0].east))
+    const [overlay] = useState<google.maps.GroundOverlay[]>([
+        GoogleOverlay(mar[0].urlImage, mar[0].south, mar[0].west, mar[0].north, mar[0].east),
+        GoogleOverlay(mar[1].urlImage, mar[1].south, mar[1].west, mar[1].north, mar[1].east)
+    ])
     const [markerChecked, setMarkerChecked] = useState<boolean>(true)
     const [marker] = useState<google.maps.Marker>(GoogleMarker(markerChecked, icon, object.center))
 
@@ -22,8 +24,12 @@ export const GoogleTemplate = (object: MapInterface) => {
         initMap()
     }, [])
     const showMap = () => {
-        centralize(overlay.getBounds())
-        overlay.setMap(overlay.getMap() === null ? map : null)
+        if(overlay[0].getMap() === null) centralize(overlay[0].getBounds())
+        overlay[0].setMap(overlay[0].getMap() === null ? map : null)
+    }
+    const showMap2 = () => {
+        if(overlay[1].getMap() === null) centralize(overlay[1].getBounds())
+        overlay[1].setMap(overlay[1].getMap() === null ? map : null)
     }
     const showMark = () => {
         setMarkerChecked(!markerChecked)
@@ -44,7 +50,8 @@ export const GoogleTemplate = (object: MapInterface) => {
         //     // anchor: new google.maps.Point(0, 32),
         // };
         marker.setMap(map)
-        overlay.setMap(map)
+        overlay[0].setMap(map)
+        overlay[1].setMap(map)
         // const markerDefault = GoogleMarkerDefault(map, object.center, priceTag)
         // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
     }
@@ -56,6 +63,7 @@ export const GoogleTemplate = (object: MapInterface) => {
                         <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
                         <button className={!collapse ? "collapsible" : marker.getMap() === null ? "collapsed grayscale" : "collapsed colored"} onClick={showMark}><img src={icon}></img></button>
                         <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap}>Map</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap2}>Map2</button>
                     </div>
                 </div>
                 <div className='item map' id='map'></div>
