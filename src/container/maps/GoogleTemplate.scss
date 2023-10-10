@@ -18,15 +18,23 @@
     justify-content: space-between;
     align-items: stretch;
     gap: .1rem;
-    .item {
-        flex-grow: 0;
-        flex-basis: auto;
-    }
+
     .sidemenu {
         flex-grow: 0;
         flex-basis: auto;
         display: flex;
         flex-direction: column;
+        .menuitem {
+            clip-path: circle(100%);
+            transition: all .5s ease;
+            &:hover {
+                background-color: $azul;
+                clip-path: circle(50%);
+                border: none;
+                box-shadow: inset -3rem 0rem 3rem -1rem rgba(0,0,0,0.5);
+                // box-shadow: 0rem 0rem 1rem .25rem rgba(0,0,0,0.5);
+            }
+        }
         button {
             height: 2.5rem;
             width: 2.5rem;

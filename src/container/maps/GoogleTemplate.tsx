@@ -51,7 +51,7 @@ export const GoogleTemplate = (object: MapInterface) => {
     return (
         <div className='template'>
             <div className='container'>
-                <div className='item sidemenu'>
+                <div className='sidemenu'>
                     <div className='collapse'>
                         <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
                         <button className={!collapse ? "collapsible" : marker.getMap() === null ? "collapsed grayscale" : "collapsed colored"} onClick={showMark}><img src={icon}></img></button>
