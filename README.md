@@ -28,12 +28,8 @@ If you are developing a production application, we recommend updating the config
 
 ## how to install dependencies for this project
 ```
-npm i -S @react-google-maps/api
+npm i -D @types/google.maps
 
-npm install react react-dom leaflet
-npm install react-leaflet
-npm install -D @types/leaflet
-npm i --save-dev @types/node
 ```
 
 ## to do
