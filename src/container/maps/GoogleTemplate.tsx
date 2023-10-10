@@ -23,9 +23,9 @@ export const GoogleTemplate = (object: MapInterface) => {
     useEffect(() => {
         initMap()
     }, [])
-    const showMap = () => {
-        if(overlay[0].getMap() === null) centralize(overlay[0].getBounds())
-        overlay[0].setMap(overlay[0].getMap() === null ? map : null)
+    const showMap = (index: number) => {
+        if(overlay[index].getMap() === null) centralize(overlay[index].getBounds())
+        overlay[index].setMap(overlay[index].getMap() === null ? map : null)
     }
     const showMap2 = () => {
         if(overlay[1].getMap() === null) centralize(overlay[1].getBounds())
@@ -62,8 +62,8 @@ export const GoogleTemplate = (object: MapInterface) => {
                     <div className='collapse'>
                         <button className={'menuitem'} onClick={() => setCollapse(!collapse)}>Collapse</button>
                         <button className={!collapse ? "collapsible" : marker.getMap() === null ? "collapsed grayscale" : "collapsed colored"} onClick={showMark}><img src={icon}></img></button>
-                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap}>Map</button>
-                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap2}>Map2</button>
+                        {/* <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap()}>Map</button>
+                        <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap2}>Map2</button> */}
                     </div>
                 </div>
                 <div className='item map' id='map'></div>
