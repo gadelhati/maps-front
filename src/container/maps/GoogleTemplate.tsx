@@ -8,14 +8,15 @@ import { GoogleMap } from './GoogleMap'
 // import { Glyph } from './GoogleGliph'
 import icon from './../../assets/lighthouse.png'
 import './GoogleTemplate.scss'
-import mar from './../mark.json'
+import layer from './../layer.json'
 
 export const GoogleTemplate = (object: MapInterface) => {
     const [collapse, setCollapse] = useState<boolean>(false)
     const [map, setMap] = useState<google.maps.Map|null>(null)
     const [overlay] = useState<google.maps.GroundOverlay[]>([
-        GoogleOverlay(mar[0].urlImage, mar[0].south, mar[0].west, mar[0].north, mar[0].east),
-        GoogleOverlay(mar[1].urlImage, mar[1].south, mar[1].west, mar[1].north, mar[1].east)
+        GoogleOverlay(layer[0].urlImage, layer[0].south, layer[0].west, layer[0].north, layer[0].east),
+        GoogleOverlay(layer[1].urlImage, layer[1].south, layer[1].west, layer[1].north, layer[1].east),
+        GoogleOverlay(layer[2].urlImage, layer[2].south, layer[2].west, layer[2].north, layer[2].east)
     ])
     const [markerChecked, setMarkerChecked] = useState<boolean>(true)
     const [marker] = useState<google.maps.Marker>(GoogleMarker(markerChecked, icon, object.center))
@@ -24,22 +25,20 @@ export const GoogleTemplate = (object: MapInterface) => {
         initMap()
     }, [])
     const showMap = (index: number) => {
-        if(overlay[index].getMap() === null) centralize(overlay[index].getBounds())
+        if(overlay[index].getMap() === null) centralize(overlay[index].getBounds(), index)
         overlay[index].setMap(overlay[index].getMap() === null ? map : null)
-    }
-    const showMap2 = () => {
-        if(overlay[1].getMap() === null) centralize(overlay[1].getBounds())
-        overlay[1].setMap(overlay[1].getMap() === null ? map : null)
     }
     const showMark = () => {
         setMarkerChecked(!markerChecked)
         marker.setMap(marker.getMap() === null ? map : null)
     }
-    const centralize = (center: google.maps.LatLngBounds | null) => {
+    const centralize = (center: google.maps.LatLngBounds | null, index: number) => {
+        // map?.setZoom(mar[index].scale/1600)
+        console.log(layer[index].scale/1600)
         if(center !== null) map?.setCenter(center?.getCenter())
     }
     const initMap = () => {
-        setMap(GoogleMap("map", object.zoom, object.center, google.maps.MapTypeId.TERRAIN))
+        setMap(GoogleMap("map", 4, object.center, google.maps.MapTypeId.TERRAIN))
         const priceTag = document.createElement('div');
         priceTag.className = 'price-tag';
         priceTag.textContent = '$2.5M';

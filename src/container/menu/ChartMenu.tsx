@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import './ChartMenu.scss'
-import mar from './../mark.json'
+import layer from './../layer.json'
 
 interface Chart {
     south: number,
@@ -31,7 +31,7 @@ export const ChartMenu = ({setShow}: any) => {
             <div className="chartmenu">
                 {loop.map((index: number) => (
                     <div key={index} onClick={()=>setShow(index)} className={chart > index ? "chartmenuitem left" : chart < index ? "chartmenuitem right" : "chartmenuitem center"} onMouseOver={() => handleMouseEvent(index)}>
-                        <img src={mar[index].urlImage}></img><div className="name">{showMenu(index)}</div>
+                        <img src={layer[index].urlImage}></img><div className="name">{showMenu(index)}</div>
                     </div>
                 ))}
                 <span>aqui: {JSON.stringify(chart)}</span>
