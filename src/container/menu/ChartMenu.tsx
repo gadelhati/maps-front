@@ -11,7 +11,7 @@ interface Chart {
 }
 
 export const ChartMenu = ({setShow}: any) => {
-    const loop: number[] = [0, 1]
+    const loop: number[] = [0, 1, 2]
     const [chart, setChart] = useState<number>(0)
 
     useEffect(() => {
