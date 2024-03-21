@@ -1,0 +1,113 @@
+@import 'variables.css';
+
+input[type=checkbox] {
+
+    +label,
+    +label+label {
+        height: 1.4em;
+    }
+}
+
+span {
+    overflow-x: clip;
+    position: relative;
+    display: inline-block;
+    margin: min(.2em) min(.2em) 0em 0em;
+}
+
+select {
+    min-height: 1.8em;
+}
+
+input,
+select {
+    display: inline-block;
+    width: 26em;
+    padding: 10px;
+    font-weight: normal;
+    color: --color-fourth;
+    background: --color-tenth;
+    border: 0;
+    border-radius: .25rem;
+    outline: 0;
+    text-indent: 60px;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis ellipsis;
+
+    +label {
+        width: 7rem;
+        pointer-events: none;
+        text-transform: uppercase;
+        display: inline-block;
+    }
+
+    +label+label {
+        display: none;
+        opacity: 0;
+        transition: opacity 2s;
+    }
+
+    +label,
+    +label+label {
+        overflow: hidden;
+        text-overflow: ellipsis ellipsis;
+        position: absolute;
+        top: .9rem;
+        left: 0;
+        bottom: .7rem;
+        padding: .1em 1.5em;
+        color: #032429;
+        font-size: 0.563rem;
+        font-weight: bold;
+        text-shadow: 0 1px 0 rgba(19, 74, 70, 0);
+        transition: all .3s ease-in-out;
+        border-radius: .25rem;
+        background: rgba(122, 184, 147, 0);
+
+        &:after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            top: 100%;
+            left: 150%;
+            margin-left: -3px;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 3px solid rgba(122, 184, 147, 0);
+            transition: all .3s ease-in-out;
+        }
+    }
+}
+
+input:focus,
+input:active,
+select:focus,
+select:active {
+    color: --color-fourth;
+    text-indent: 0;
+    background: --color-tenth;
+
+    +label {
+        width: 100%;
+        overflow: visible;
+        color: --color-tenth;
+        text-shadow: 0 1px o rgba(19, 74, 70, .4);
+        background: rgba(122, 184, 147, 1);
+        transform: translateY(-1.9rem);
+    };
+
+    +label+label {
+        margin-top: .3rem;
+        padding: .5rem;
+        opacity: 1;
+        display: none;
+        width: 100%;
+        overflow: visible;
+        color: --color-tenth;
+        text-shadow: 0 1px o rgba(19, 74, 70, .4);
+        background: --color-danger;
+        transform: translateY(+1.9rem);
+    }
+}

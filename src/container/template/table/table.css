@@ -1,0 +1,109 @@
+@import '../../global.css';
+
+table {
+    border-left: solid var(--color-fourth) .5em;
+    max-height: 75vh;
+    overflow-y: auto;
+    font-family: arial, sans-serif;
+    font-size: 0.95rem;
+    color: var(--color-sixteenth);
+    padding: 0 var(--space-sm) 0 var(--space-sm);
+    margin: var(--space-first);
+    box-sizing: border-box;
+    border-spacing: 0;
+    background-color: var(--color-tenth);
+    border-radius: var(--space-second);
+    display: block;
+    border-collapse: collapse;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-fourth);
+}
+table header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-fourth);
+}
+table header div span:after {
+    content: " ";
+}
+table thead {
+    position: sticky;
+    top: 0;
+}
+table tfoot {
+    position: sticky;
+    bottom: 0;
+    height: 5rem;
+    background-color: var(--color-tenth);
+}
+thead tr th {
+    padding: 1rem;
+}
+thead > tr {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--color-tenth);
+}
+td, th {
+    border-bottom: 1px solid var(--color-eighth);
+    padding-left: 1em;
+    text-align: left;
+    height: 3em;
+    width: 10%;
+}
+tr:nth-child(even) {
+    background-color: var(--color-tenth);
+}
+tr:nth-child(odd) {
+    background-color: var(--color-sixth);
+}
+th {
+    background-color: var(--color-tenth);
+}
+tr:hover {
+    cursor: pointer;
+    background-color: var(--color-seventh);
+}
+tfoot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+tfoot th {
+    border: none;
+}
+
+@media only screen and (max-width: 500px){
+    header {
+        flex-wrap: wrap;
+    }
+    header div {
+        font-size: 75%;
+        padding: .25rem;
+    }
+    header duv input {
+        box-sizing: border-box;
+        width: 6rem;
+    }
+    td:nth-child(3), th:nth-child(3), td:nth-child(4), th:nth-child(4) {
+        display: none;
+    }
+}
+@media only screen and (max-width: 500px){
+    header {
+        flex-wrap: wrap;
+    }
+    header div {
+        font-size: 75%;
+        padding: .25rem;
+    }
+    header duv input {
+        box-sizing: border-box;
+        width: 6rem;
+    }
+    td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6) {
+        display: none;
+    }
+}

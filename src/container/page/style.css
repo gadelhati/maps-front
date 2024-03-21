@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap);
+
+
+.hide {
+    display: none;
+
+}
+
+article {
+    height: 90vh;
+}
+
+.tab {
+    padding-top: 0.1vh ;
+}
+
+.tabs {
+    display: flex;  
+}
+
+.tabs button {
+    text-align:center;
+   
+}
+
+.show {
+    background-color: #354F52;
+    border: none; 
+    padding: 2vh;
+    font-size: 1rem;
+    color: white;
+    font-family: 'roboto';
+    border-radius: 0px 0px 5px 0px ;
+    box-sizing: border-box;
+    box-shadow: 2px 1px 1px 0px rgb(100, 100, 100);
+    z-index: 1;
+    width: 20vh;
+}
+
+.inative {
+    border: none;
+    width: 20vh;
+    fill-opacity: 50%;
+    border-radius: 0px 0px 10px 0px ;
+}

@@ -1,0 +1,24 @@
+@import './../global.css';
+
+.container {
+    overflow: auto;
+    display: flex;
+    min-height: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* padding: $lg; */
+}
+.container .tab {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+}
+.container .inputs {
+    height: 13.5rem;
+}
+.container .response {
+    height: 5rem;
+    /* color: $first; */
+}

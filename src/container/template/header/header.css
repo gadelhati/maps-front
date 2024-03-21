@@ -1,0 +1,32 @@
+@import '../../global.css';
+
+.header {
+    display: flex;
+    height: var(--space-thirteenth);
+    margin: var(--space-first);
+    padding: 0 var(--space-sm) 0 var(--space-sm);
+    color: var(--color-fourth);
+    border-radius: var(--space-second);
+    box-shadow: 0 var(--space-second) .6rem rgba(0,0,0,0.16), 0 var(--space-second) .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    padding: var(--space-sm);
+    padding-left: var(--space-md);
+}
+
+.header div {
+    display: flex;
+}
+
+.header ul {
+    padding: 3rem;
+}
+
+@media only screen and (max-width: 500px){
+    .header div {
+        font-size: var(--space-75);
+    }
+}

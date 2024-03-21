@@ -1,0 +1,52 @@
+@import '../../global.css';
+
+button {
+    justify-content: center;
+    width: var(--space-thirteenthandahalf);
+    max-height: var(--space-twelfth);
+    background-image: linear-gradient(var(--color-fourth), var(--color-second));
+    border: 0;
+    border-radius: var(--space-second);
+    box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+    box-sizing: border-box;
+    color: var(--color-sixth);
+    cursor: pointer;
+    font-family: Montserrat,sans-serif;
+    font-size: var(--space-eighth);
+    margin: var(--space-second);
+    padding: 10px 1px;
+    text-align: center;
+    user-select: none;
+    touch-action: manipulation;
+}
+button[typeof*="primary"] {
+    background-image: linear-gradient(var(--color-fifth), var(--color-second));
+}
+button[typeof*="secondary"] {
+    background-image: linear-gradient(var(--color-twelfth), var(--color-sixteenth));
+}
+button[typeof*="success"] {
+    background-image: linear-gradient(var(--color-fourteenth), var(--color-thirteenth));
+}
+button[typeof*="danger"] {
+    background-image: linear-gradient(var(--color-fifteenth), var(--color-seventeenth));
+}
+button[typeof*="warning"] {
+    background-image: linear-gradient(var(--color-eighteenth), var(--color-nineteenth));
+}
+button:hover {
+    box-shadow: 0 0 1em hsla(0, 0%, 0.0%, 0.75000);
+}
+button:focus {
+    outline: 3px solid var(--color-tenth);
+}
+button:active {
+    box-shadow: lightGray 0 3px 7px inset;
+    transform: translateY(2px);
+}
+/* button::after {
+    content: attr(typeof);
+    top: 25%;
+    padding: 20px 10px 0;
+    font-size: 18px;
+} */

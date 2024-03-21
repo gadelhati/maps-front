@@ -36,9 +36,9 @@
 .inputgroup {
     display: flex;
     align-items: center;
-    height: 2rem;
+    height: 2.5rem;
     width: 20rem;
-    border-radius: .5rem;
+    border-radius: .3rem;
     margin: .25rem;
     background-color: $cinza;
     box-shadow: inset -.5rem -.5rem 1rem -.5rem $preto, .25rem .25rem .5rem .025rem $cinza;
@@ -49,10 +49,14 @@
         background-color: $azul;
     }
     input {
-        height: 100%;
+        height: 80%;
         width: 100%;
-        outline: none;
+        outline-color: $cinza;
         border: none;
+    }
+    .sim {
+        // outline: none;
+        // border: none;
         // letter-spacing: .5rem;
         // background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1ch + .5*1ch) 0 100%/ #{7*(1ch + .5*1ch) - .5*1ch} 2px no-repeat;
         text-decoration: underline $azul solid .1rem;
@@ -63,12 +67,14 @@
         &:placeholder-shown, &:valid {
             color: aqua;
         }
-        &:first-child {
-            border-radius: .5rem 0rem 0rem .5rem;
-        }
+        
         &:last-child {
-            border-radius: 0rem .5rem .5rem 0rem;
+            // border-radius: 0rem .5rem .5rem 0rem;
         }
+    }
+    span:first-child {
+        height: 100%;
+        width: 2rem;
     }
     &:active {
         background-color: $azul;

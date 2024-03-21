@@ -1,0 +1,19 @@
+@import '../../global.css';
+
+.page {
+    background-color: var(--color-tenth);
+    font-family: Montserrat, sans-serif;
+    height: 2.5em;
+    width: 2.5em;
+    border: solid var(--color-eighth) 1px;
+}
+.page:disabled {
+    color: var(--color-seventh);
+    background-color: var(--color-fifth);
+}
+.page:has(div) button:first-child {
+    border-radius: 5px 0px 0px 5px,
+}
+.page:has(div)  button:last-child {
+    border-radius: 0px 5px 5px 0px,
+}

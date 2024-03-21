@@ -1,0 +1,68 @@
+/* colors */
+ee {
+
+--color-first: #00241B;
+--color-second: #2F3E46;
+--color-third: #354F52;
+--color-fourth: #52796F;
+--color-fifth: #84A98C;
+--color-sixth: #F2F2F2;
+--color-seventh: #ECECEC;
+--color-eighth: #CED4DA;
+--color-ninth: #CAD2C5;
+--color-tenth: #FFFFFF;
+--color-eleventh: #B6B6B6;
+--color-twelfth: #6C757D;
+--color-thirteenth: #06532F;
+--color-fourteenth: #124010;
+--color-fifteenth: #B63E3E;
+--color-sixteenth: #363636;
+--color-seventeenth: #E24D4C;
+--color-eighteenth: #CEBA33;
+--color-nineteenth: #E9BD0C;
+--color-twentieth: #0D6EFD;
+--color-twentyFirst: #3498DB;
+
+/* spaces */
+
+--space-first: 1px;
+--space-second: 2px;
+--space-third: 3px;
+--space-fourth: 4px;
+--space-fifth: 5px;
+--space-sixth: 6px;
+--space-seventh: 7px;
+--space-eighth: 8px;
+--space-ninth: 9px;
+--space-one2: 10px;
+--space-twentyFifthH: 25vh;
+--space-hundredthH: 100vh;
+--space-hundredthW: 100vw;
+
+--space-side: "256px";
+--space-radios: "5px";
+
+--space-xxxs: "0.06rem";
+--space-xxs: "0.222rem";
+--space-xs: "0.563rem";
+--space-sm: "0.75rem";
+--space-rg: "1rem";
+--space-md: "1.33rem";
+--space-lg: "1.77rem";
+--space-xl: "2.369rem";
+--space-xxl: "2.7rem";
+--space-xxxl: "10rem";
+
+--space-xxs0: "0.422rem";
+--space-xs0: "0.563rem";
+--space-sm0: "0.75rem";
+--space-rg0: "10%";
+--space-md0: "1.33rem";
+--space-lg0: "1.77rem";
+--space-xl0: "2.369rem";
+
+--space-step: "100px";
+--space-cinco: "5px";
+--space-px0: "0px";
+
+}

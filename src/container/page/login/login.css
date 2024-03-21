@@ -1,0 +1,32 @@
+@import '../../global.css';
+@import '../../template/load/load.css';
+
+section {
+    background-color: var(--color-second);
+    background-image: linear-gradient(to bottom, var(--color-second), var(--color-fourth));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+article {
+    color: var(--color-fourteenth);
+    padding: 5rem 0rem 5rem 0;
+    border-radius: .3rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+article img {
+    margin: 2em;
+}
+article span {
+    height: 1em;
+}
+article button {
+    margin: 2em;
+}
+img {
+    animation: spin 4s linear infinite;
+}

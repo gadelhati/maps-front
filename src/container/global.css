@@ -1,0 +1,70 @@
+:root {
+    --color-zero: brown;
+    --color-first: #00241B;
+    --color-second: #2F3E46;
+    --color-third: #354F52;
+    --color-fourth: #52796F;
+    --color-fifth: #84A98C;
+    /* --color-first: #051923;
+    --color-second: #003554;
+    --color-third: #006494;
+    --color-fourth: #0582CA;
+    --color-fifth: #00A6FB; */
+    --color-sixth: #F2F2F2;
+    --color-seventh: #ECECEC;
+    --color-eighth: #CED4DA;
+    --color-ninth: #CAD2C5;
+    --color-tenth: #FFFFFF;
+    --color-eleventh: #B6B6B6;
+    --color-twelfth: #6C757D;
+    --color-thirteenth: #06532F;
+    --color-fourteenth: #124010;
+    --color-fifteenth: #E24D4C;
+    --color-sixteenth: #363636;
+    --color-seventeenth: #A30000;
+    --color-eighteenth: #FFBF00;
+    --color-nineteenth: #DAA520;
+    --color-twentieth: #0D6EFD;
+    --color-twentyFirst: #3498DB;
+
+    --color-one: #73E86D;
+    --color-two: #000000;
+    --color-three: #A8C3E7;
+    --color-four: #E5E052;
+    --color-five: #C12525;
+    --color-six: #FFFFFF;
+
+    --space-zero: 0.03rem;
+    --space-first: 0.25rem;
+    --space-second: 0.3rem;
+    --space-third: 0.45rem;
+    --space-fourth: 0.5rem;
+    --space-fifth: 0.7rem;
+    --space-sm: 0.75rem;
+    --space-sixth: 0.45rem;
+    --space-seventh: 0.8rem;
+    --space-eighth: 0.9rem;
+    --space-ninth: 0.95rem;
+    --space-tenth: 1rem;
+    --space-md: 1.33rem;
+    --space-eleventh: 2.2rem;
+    --space-twelfth: 4rem;
+    --space-thirteenth: 5rem;
+    --space-thirteenthandahalf: 5.5rem;
+    --space-fourteenth: 6rem;
+    --space-fifteenth: 7rem;
+    --space-sixteenth: 10rem;
+    --space-seventeenth: 12rem;
+    --space-eighteenth: 13.5rem;
+    --space-nineteenth: 15rem;
+    --space-twentieth: 18rem;
+    --space-twentyFirst: 22rem;
+    --space-75: 75%;
+
+    --color-one: 20rem;
+    --color-two: 22rem;
+    --color-three: 28rem;
+    --color-four: 30rem;
+    --color-five: 32rem;
+    --color-six: 35rem;
+}

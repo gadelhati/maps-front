@@ -1,0 +1,40 @@
+.container {
+    font-size: .9rem;
+    font-family: Segoe UI, sans-serif;
+    margin-bottom: -.6rem;
+    padding: 1rem;
+}
+.container input {
+    font-size: 100%;
+    padding: 0.7rem;
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    background-color: var(--color-sixth);
+    width: '100%';
+}
+.container input:is(.container input[data-tip='1']) {
+    background-color: var(--color-fifteenth);
+}
+.container label {
+    font-size: 100%;
+    position: absolute;
+    left: 1rem;
+    padding: 0.8em;
+    margin-left: 0.3em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.container input:focus ~ div {
+    transform: 'scaleX(1)';
+}
+.container input:is(.container input:focus, .container input:valid)~label {
+    color: var(--color-sixth);
+    transform: translateY(-85%) scale(.9);
+    margin: 0em;
+    padding: 0.4em;
+}
+.container input:is(.container input:focus, .container input:valid) {
+    transition: all 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

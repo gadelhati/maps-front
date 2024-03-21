@@ -1,0 +1,11 @@
+@import './../../global.css';
+
+.find {
+    width: 30rem;
+    padding: .45rem;
+    border-radius: .3rem;
+    color: var(--color-tenth);
+    background-color: #6c757d;
+    cursor: pointer;
+    user-select: none;
+}

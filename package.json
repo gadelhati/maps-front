@@ -10,13 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "axios": "^1.6.8",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.13",
+    "react-router-dom": "^6.22.3",
+    "react-routes": "^0.2.6"
   },
   "devDependencies": {
     "@types/google.maps": "^3.54.3",
     "@types/node": "^20.6.3",
-    "@types/react": "^18.2.15",
+    "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

@@ -1,0 +1,29 @@
+@import '../../global.css';
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card span {
+    display: flex;
+    height: 10rem;
+    min-width: 15rem;
+    max-width: 20rem;
+    margin: var(--space-first);
+    padding: 0 var(--space-sm) 0 var(--space-sm);
+    color: var(--color-third);
+    background-color: var(--color-tenth);
+    border-radius: .3rem;
+    border-left: solid var(--color-fourth) .5em;
+    box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
+}
+
+.card span a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--color-fourth);
+}
