@@ -1,0 +1,88 @@
+@import './container/global.css';
+
+* {
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+    flex-shrink: 0;
+}
+*:after {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+*:before {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+h1 {
+    margin: 0;
+}
+html {
+    height: -webkit-fill-available;
+}
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.routes {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: soft-light;
+    /* variants {
+        element {
+            all {
+                align-items: stretch;
+                background-color: var(--color-ninth);
+            };
+            main {
+                flex-basis: 0;
+                flex-grow: 1.5;
+                flex-direction: "column";
+                color: var(--color-fifth);
+                background-color: var(--color-ninth);
+            }
+            content {
+                height: 94vh;
+                flex-direction: "row";
+                color: var(--color-fourth);
+                background-color: var(--color-fifth);
+            }
+            nav {
+                height: 6vh;
+                background-position: 50%;
+                padding: .5rem;
+                flex-direction: row;
+                justify-content: space-between;
+                color: var(--color-third);
+                background-color: var(--color-ninth);
+            }
+        }
+    } */
+}
+.all {
+    align-items: stretch;
+    background-color: var(--color-eighth);
+    /* background-image: url("https://mcdn.wallpapersafari.com/medium/82/75/HAz1IU.jpg"); */
+}
+.main {
+    flex-basis: 0;
+    flex-grow: 1.5;
+    flex-direction: column;
+    color: var(--color-fifth);
+    background-color: transparent;
+}

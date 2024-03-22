@@ -27,6 +27,6 @@ article span {
 article button {
     margin: 2em;
 }
-img {
+.rotate {
     animation: spin 4s linear infinite;
 }

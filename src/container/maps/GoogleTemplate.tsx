@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { MapInterface } from '../all/map.interface'
+import { useEffect, useState, useTransition } from 'react'
+import { InitialMap, MapInterface } from '../all/map.interface'
 import { GoogleOverlay } from './GoogleOverlay'
 import { GoogleMarker } from './GoogleMarker'
 import { ChartMenu } from '../menu/ChartMenu'
@@ -9,6 +9,12 @@ import { GoogleMap } from './GoogleMap'
 import icon from './../../assets/lighthouse.png'
 import './GoogleTemplate.scss'
 import layer from './../layer.json'
+import { initialGaugeStation } from '../../component/gauge_station/gauge_station.initial'
+import { initialErrorMessage } from '../../assets/error/errorMessage.initial'
+import { GaugeStation } from '../../component/gauge_station/gauge_station.interface'
+import { ErrorMessage } from '../../assets/error/errorMessage'
+import { retrieve } from '../../service/service.crud'
+import { MarkInterface } from './mark.interface'
 
 export const GoogleTemplate = (object: MapInterface) => {
     const [collapse, setCollapse] = useState<boolean>(false)
@@ -20,10 +26,26 @@ export const GoogleTemplate = (object: MapInterface) => {
     ])
     const [markerChecked, setMarkerChecked] = useState<boolean>(true)
     const [marker] = useState<google.maps.Marker>(GoogleMarker(markerChecked, icon, object.center))
+    const [markers, setMarkers] = useState<google.maps.Marker[]>([])
+
+    const [states, setStates] = useState<GaugeStation[]>([initialGaugeStation])
+    const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
+    const [ispending, startTransition] = useTransition()
 
     useEffect(() => {
         initMap()
+        retrieveItem()
     }, [])
+    const retrieveItem = async () => {
+        let mm: google.maps.Marker[] = []
+        await retrieve('gauge_station', 0, 10000, 'title', '').then((data: any) => {
+            startTransition(() => setStates(data?.content))
+            data?.content.map((element: any, index: number)=> {
+                return mm[index] = GoogleMarker(true, icon, new google.maps.LatLng(element.point.coordinates[1], element.point.coordinates[0]))    
+            })
+            setMarkers(mm)
+        })
+    }
     const showMap = (index: number) => {
         if(overlay[index].getMap() === null) centralize(overlay[index].getBounds(), index)
         overlay[index].setMap(overlay[index].getMap() === null ? map : null)
@@ -31,6 +53,9 @@ export const GoogleTemplate = (object: MapInterface) => {
     const showMark = () => {
         setMarkerChecked(!markerChecked)
         marker.setMap(marker.getMap() === null ? map : null)
+        markers.map((element)=>{
+            element.setMap(map)
+        })
     }
     const centralize = (center: google.maps.LatLngBounds | null, index: number) => {
         // map?.setZoom(mar[index].scale/1600)
@@ -64,6 +89,9 @@ export const GoogleTemplate = (object: MapInterface) => {
                         {/* <button className={collapse ? "collapsed" : "collapsible"} onClick={()=>showMap()}>Map</button>
                         <button className={collapse ? "collapsed" : "collapsible"} onClick={showMap2}>Map2</button> */}
                     </div>
+                    {/* {JSON.stringify(markers)} */}
+                    1
+                    {/* {JSON.stringify(states)} */}
                 </div>
                 <div className='item map' id='map'></div>
             </div>

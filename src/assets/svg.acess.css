@@ -1,0 +1,9 @@
+.svg {
+    vertical-align: -.125em;
+    pointer-events: none;
+    fill: currentColor;
+    margin-right: .5rem;
+    list-style: none;
+    width: 16px;
+    height: 16px;
+}

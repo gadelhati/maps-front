@@ -1,13 +1,15 @@
 import { useEffect, useState, useTransition } from "react"
 import { retrieve } from "../../service/service.crud"
 import { ErrorMessage } from "../../assets/error/errorMessage"
-import { initialLocation } from "../../component/location/location.initial"
+import { initialGaugeStation } from "../../component/gauge_station/gauge_station.initial"
 import { initialErrorMessage } from "../../assets/error/errorMessage.initial"
-import { Location } from "../../component/location/location.interface"
+import { GaugeStation } from "../../component/gauge_station/gauge_station.interface"
+import { element } from "prop-types"
 // import { getPayload } from "../../service/service.token"
 
-export const LocationList = () => {
-    const [state, setState] = useState<Location>(initialLocation)
+export const GaugeStationList = () => {
+    const [state, setState] = useState<GaugeStation>(initialGaugeStation)
+    const [states, setStates] = useState<GaugeStation[]>([initialGaugeStation])
     const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
     const [ispending, startTransition] = useTransition()
 
@@ -16,14 +18,16 @@ export const LocationList = () => {
         retrieveItem()
     }, [])
     const retrieveItem = async () => {
-        await retrieve('location', 0, 0, undefined, undefined).then((data: any) => {
+        await retrieve('gauge_station', 0, 0, undefined, undefined).then((data: any) => {
             startTransition(() => setState(data?.content[0]))
+            startTransition(() => setStates(data?.content))
         })
     }
     return(
         <div>
-            <div>{JSON.stringify(state.point.coordinates[0])}</div>
-            <div>{JSON.stringify(state.point.coordinates[1])}</div>
+            {states.map((element: GaugeStation)=>{
+                return <p>{JSON.stringify(element.point.coordinates[0])}</p>
+            })}
         </div>
     )
 }
