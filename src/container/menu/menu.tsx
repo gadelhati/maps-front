@@ -11,7 +11,7 @@ export const vector: string[][] = [
     // ["weatherOffShore", "home", "sixth"],
     // ["weatherOnShore", "speedometer2", "sixth"],
     // ["commission", "collection", "sixth"],
-    ["country", "chat-quote-fill", "sixth"],
+    ["googleMap", "chat-quote-fill", "sixth"],
     ["state", "collection", "sixth"],
     ["city", "grid", "sixth"],
     // ["equipment", "people-circle", "sixth"],

@@ -4,8 +4,8 @@ import { GoogleOverlay } from './GoogleOverlay'
 import { GoogleMarker } from './GoogleMarker'
 import { ChartMenu } from '../menu/ChartMenu'
 import { GoogleMap } from './GoogleMap'
-// import { GoogleMarkerDefault } from './GoogleMarkerDefault'
-// import { Glyph } from './GoogleGliph'
+import { GoogleMarkerDefault } from './GoogleMarkerDefault'
+import { Glyph } from './GoogleGliph'
 import icon from './../../assets/lighthouse.png'
 import './GoogleTemplate.scss'
 import layer from './../layer.json'
@@ -18,7 +18,8 @@ import { MarkInterface } from './mark.interface'
 
 export const GoogleTemplate = (object: MapInterface) => {
     const [collapse, setCollapse] = useState<boolean>(false)
-    const [map, setMap] = useState<google.maps.Map|null>(null)
+    // const [map, setMap] = useState<google.maps.Map|null>(null)
+    let map:google.maps.Map
     const [overlay] = useState<google.maps.GroundOverlay[]>([
         GoogleOverlay(layer[0].urlImage, layer[0].south, layer[0].west, layer[0].north, layer[0].east),
         GoogleOverlay(layer[1].urlImage, layer[1].south, layer[1].west, layer[1].north, layer[1].east),
@@ -63,20 +64,30 @@ export const GoogleTemplate = (object: MapInterface) => {
         if(center !== null) map?.setCenter(center?.getCenter())
     }
     const initMap = () => {
-        setMap(GoogleMap("map", 4, object.center, google.maps.MapTypeId.TERRAIN))
-        const priceTag = document.createElement('div');
-        priceTag.className = 'price-tag';
-        priceTag.textContent = '$2.5M';
+        map = GoogleMap("map", 4, object.center, google.maps.MapTypeId.TERRAIN)
+        
         // const image = {
         //     url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
         //     size: new google.maps.Size(20, 32),
         //     // origin: new google.maps.Point(0, 0),
         //     // anchor: new google.maps.Point(0, 32),
         // };
-        marker.setMap(map)
+        // marker.setMap(map)
         overlay[0].setMap(map)
         overlay[1].setMap(map)
         // const markerDefault = GoogleMarkerDefault(map, object.center, priceTag)
+        // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
+        vai(map)
+        const marker = new google.maps.marker.AdvancedMarkerElement({
+            position: object.center,
+            map: map,
+        });
+    }
+    const vai = (map: any) => {
+        const priceTag = document.createElement('div');
+        priceTag.className = 'price-tag';
+        priceTag.textContent = '$2.5M';
+        // let markerDefault = GoogleMarkerDefault(map, object.center, priceTag)
         // const markerDefault2 = GoogleMarkerDefault(map, object.center, Glyph('yellow', 'green', 'lightgreen').element)
     }
     return (
