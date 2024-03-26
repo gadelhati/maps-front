@@ -1,6 +1,6 @@
 export const vector: string[][] = [
     ["user", "people-circle", "first"],
-    ["role", "calendar3", "second"],
+    ["leafletMap", "calendar3", "second"],
     // ["list", "calendar3", "second"],
     ["google", "toggles2", "third"],
     ["location", "table", "fourth"],
