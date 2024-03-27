@@ -74,7 +74,7 @@ export const Login = () => {
                 :
                 <section>
                     <article>
-                        <img className='rotate' src={logo} alt="" width="120" height="128"></img>
+                        <img src="https://i.pinimg.com/originals/ba/34/0e/ba340e491730ec04db90f1516c9a6a2f.gif" width="120" height="128"></img>
                         <div className='container tooltip' data-tip={validation('username')}>
                             <input type={'text'} data-tip={validation('username').length} required autoFocus name={'username'} value={state.username} onChange={handleInputChange} autoComplete='off' />
                             <label htmlFor="username">Username</label>
