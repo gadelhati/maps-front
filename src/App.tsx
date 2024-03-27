@@ -1,6 +1,6 @@
 import AppRoutes from './Routes'
 import { GenericInput } from './container/input/GenericInput'
-import { GoogleTemplate } from './container/maps/GoogleTemplate'
+import { GoogleTemplate } from './container/maps/all/GoogleTemplate'
 
 function App() {
   return (

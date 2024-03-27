@@ -16,12 +16,9 @@ import { initialBlind } from "./component/blind/blind.initial";
 import { initialState } from "./component/state/state.initial";
 import { List } from "./container/page/list";
 import { SideList } from "./container/template/sidebar/side.list";
-// import { LocationList } from "./container/page/location";
-import './routes.css'
 import { GaugeStationList } from "./container/page/location";
-import { GoogleTemplate } from "./container/maps/GoogleTemplate";
-import { GoogleMap } from "./container/maps/google.map";
-import { LeafletTemplateMap } from "./container/maps/leaflet.template.map";
+import { LeafletMap } from "./container/maps/leaflet.map";
+import './routes.css'
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -50,10 +47,8 @@ export default function AppRoutes() {
                                 <Route path="/role" element={<GenericForm key='role' object={initialRole} url={'role'} />}></Route>
                             </Route>
                             <Route element={<RequireAuth allowedRoles={[ROLES.USER, ROLES.ADMIN, ROLES.MODERATOR]} />}>
-                                <Route path="/google" element={<GoogleTemplate zoom={11} center={new google.maps.LatLng(-22.88474, -43.13348)} mapId={'8e0a97af9386fef'} ></GoogleTemplate>}></Route>
                                 <Route path="/location" element={<GaugeStationList />}></Route>
-                                {/* <Route path="/googleMap" element={<GoogleMap />}></Route> */}
-                                <Route path="/leafletMap" element={<LeafletTemplateMap />}></Route>
+                                <Route path="/leafletMap" element={<LeafletMap />}></Route>
                                 <Route path="/list" element={<List />}></Route>
                                 <Route path="/blind" element={<GenericForm key='blind' object={initialBlind} url={'blind'} />}></Route>
                                 <Route path="/city" element={<GenericForm key='city' object={initialCity} url={'city'} />}></Route>

@@ -1,0 +1,4 @@
+.groupbutton {
+    display: flex;
+    flex-direction: column;
+}
