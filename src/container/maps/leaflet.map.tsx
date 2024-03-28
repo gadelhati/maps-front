@@ -70,7 +70,12 @@ export const LeafletMap = () => {
             alt: 'Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection.',
             interactive: true
         }).addTo(map)
+        setOverlay(polygon)
         map.fitBounds(polygon.getBounds());
+    }
+    const removeOverlay = () => {
+        // toggleShow()
+        map.removeLayer(overlay)
     }
     const addPolygon = () => {
         var polygon = L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'}).addTo(map);
@@ -82,6 +87,7 @@ export const LeafletMap = () => {
             <button hidden={!show} onClick={()=>retrieveItem('gauge_station')}>{UriToScreenFormat('gauge')}</button>
             <button hidden={show} onClick={remove}>{UriToScreenFormat('remove')}</button>
             <button onClick={overlayImage}>{UriToScreenFormat('overlay')}</button>
+            <button onClick={removeOverlay}>{UriToScreenFormat('remove overlay')}</button>
             <button onClick={addPolygon}>{UriToScreenFormat('polygon')}</button>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
         </div>
