@@ -41,9 +41,9 @@ export const LeafletMap = () => {
             }).addTo(base)
         }
     }
-    const retrieveItem = async() => {
+    const retrieveItem = async(url: string) => {
         let vector: GaugeStation[] = []
-        await retrieve('gauge_station', 0, 1000, 'title', undefined)
+        await retrieve(url, 0, 1000, 'title', undefined)
             .then((data: any) => {
                 vector = data.content
             });
@@ -57,26 +57,32 @@ export const LeafletMap = () => {
         })
         if(!map.hasLayer(layerGroup)) { setMap(map.addLayer(layerGroup)) }
         setMarkers(layerGroup)
+        map.fitBounds(layerGroup.getBounds());
     }
     const remove = () => {
         toggleShow()
         map.removeLayer(markers)
     }
     const overlayImage = () => {
-        L.imageOverlay('https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg', L.latLngBounds([[40.799311, -74.118464], [40.68202047785919, -74.33]]), {
-            opacity: 0.8,
+        var polygon = L.imageOverlay('/public/chart/25110.png', L.latLngBounds([[-60.75, -53.5], [-62.08, -57.75]]), {
+            opacity: 0.6,
             errorOverlayUrl: 'https://cdn-icons-png.flaticon.com/512/110/110686.png',
             alt: 'Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection.',
             interactive: true
         }).addTo(map)
+        map.fitBounds(polygon.getBounds());
     }
-    
+    const addPolygon = () => {
+        var polygon = L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'}).addTo(map);
+        if(!map.hasLayer(polygon)) { setMap(map.addLayer(polygon)) }
+        map.fitBounds(polygon.getBounds());
+    }
     return (
         <div className='groupbutton'>
-            <button hidden={!show} onClick={retrieveItem}>{UriToScreenFormat('gauge')}</button>
+            <button hidden={!show} onClick={()=>retrieveItem('gauge_station')}>{UriToScreenFormat('gauge')}</button>
             <button hidden={show} onClick={remove}>{UriToScreenFormat('remove')}</button>
             <button onClick={overlayImage}>{UriToScreenFormat('overlay')}</button>
-
+            <button onClick={addPolygon}>{UriToScreenFormat('polygon')}</button>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
         </div>
     )
