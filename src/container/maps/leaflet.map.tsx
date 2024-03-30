@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
 import { GaugeStation } from '../../component/gauge_station/gauge_station.interface';
-import { addFeatureGroup as addLayerGroup, addOverlay, addPolygon } from './addItem';
+import { addFeatureGroup , addOverlay, addPolygon } from './addItem';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
@@ -55,7 +55,7 @@ export const LeafletMap = () => {
     }
     const itemMarkers = (vector: GaugeStation[]) => {
         toggleShow(0)
-        setMarkers(addLayerGroup(map, vector))
+        setMarkers(addFeatureGroup(map, vector))
     }
     const itemOverlay = () => {
         toggleShow(1)
