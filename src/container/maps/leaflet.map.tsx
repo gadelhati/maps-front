@@ -18,7 +18,7 @@ export const LeafletMap = () => {
     useEffect(()=>{
         let base = L.map('map').setView(center, 13)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 8,
+            // maxZoom: 8,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(base)
         setMap(base)
