@@ -45,9 +45,9 @@ export const LeafletMap = () => {
     //         }).addTo(base)
     //     }
     // }
-    const retrieveItem = async(url: string) => {
+    const retrieveItem = async(url: string, sort: string) => {
         let vector: GaugeStation[] = []
-        await retrieve(url, 0, 1000, 'title', undefined)
+        await retrieve(url, 0, 1000, sort, undefined)
             .then((data: any) => {
                 vector = data.content
             });
@@ -71,7 +71,7 @@ export const LeafletMap = () => {
     }
     return (
         <div className='groupbutton'>
-            <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station')}>{UriToScreenFormat('gauge')}{show[0]}</button>
+            <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
             <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
             <button hidden={!show[1]} onClick={itemOverlay}>{UriToScreenFormat('overlay')}{show[1]}</button>
             <button hidden={show[1]} onClick={()=>remove(1, overlay)}>{UriToScreenFormat('rm overlay')}{show[1]}</button>
