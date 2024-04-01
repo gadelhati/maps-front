@@ -2,7 +2,7 @@ import * as L from 'leaflet'
 import { GaugeStation } from '../../component/gauge_station/gauge_station.interface';
 
 export const addOverlay = (map: L.Map) => {
-    var item = L.imageOverlay('/public/chart/25110.png', L.latLngBounds([[-60.75, -53.5], [-62.08, -57.75]]), {
+    var item = L.imageOverlay('/public/chart/25110.svg', L.latLngBounds([[-60.75, -53.5], [-62.08, -57.75]]), {
         opacity: 0.6,
         errorOverlayUrl: 'https://cdn-icons-png.flaticon.com/512/110/110686.png',
         alt: 'Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection.',
