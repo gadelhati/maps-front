@@ -1,4 +1,4 @@
-import { Route, HashRouter, Routes, Navigate } from "react-router-dom";
+import { Route, HashRouter, Routes } from "react-router-dom";
 import { RequireAuth } from "./RequireAuth";
 import { isValidToken } from "./service/service.token"
 
@@ -10,16 +10,14 @@ import { AuthProvider } from "./component/auth/auth.provider";
 import { Login } from "./container/page/login/login";
 import { Home } from "./container/page//home";
 import { Profile } from "./container/page/profile";
-// import { initialCountry } from "./component/country/country.initial";
+import { initialGaugeStation } from "./component/gauge_station/gauge_station.initial";
+import { initialCountry } from "./component/country/country.initial";
 import { initialCity } from "./component/city/city.initial";
 import { initialBlind } from "./component/blind/blind.initial";
 import { initialState } from "./component/state/state.initial";
-import { List } from "./container/page/list";
 import { SideList } from "./container/template/sidebar/side.list";
-import { GaugeStationList } from "./container/page/location";
 import { LeafletMap } from "./container/maps/leaflet.map";
 import './routes.css'
-import { initialGaugeStation } from "./component/gauge_station/gauge_station.initial";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -48,15 +46,14 @@ export default function AppRoutes() {
                                 <Route path="/role" element={<GenericForm key='role' object={initialRole} url={'role'} />}></Route>
                             </Route>
                             <Route element={<RequireAuth allowedRoles={[ROLES.USER, ROLES.ADMIN, ROLES.MODERATOR]} />}>
-                                <Route path="/location" element={<GaugeStationList />}></Route>
-                                <Route path="/leafletMap" element={<LeafletMap />}></Route>
-                                <Route path="/list" element={<List />}></Route>
-                                <Route path="/gauge-station" element={<GenericForm key='gauge-station' object={initialGaugeStation} url={'gauge_station'} />}></Route>
-                                <Route path="/blind" element={<GenericForm key='blind' object={initialBlind} url={'blind'} />}></Route>
-                                <Route path="/city" element={<GenericForm key='city' object={initialCity} url={'city'} />}></Route>
                                 <Route path="/home" element={<Home />}></Route>
                                 <Route path="/profile" element={<Profile />}></Route>
+                                <Route path="/leafletMap" element={<LeafletMap />}></Route>
+                                <Route path="/blind" element={<GenericForm key='blind' object={initialBlind} url={'blind'} />}></Route>
+                                <Route path="/gauge-station" element={<GenericForm key='gauge-station' object={initialGaugeStation} url={'gauge_station'} />}></Route>
+                                <Route path="/city" element={<GenericForm key='city' object={initialCity} url={'city'} />}></Route>
                                 <Route path="/state" element={<GenericForm key='state' object={initialState} url={'state'} />}></Route>
+                                <Route path="/country" element={<GenericForm key='country' object={initialCountry} url={'country'} />}></Route>
                             </Route>
                         </Routes>
                     </div>
