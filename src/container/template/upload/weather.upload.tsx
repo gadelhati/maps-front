@@ -1,19 +1,17 @@
 import { useState, ChangeEvent, useTransition } from 'react';
 import { Button } from '../button/button';
-import { Weather } from '../../../component/weather/weather.interface';
-import { initialWeather } from '../../../component/weather/weather.initial';
 import { createAll, retrieve } from '../../../service/service.crud';
 // import { initialErrorMessage } from '../../assets/error/errorMessage.initial';
 // import { ErrorMessage } from '../../assets/error/errorMessage';
 import './upload.css'
 
-export const WeatherUpload = () => {
-    const [state, setState] = useState<Weather[]>([initialWeather])
+export const WeatherUpload = <T extends { id: string, name: string }>(object: any) => {
+    const [state, setState] = useState<T[]>([object.object])
     // const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
     const [ispending, startTransition] = useTransition()
 
     const createAllItems = () => {
-        createAll<Weather>('weather', state).then(() => {
+        createAll<T>('weather', state).then(() => {
             retrieveItem()
             refresh()
         })
@@ -32,13 +30,13 @@ export const WeatherUpload = () => {
     //     return executed
     // }
     const handleInputFile = (event: ChangeEvent<HTMLInputElement>) => {
-        const weathers : Weather[] = []
+        const weathers : T[] = []
         const fileReader = new FileReader()
         fileReader.readAsText(event.target.files?.[0] as File)
         fileReader.onload = (event) => {
             const fileAsText = event.target?.result
             if (typeof fileAsText === 'string') {
-                let itens: Weather[] = JSON.parse(fileAsText.toString());
+                let itens: T[] = JSON.parse(fileAsText.toString());
                 itens.forEach((item, index) => {
                     weathers[index] = item
                 })

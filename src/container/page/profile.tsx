@@ -6,7 +6,7 @@ import { initialErrorMessage } from '../../assets/error/errorMessage.initial'
 import { changePassword, retrieve } from '../../service/service.crud'
 import { Button } from '../template/button/button'
 import { logout } from '../../service/service.crud'
-import { getPayload, getRoles } from '../../service/service.token'
+import { getPayload } from '../../service/service.token'
 import { useNavigate } from 'react-router-dom'
 import { Header } from '../template/header/header'
 

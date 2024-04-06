@@ -13,7 +13,7 @@ import { SubAtributeSet } from '../../component/atribute/subAtribute'
 import { UriToScreenFormat } from '../../assets/uri.format'
 // import { PDFDownloadLink } from '@react-pdf/renderer'
 // import { PDFDocument } from '../../component/pdf/PDFDocument'
-import { Icon } from '../../assets/svg.access'
+// import { Icon } from '../../assets/svg.access'
 import { Button } from '../template/button/button'
 import { Header } from '../template/header/header'
 import { ButtonPage } from '../template/button/button.page'
@@ -82,6 +82,8 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
             createToast(toastDetails[0])
         } else {
             startTransition(() => setError(data))
+            close('dois')
+            open('um')
             createToast(toastDetails[1])
         }
     }
@@ -90,8 +92,11 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
     }
     const createItem = async () => {
         await create(object.url, state).then((data) => {
+            console.log("create 2")
             validItem(data)
-        }).catch(() => { networkError() })
+        }).catch(() => { 
+            console.log("dont create")
+            networkError() })
     }
     const toogleOrder = () => {
         if(order === 'ASC') setOrder('DESC')
@@ -177,7 +182,6 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
         setSize(Number(event.target.value))
     }
     const handleConfirmYes = () => {
-        console.log(step)
         switch (step) {
             case 'create': createItem(); break
             case 'retrieve': retrieveItem(); break
@@ -191,10 +195,10 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
         loadSubStates()
         open('um')
     }
-    const removeTimeFromDate = (date: any) => {
-        let aux = new Date(date)
-        return new Date(aux.getFullYear(), aux.getMonth() + 1, aux.getDate()).toLocaleDateString('fr-CA');
-    }
+    // const removeTimeFromDate = (date: any) => {
+    //     let aux = new Date(date)
+    //     return new Date(aux.getFullYear(), aux.getMonth() + 1, aux.getDate()).toLocaleDateString('fr-CA');
+    // }
     const showObject = (values: any): any => {
         return (
             Object.entries(values).map(([key, value]: any, index) => {
