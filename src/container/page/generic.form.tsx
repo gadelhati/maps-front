@@ -36,7 +36,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
     const [ispending, startTransition] = useTransition()
     const [modal, setModal] = useState<boolean>(false)
     const [step, setStep] = useState<string>('')
-    const [key, setKey] = useState<string>('name')
+    const [key, setKey] = useState<string>(Object.keys(state)[1])
     const [search, setSearch] = useState<string>('')
     const [order, setOrder] = useState<string>('ASC')
 
