@@ -17,7 +17,6 @@
     font-size: .75rem;
     background-image: linear-gradient(var(--color-ninth), var(--color-sixth));
     transform: translatey(-.5rem);
-    margin-left: .3rem;
 }
 .inputgroup input,
 .inputgroup select {

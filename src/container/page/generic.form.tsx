@@ -73,6 +73,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
         loadSubStates()
         setComposite(data)
         setState(data)
+        setError([initialErrorMessage])
         open('um')
     }
     const validItem = (data: any) => {

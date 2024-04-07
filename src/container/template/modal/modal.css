@@ -1,5 +1,8 @@
 @import './../../global.css';
 
+.dois {
+    height: 25vh;
+}
 dialog {
     height: 80vh;
     width: 40vw;
