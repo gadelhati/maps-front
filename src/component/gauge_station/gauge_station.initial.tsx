@@ -6,4 +6,6 @@ export const initialGaugeStation : GaugeStation = {
     number: 0,
     title: '',
     point: initialPoint,
+    state: undefined,
+    chartArea: undefined,
 }
