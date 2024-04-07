@@ -92,10 +92,8 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
     }
     const createItem = async () => {
         await create(object.url, state).then((data) => {
-            console.log("create 2")
             validItem(data)
         }).catch(() => { 
-            console.log("dont create")
             networkError() })
     }
     const toogleOrder = () => {

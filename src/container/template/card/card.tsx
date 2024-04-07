@@ -15,7 +15,6 @@ export const Cards = () => {
     const retrieveItem = (url: string):any => {
         vector.map((element, index) =>
             retrieve(element[0]).then((data: any) => {
-                console.log(data.totalElements)
                 return <>{data.totalElements}</>
             }).catch(() => { return 'data.totalElements' })
         )
