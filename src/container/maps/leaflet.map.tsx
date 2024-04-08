@@ -5,6 +5,7 @@ import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
 import { GaugeStation } from '../../component/gauge_station/gauge_station.interface';
 import { addFeatureGroup , addOverlay, addPolygon } from './addItem';
+import './leaflet.css'
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
@@ -70,14 +71,16 @@ export const LeafletMap = () => {
         map.removeLayer(element)
     }
     return (
-        <div className='groupbutton'>
-            <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
-            <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
-            <button hidden={!show[1]} onClick={itemOverlay}>{UriToScreenFormat('overlay')}{show[1]}</button>
-            <button hidden={show[1]} onClick={()=>remove(1, overlay)}>{UriToScreenFormat('rm overlay')}{show[1]}</button>
-            <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
-            <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
+        <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
+            <div className='menu'>
+                <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
+                <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
+                <button hidden={!show[1]} onClick={itemOverlay}>{UriToScreenFormat('overlay')}{show[1]}</button>
+                <button hidden={show[1]} onClick={()=>remove(1, overlay)}>{UriToScreenFormat('rm overlay')}{show[1]}</button>
+                <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
+                <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
+            </div>
         </div>
     )
 }
