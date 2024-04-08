@@ -81,6 +81,11 @@ export const LeafletMap = () => {
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
             </div>
+            <div className='chart'>
+                <li><img src='/public/chart/25110.png'/></li>
+                <li><img src='/public/chart/25110.png'/></li>
+                <li><img src='/public/chart/25110.png'/></li>
+            </div>
         </div>
     )
 }
