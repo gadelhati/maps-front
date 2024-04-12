@@ -62,43 +62,25 @@ export const LeafletMap = () => {
     const retrieveCharts = async(url: string, sort: string) => {
         await retrieve(url, 0, 1000, sort, undefined)
             .then((data: any) => {
-                // console.log(data.content)
                 setCharts(data.content)
             });
     }
     const retrieveChart = async(index: number) => {
-        let vector: L.ImageOverlay[] = []
-        vector[index] = addOverlay(charts[index].ne.coordinates.slice(0), charts[index].sw.coordinates.slice(0))
-        setOverlays(vector)
-        console.log(vector)
-        if(map.hasLayer(vector[index])){
-            console.log('sim', vector[index])
-            map.removeLayer(vector[index])
+        toggleShow(1)
+        if(overlays[index] !== undefined && map.hasLayer(overlays[index])){
+            console.log('antes', overlays[index])
+            map.removeLayer(overlays[index])
         } else {
-            console.log('não', vector[index])
-            map.addLayer(vector[index])
-            map.fitBounds(vector[index].getBounds())
+            console.log('depois', overlays[index])
+            overlays[index] = addOverlay(charts[index].ne.coordinates.slice(0), charts[index].sw.coordinates.slice(0))
+            map.addLayer(overlays[index])
+            map.fitBounds(overlays[index].getBounds())
+            setOverlay(overlays[index])
         }
     }
     const itemMarkers = (vector: GaugeStation[]) => {
         toggleShow(0)
         setMarkers(addFeatureGroup(map, vector))
-    }
-    const itemOverlay = async(index: number) => {
-        toggleShow(1)       
-        // await retrieve('chart')
-        //     .then((data: any) => {
-                // item = addOverlay(data.content[index].ne.coordinates.slice(0), data.content[index].sw.coordinates.slice(0))
-                // setOverlay(overlays[index])
-                if(map.hasLayer(overlays[index])){
-                    console.log('sim', overlays[index])
-                    map.removeLayer(overlays[index])
-                } else {
-                    console.log('não', overlays[index])
-                    map.addLayer(overlays[index])
-                    map.fitBounds(overlays[index].getBounds())
-                }                
-            // });
     }
     const itemPolygon = () => {
         toggleShow(2)
@@ -112,16 +94,15 @@ export const LeafletMap = () => {
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
             <div className='menu'>
-                <button onClick={()=>retrieveChart(1)}>123</button>
                 <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
                 <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
-                <button onClick={()=>itemOverlay(0)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('rm overlay')}</button>
-                <button onClick={()=>itemOverlay(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('rm overlay')}</button>
+                <button onClick={()=>retrieveChart(0)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 0')}</button>
+                {/* <button onClick={()=>retrieveChart(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 1')}</button> */}
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
             </div>
             <div className='chart'>
-                {/* <li aria-disabled={!show[1]} onClick={itemOverlay}><img src='/public/chart/25110.png'/></li> */}
+                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(0)}><img src='/public/chart/25110.png'/></li>
                 <li><img src='/public/chart/25110.png'/></li>
                 <li><img src='/public/chart/25110.png'/></li>
             </div>
