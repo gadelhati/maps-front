@@ -68,11 +68,9 @@ export const LeafletMap = () => {
     const retrieveChart = async(index: number) => {
         toggleShow(1)
         if(overlays[index] !== undefined && map.hasLayer(overlays[index])){
-            console.log('antes', overlays[index])
             map.removeLayer(overlays[index])
         } else {
-            console.log('depois', overlays[index])
-            overlays[index] = addOverlay(charts[index].ne.coordinates.slice(0), charts[index].sw.coordinates.slice(0))
+            overlays[index] = addOverlay(charts[index].ne.coordinates.slice(0), charts[index].sw.coordinates.slice(0), charts[index].number.toString())
             map.addLayer(overlays[index])
             map.fitBounds(overlays[index].getBounds())
             setOverlay(overlays[index])
@@ -96,15 +94,15 @@ export const LeafletMap = () => {
             <div className='menu'>
                 <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
                 <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
-                <button onClick={()=>retrieveChart(0)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 0')}</button>
-                {/* <button onClick={()=>retrieveChart(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 1')}</button> */}
+                {/* <button onClick={()=>retrieveChart(0)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 0')}</button>
+                <button onClick={()=>retrieveChart(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 1')}</button> */}
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
             </div>
             <div className='chart'>
-                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(0)}><img src='/public/chart/25110.png'/></li>
-                <li><img src='/public/chart/25110.png'/></li>
-                <li><img src='/public/chart/25110.png'/></li>
+                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(0)}><img src='/public/chart/25115.png'/></li>
+                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(1)}><img src='/public/chart/25122.png'/></li>
+                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(2)}><img src='/public/chart/1.png'/></li>
             </div>
         </div>
     )
