@@ -18,7 +18,7 @@ export const LeafletMap = () => {
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true])
     const [ tile, setTile ] = useState<boolean>(true)
-    let item: L.ImageOverlay
+    let item: string = '/public/chart/'
 
     useEffect(()=>{
         let base = L.map('map').setView(center, 13)
@@ -100,9 +100,11 @@ export const LeafletMap = () => {
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
             </div>
             <div className='chart'>
-                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(0)}><img src='/public/chart/25115.png'/></li>
-                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(1)}><img src='/public/chart/25122.png'/></li>
-                <li aria-disabled={!show[1]} onClick={()=>retrieveChart(2)}><img src='/public/chart/1.png'/></li>
+                {charts.map((element:any, index:number)=>{
+                    if(index < 3) {
+                        return <li className='menuitem' aria-disabled={!show[1]} onClick={()=>retrieveChart(index)}><img src={item.concat(element.number).concat('.png')}/></li>
+                    }
+                })}
             </div>
         </div>
     )

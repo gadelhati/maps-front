@@ -18,24 +18,22 @@
     bottom: 2%;
     z-index: 1;
 }
-.chart > li {
+.menuitem {
     height: 10rem;
     width: 10rem;
     z-index: 0;
     height: 5rem;
     width: 5rem;
     margin-right: -2rem;
-    /* background-color: blue;
-    border: .1rem solid blue; */
     overflow: hidden;
     transform: perspective( 20rem ) rotateY( 50deg );
     box-shadow: inset -3rem 0rem 3rem -1rem rgba(0,0,0,0.5);
 }
-.chart > li >img {
+.menuitem >img {
     height: 100%;
     position: relative;
 }
-.chart > li:hover {
+.menuitem:hover {
     z-index: 1;
     transition: .3s;
     transform: rotateY( 0deg ) scale(1.2);
