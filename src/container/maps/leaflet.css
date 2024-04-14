@@ -29,12 +29,20 @@
     transform: perspective( 20rem ) rotateY( 50deg );
     box-shadow: inset -3rem 0rem 3rem -1rem rgba(0,0,0,0.5);
 }
-.menuitem >img {
+.menuitem > label {
+    padding: .1rem;
+    position: absolute;
+    z-index: 2;
+}
+.menuitem > img {
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     position: relative;
 }
 .menuitem:hover {
     z-index: 1;
+    margin: 0 .3rem 0 .3rem;
     transition: .3s;
     transform: rotateY( 0deg ) scale(1.2);
     box-shadow: 0rem 0rem 1rem .25rem rgba(0,0,0,0.5);

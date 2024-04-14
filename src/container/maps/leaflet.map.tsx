@@ -102,7 +102,10 @@ export const LeafletMap = () => {
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{
                     if(index < 3) {
-                        return <li className='menuitem' aria-disabled={!show[1]} onClick={()=>retrieveChart(index)}><img src={item.concat(element.number).concat('.png')}/></li>
+                        return <li className='menuitem' aria-disabled={!show[1]} onClick={()=>retrieveChart(index)}>
+                                <label>{element.number}</label>
+                                <img src={item.concat(element.number).concat('.png')}/>
+                            </li>
                     }
                 })}
             </div>
