@@ -70,6 +70,7 @@ export const LeafletMap = () => {
         if(overlays[index] !== undefined && map.hasLayer(overlays[index])){
             map.removeLayer(overlays[index])
         } else {
+            playSound()
             overlays[index] = addOverlay(charts[index].ne.coordinates.slice(0), charts[index].sw.coordinates.slice(0), charts[index].number.toString())
             map.addLayer(overlays[index])
             map.fitBounds(overlays[index].getBounds())
@@ -87,6 +88,10 @@ export const LeafletMap = () => {
     const remove = (index: number, element: any) => {
         toggleShow(index)
         map.removeLayer(element)
+    }
+    const playSound = () => {
+        let audio = new Audio("/public/sound/click_sound.mp3")
+        audio.play()
     }
     return (
         <div>
