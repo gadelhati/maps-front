@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useTransition, useEffect } from 'react'
+import { useState, ChangeEvent, useTransition, useEffect, KeyboardEvent } from 'react'
 import { User } from "../../../component/user/user.interface"
 import { initialUser } from '../../../component/user/user.initial'
 import { ErrorMessage } from '../../../assets/error/errorMessage'
@@ -67,13 +67,18 @@ export const Login = () => {
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         setState({ ...state, [event.target.name]: value })
     }
+    const submit = (event: KeyboardEvent<HTMLImageElement>) => {
+        if(event.key === 'Enter') {
+            loginUser()
+        }
+    }
     return (
         <>
             {isValidToken() ?
                 <Home></Home>
                 :
                 <section>
-                    <article>
+                    <article onKeyDown={submit}>
                         <img src={logo} width="270" height="270"></img>
                         <div className='container tooltip' data-tip={validation('username')}>
                             <input type={'text'} data-tip={validation('username').length} required autoFocus name={'username'} value={state.username} onChange={handleInputChange} autoComplete='off' />
