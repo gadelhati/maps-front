@@ -77,7 +77,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
         open('um')
     }
     const validItem = (data: any) => {
-        if (data?.hasOwnProperty('id') || data?.hasOwnProperty('ii') && data?.hasOwnProperty('iii') || data?.hasOwnProperty('ddddddd') || data?.hasOwnProperty('name') && data?.hasOwnProperty('number')) {
+        if (data?.hasOwnProperty('id') || data?.hasOwnProperty('code') || data?.hasOwnProperty('ii') && data?.hasOwnProperty('iii') || data?.hasOwnProperty('ddddddd') || data?.hasOwnProperty('name') && data?.hasOwnProperty('number')) {
             close('dois')
             retrieveItem()
             createToast(toastDetails[0])
@@ -201,7 +201,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
     const showObject = (values: any): any => {
         return (
             Object.entries(values).map(([key, value]: any, index) => {
-                if (key !== 'id' && key !== 'password' && index < 7 && key !== 'role') {
+                if (key !== 'id' && key !== 'code' && key !== 'password' && index < 7 && key !== 'role') {
                     return (<td key={Math.random()}>
                         {Array.isArray(value) ?
                             <>
@@ -331,7 +331,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                             </tr>
                             <tr>
                                 {Object.entries(state).map(([key]: any, index) => {
-                                    if (key !== 'id' && key !== 'password' && index < 7 && key !== 'role') {
+                                    if (key !== 'id' && key !== 'code' && key !== 'password' && index < 7 && key !== 'role') {
                                         if (!object.url.includes('weather') || index < 6) {
                                             return (<th key={Math.random()} onClick={() => searchKey(key)}>{key}</th>)
                                         }
