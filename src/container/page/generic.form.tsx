@@ -17,6 +17,7 @@ import { UriToScreenFormat } from '../../assets/uri.format'
 import { Button } from '../template/button/button'
 import { Header } from '../template/header/header'
 import { ButtonPage } from '../template/button/button.page'
+import QRCode from 'react-qr-code'
 import '../template/table/table.css'
 import '../template/load/load.css'
 import '../template/toast/toast.css'
@@ -330,6 +331,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 </th>
                             </tr>
                             <tr>
+                                <th className='qrcode'>QR</th>
                                 {Object.entries(state).map(([key]: any, index) => {
                                     if (key !== 'id' && key !== 'code' && key !== 'password' && index < 7 && key !== 'role') {
                                         if (!object.url.includes('weather') || index < 6) {
@@ -344,6 +346,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 {states && states.map((element) => {
                                     return (
                                         <tr key={Math.random()} onClick={() => selectItem(element)}>
+                                            <td><QRCode value="https://www.gadelha.eti.br" /></td>
                                             <>{showObject(element)}</>
                                         </tr>)
                                 })}

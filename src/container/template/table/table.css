@@ -1,5 +1,9 @@
 @import '../../global.css';
 
+tbody svg {
+    height: 2.5rem;
+    width: 2.5rem;
+}
 table {
     border-left: solid var(--color-fourth) .5em;
     max-height: 75vh;
