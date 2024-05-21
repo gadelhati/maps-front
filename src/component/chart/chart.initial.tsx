@@ -1,3 +1,4 @@
+import { initialChartArea } from "../chart_area/chart_area.initial";
 import { initialPoint } from "../point/point.initial";
 import { Chart } from "./chart.interface";
 
@@ -9,5 +10,5 @@ export const initialChart : Chart = {
     edition: [],
     ne: initialPoint,
     sw: initialPoint,
-    chartArea: undefined,
+    chartArea: initialChartArea,
 }

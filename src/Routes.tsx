@@ -19,6 +19,8 @@ import { SideList } from "./container/template/sidebar/side.list";
 import { LeafletMap } from "./container/maps/leaflet.map";
 import './routes.css'
 import { initialMaritimeArea } from "./component/maritime_area/maritime_area.initial";
+import { initialChart } from "./component/chart/chart.initial";
+import { initialChartArea } from "./component/chart_area/chart_area.initial";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -51,6 +53,8 @@ export default function AppRoutes() {
                                 <Route path="/profile" element={<Profile />}></Route>
                                 <Route path="/leafletMap" element={<LeafletMap />}></Route>
                                 <Route path="/blind" element={<GenericForm key='blind' object={initialBlind} url={'blind'} />}></Route>
+                                <Route path="/chart" element={<GenericForm key='chart' object={initialChart} url={'chart'} />}></Route>
+                                <Route path="/chart-area" element={<GenericForm key='chart-area' object={initialChartArea} url={'chart_area'} />}></Route>
                                 <Route path="/maritime-area" element={<GenericForm key='maritime-area' object={initialMaritimeArea} url={'maritime_area'} />}></Route>
                                 <Route path="/gauge-station" element={<GenericForm key='gauge-station' object={initialGaugeStation} url={'gauge_station'} />}></Route>
                                 <Route path="/city" element={<GenericForm key='city' object={initialCity} url={'city'} />}></Route>
