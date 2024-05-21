@@ -278,7 +278,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                                         <select key={key} name={key} onChange={Array.isArray(value) ? handleInputChangeSubSelectArray : handleInputChangeSubSelect}
                                                             // defaultValue={typeof value[0] === 'boolean' ? undefined : atribute[index]?.type === 'date' ? removeTimeFromDate(value[0]) : value[0]}
                                                             value={Array.isArray(value) ? value[0] : value}>
-                                                            <option selected value={value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? value[0] : value}>{value === undefined || value === null ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}</option>
+                                                            <option selected value={value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? value[0] : value}>
+                                                                {value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
+                                                            </option>
                                                             {subStates[index]?.map(((result: any) => <option key={Math.random()} value={result.id}>{result?.name ? result.name : result.id}</option>))}
                                                         </select>
                                                         :
