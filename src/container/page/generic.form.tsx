@@ -220,6 +220,15 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 :
                                 <>{typeof value === 'boolean' ? JSON.stringify(value) : value}</>
                         }
+                        {key === "polygon" && value?.coordinates[0] !== undefined &&
+                            value?.coordinates[0].map(()=>{
+                                return (
+                                <>{value?.coordinates[0][0][0].toFixed(2)} {value?.coordinates[0][0][1].toFixed(2)}</>
+                                )
+                            })
+                        }
+                        {key === "ne" && value?.coordinates !== undefined && <>{value?.coordinates[0].toFixed(2)}</>}
+                        {key === "sw" && value?.coordinates !== undefined && <>{value?.coordinates[1].toFixed(2)}</>}
                     </td>)
                 }
             }))
