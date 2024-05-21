@@ -9,6 +9,7 @@ export const vector: string[][] = [
     // ["weather", "table", "sixth"],
     // ["weatherOffShore", "home", "sixth"],
     // ["commission", "collection", "sixth"],
+    ["maritime-area", "gear-fill", "sixth"],
     ["gauge-station", "chat-quote-fill", "sixth"],
     ["state", "collection", "sixth"],
     ["city", "grid", "sixth"],
