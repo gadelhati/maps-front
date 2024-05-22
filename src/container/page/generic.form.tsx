@@ -286,8 +286,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                                 <span className={'inputgroup tooltip'} key={key} data-tip={validation(key)} style={atribute[index]?.type === 'hidden' ? { display: 'none' } : { display: 'flex' }}>
                                                     {Array.isArray(atribute[index]?.worth) || atribute[index]?.type === 'object' || atribute[index]?.type === 'undefined' ?
                                                         <select key={key} name={key} onChange={Array.isArray(value) ? handleInputChangeSubSelectArray : handleInputChangeSubSelect}
-                                                            // defaultValue={typeof value[0] === 'boolean' ? undefined : atribute[index]?.type === 'date' ? removeTimeFromDate(value[0]) : value[0]}
-                                                            value={Array.isArray(value) ? value[0] : value}>
+                                                            defaultValue={value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}>
                                                             <option selected value={value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? value[0] : value}>
                                                                 {value === undefined || value === null || value[0] === undefined ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
                                                             </option>
