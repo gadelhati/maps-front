@@ -294,7 +294,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                                             {subStates[index]?.map(((result: any) => <option key={Math.random()} value={result.id}>{result?.name ? result.name : result.id}</option>))}
                                                         </select>
                                                         :
-                                                        <input key={key} name={key} onChange={handleInputChange} autoComplete='off' placeholder={key} type={typeof value}
+                                                        <input key={key} name={key} onChange={handleInputChange} autoComplete='off' placeholder={key} type={atribute[index]?.type === "password" ? atribute[index]?.type : typeof value}
                                                             // defaultValue={typeof value === 'boolean' ? undefined : atribute[index]?.type === 'date' ? removeTimeFromDate(value) : value}
                                                             defaultChecked={typeof value === 'boolean' ? value : undefined}
                                                             value={typeof value === 'boolean' ? undefined : value === 0 ? '' : value} />
