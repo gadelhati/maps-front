@@ -79,7 +79,7 @@ export const Login = () => {
                 :
                 <section>
                     <article onKeyDown={submit}>
-                        <img src={logo} width="270" height="270"></img>
+                        <img src={logo} width="220" height="220"></img>
                         <div className='container tooltip' data-tip={validation('username')}>
                             <input type={'text'} data-tip={validation('username').length} required autoFocus name={'username'} value={state.username} onChange={handleInputChange} autoComplete='off' />
                             <label htmlFor="username">Username</label>
