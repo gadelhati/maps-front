@@ -357,7 +357,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 {states && states.map((element) => {
                                     return (
                                         <tr key={Math.random()} onClick={() => selectItem(element)}>
-                                            <td><QRCode value="https://www.gadelha.eti.br" /></td>
+                                            <td><QRCode value="00020126420014br.gov.bcb.pix0120gadelha.ti@gmail.com52040000530398654040.015802BR5923MARCELO RIBEIRO GADELHA6014RIO DE JANEIRO62580520SAN2024052303431216050300017br.gov.bcb.brcode01051.0.0630463AA" /></td>
                                             <>{showObject(element)}</>
                                         </tr>)
                                 })}
