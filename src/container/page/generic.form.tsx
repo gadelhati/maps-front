@@ -11,9 +11,8 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { createToast, toastDetails } from '../template/toast/toast.message'
 import { SubAtributeSet } from '../../component/atribute/subAtribute'
 import { UriToScreenFormat } from '../../assets/uri.format'
-// import { PDFDownloadLink } from '@react-pdf/renderer'
-// import { PDFDocument } from '../../component/pdf/PDFDocument'
-// import { Icon } from '../../assets/svg.access'
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import { PDFDocument } from '../../component/pdf/PDFDocument'
 import { Button } from '../template/button/button'
 import { Header } from '../template/header/header'
 import { ButtonPage } from '../template/button/button.page'
@@ -308,6 +307,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 <Button category={'primary'} function={()=>confirmation('create')} hidden={compositeOrNot()} name='Create'/>
                                 <Button category={'warning'} function={()=>confirmation('update')} hidden={!compositeOrNot()} name='Update'/>
                                 <Button category={'danger'} function={()=>confirmation('delete')} hidden={!compositeOrNot()} name='Delete'/>
+                                <PDFDownloadLink document={<PDFDocument object={state} />} fileName="somename.pdf">
+                                    {({ loading })=><Button category={'secondary'} function={''} name={loading ? 'Wait': 'Download'} disabled={loading ? true : false}/>}
+                                </PDFDownloadLink>
                                 <Button category={'secondary'} function={()=>close('um')} name='Close'/>
                             </footer>
                         </div>
