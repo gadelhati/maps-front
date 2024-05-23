@@ -342,7 +342,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 </th>
                             </tr>
                             <tr>
-                                <th className='qrcode'>QR</th>
+                                <th className='icon'>QR</th>
                                 {Object.entries(state).map(([key]: any, index) => {
                                     if (key !== 'id' && key !== 'code' && key !== 'password' && index < 7 && key !== 'role') {
                                         if (!object.url.includes('weather') || index < 6) {
@@ -350,6 +350,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                         }
                                     }
                                 })}
+                                <th className='icon'>Download</th>
                             </tr>
                         </thead>
                         <ErrorBoundary fallback={<div> Something went wrong </div>} >
@@ -357,8 +358,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 {states && states.map((element) => {
                                     return (
                                         <tr key={Math.random()} onClick={() => selectItem(element)}>
-                                            <td><QRCode value="00020126420014br.gov.bcb.pix0120gadelha.ti@gmail.com52040000530398654040.015802BR5923MARCELO RIBEIRO GADELHA6014RIO DE JANEIRO62580520SAN2024052303431216050300017br.gov.bcb.brcode01051.0.0630463AA" /></td>
+                                            <td className='icon'><QRCode value="00020126420014br.gov.bcb.pix0120gadelha.ti@gmail.com52040000530398654040.015802BR5923MARCELO RIBEIRO GADELHA6014RIO DE JANEIRO62580520SAN2024052303431216050300017br.gov.bcb.brcode01051.0.0630463AA" /></td>
                                             <>{showObject(element)}</>
+                                            <td className='icon'>📥</td>
                                         </tr>)
                                 })}
                             </tbody>

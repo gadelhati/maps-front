@@ -5,6 +5,9 @@ tbody svg {
     width: 2.5rem;
     opacity: 0.25;
 }
+.icon {
+    text-align: center;
+}
 table {
     border-left: solid var(--color-fourth) .5em;
     max-height: 75vh;
