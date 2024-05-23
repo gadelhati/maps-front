@@ -8,9 +8,8 @@
 
 .card span {
     display: flex;
-    height: 10rem;
-    min-width: 15rem;
-    max-width: 20rem;
+    height: 7rem;
+    width: 15rem;
     margin: var(--space-first);
     padding: 0 var(--space-sm) 0 var(--space-sm);
     color: var(--color-third);
@@ -24,6 +23,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     color: var(--color-fourth);
+    font-size: 1.25rem;
 }
