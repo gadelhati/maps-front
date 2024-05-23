@@ -67,7 +67,7 @@ export const Login = () => {
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         setState({ ...state, [event.target.name]: value })
     }
-    const submit = (event: KeyboardEvent<HTMLImageElement>) => {
+    const submit = (event: KeyboardEvent<HTMLInputElement>) => {
         if(event.key === 'Enter') {
             loginUser()
         }
