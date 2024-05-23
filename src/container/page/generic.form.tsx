@@ -286,9 +286,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                                 <span className={'inputgroup tooltip'} key={key} data-tip={validation(key)} style={atribute[index]?.type === 'hidden' ? { display: 'none' } : { display: 'flex' }}>
                                                     {Array.isArray(atribute[index]?.worth) || atribute[index]?.type === 'object' || atribute[index]?.type === 'undefined' ?
                                                         <select key={key} name={key} onChange={Array.isArray(value) ? handleInputChangeSubSelectArray : handleInputChangeSubSelect}
-                                                            defaultValue={value === undefined || value === null ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}>
+                                                            defaultValue={value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}>
                                                             <option selected value={value === undefined || value === null ? null : Array.isArray(value) ? value[0] : value}>
-                                                                {value === undefined || value === null ? null : Array.isArray(value) ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
+                                                                {value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
                                                             </option>
                                                             {subStates[index]?.map(((result: any) => <option key={Math.random()} value={result.id}>{result?.name ? result.name : result.id}</option>))}
                                                         </select>
