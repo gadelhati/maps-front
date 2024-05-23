@@ -59,11 +59,11 @@ export default function AppRoutes() {
 
                                 <Route path="/blind" element={<GenericForm key='blind' object={initialBlind} url={'blind'} />}></Route>
                                 <Route path="/chart" element={<GenericForm key='chart' object={initialChart} url={'chart'} />}></Route>
-                                <Route path="/chart-area" element={<GenericForm key='chart-area' object={initialChartArea} url={'chart_area'} />}></Route>
+                                <Route path="/chart-area" element={<GenericForm key='chart-area' object={initialChartArea} url={'chartArea'} />}></Route>
                                 <Route path="/city" element={<GenericForm key='city' object={initialCity} url={'city'} />}></Route>
                                 <Route path="/country" element={<GenericForm key='country' object={initialCountry} url={'country'} />}></Route>
-                                <Route path="/gauge-station" element={<GenericForm key='gauge-station' object={initialGaugeStation} url={'gauge_station'} />}></Route>
-                                <Route path="/maritime-area" element={<GenericForm key='maritime-area' object={initialMaritimeArea} url={'maritime_area'} />}></Route>
+                                <Route path="/gauge-station" element={<GenericForm key='gauge-station' object={initialGaugeStation} url={'gaugeStation'} />}></Route>
+                                <Route path="/maritime-area" element={<GenericForm key='maritime-area' object={initialMaritimeArea} url={'maritimeArea'} />}></Route>
                                 <Route path="/state" element={<GenericForm key='state' object={initialState} url={'state'} />}></Route>
                             </Route>
                         </Routes>
