@@ -6,6 +6,13 @@
     flex-direction: row;
 }
 
+/* .card span:nth-child(1) { border-left: solid var(--color-one) .5em; }
+.card span:nth-child(2) { border-left: solid var(--color-two) .5em; }
+.card span:nth-child(3) { border-left: solid var(--color-three) .5em; }
+.card span:nth-child(4) { border-left: solid var(--color-four) .5em; }
+.card span:nth-child(3) { border-left: solid var(--color-five) .5em; }
+.card span:nth-child(4) { border-left: solid var(--color-six) .5em; } */
+
 .card span {
     display: flex;
     height: 7rem;
