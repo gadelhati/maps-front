@@ -345,10 +345,10 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                             </tr>
                             <tr>
                                 <th className='icon'>QR</th>
-                                {Object.entries(state).map(([key]: any, index) => {
-                                    if (key !== 'id' && key !== 'code' && key !== 'password' && index < 7 && key !== 'role') {
+                                {Object.entries(state).map(([localKey]: any, index) => {
+                                    if (localKey !== 'id' && localKey !== 'code' && localKey !== 'password' && index < 7 && localKey !== 'role') {
                                         if (!object.url.includes('weather') || index < 6) {
-                                            return (<th key={Math.random()} onClick={() => searchKey(key)}>{key}</th>)
+                                            return (<th key={Math.random()} onClick={() => searchKey(localKey)}>{localKey} {localKey === key ? order === 'ASC' ? '↑' : '↓' : ''}</th>)
                                         }
                                     }
                                 })}
