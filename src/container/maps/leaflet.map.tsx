@@ -12,12 +12,12 @@ export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
     const [ map, setMap ] = useState<any>()
     const [ markers, setMarkers ] = useState<L.LayerGroup>()
-    const [ overlay, setOverlay ] = useState<L.ImageOverlay>()
-    const [ overlays, setOverlays ] = useState<L.ImageOverlay[]>([])
+    const [, setOverlay ] = useState<L.ImageOverlay>()
+    const [ overlays ] = useState<L.ImageOverlay[]>([])
     const [ charts, setCharts ] = useState<Chart[]>([])
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true])
-    const [ tile, setTile ] = useState<boolean>(true)
+    // const [ tile, setTile ] = useState<boolean>(true)
     let item: string = '/public/chart/'
 
     useEffect(()=>{
@@ -97,7 +97,7 @@ export const LeafletMap = () => {
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
             <div className='menu'>
-                <button hidden={!show[0]} onClick={()=>retrieveItem('gauge_station', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
+                <button hidden={!show[0]} onClick={()=>retrieveItem('gaugeStation', 'title')}>{UriToScreenFormat('gauge')}{show[0]}</button>
                 <button hidden={show[0]} onClick={()=>remove(0, markers)}>{UriToScreenFormat('rm gauge')}{show[0]}</button>
                 {/* <button onClick={()=>retrieveChart(0)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 0')}</button>
                 <button onClick={()=>retrieveChart(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 1')}</button> */}

@@ -1,7 +1,6 @@
 import { UriToScreenFormat } from '../../../assets/uri.format'
 import { getPayload } from '../../../service/service.token'
 import { Button } from '../button/button'
-import { vector } from '../../menu/category'
 import './header.css'
 import './../inputgroup/inputgroup.css'
 

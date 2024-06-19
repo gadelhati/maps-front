@@ -22,8 +22,7 @@ export const addPolygon = (map: L.Map) => {
 export const addFeatureGroup = (map: L.Map, vector: GaugeStation[]) => {
     let featureGroup: L.FeatureGroup = L.featureGroup()
     vector.forEach((element: GaugeStation)=>{
-            // featureGroup.addLayer(L.marker(element.point.coordinates.slice(0).reverse()).bindPopup(element.title))
-            featureGroup.addLayer(L.marker(element.point.coordinates.slice(0).reverse()).bindPopup(element.title))
+            featureGroup.addLayer(L.marker([element.point.coordinates[1], element.point.coordinates[0]]).bindPopup(element.title))
     })
     map.addLayer(featureGroup)
     map.fitBounds(featureGroup.getBounds())

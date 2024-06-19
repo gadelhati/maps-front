@@ -6,7 +6,7 @@ import { initialErrorMessage } from '../../../assets/error/errorMessage.initial'
 import { login, retrieve } from '../../../service/service.crud'
 import { Button } from '../../template/button/button';
 import { logout } from '../../../service/service.crud'
-import { existsToken, getPayload, isValidToken } from '../../../service/service.token'
+import { getPayload, isValidToken } from '../../../service/service.token'
 import logo from '../../../assets/image/giphy.gif'
 import { Home } from '../home'
 import './login.css'
@@ -92,7 +92,7 @@ export const Login = () => {
                         {isValidToken() && <Button category={'secondary'} function={logoutUser} name='Logout'/>}
                         {ispending}
                         <span>
-                            {Array.isArray(error) && error.map((erro: ErrorMessage, index: number) => {
+                            {Array.isArray(error) && error.map((erro: ErrorMessage) => {
                                 return <p key={Math.random()}>{erro.message === "Unauthorized" && "Não Autorizado"}</p>
                             })}
                         </span>

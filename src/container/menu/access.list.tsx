@@ -11,7 +11,7 @@ export const accessList = () => {
             }else {
                 list[index]=true
             }
-        }).catch((error) => {})
+        }).catch(() => {})
     })
     return list
 }

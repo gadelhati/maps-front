@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import './ChartMenu.scss'
 import layer from './../layer.json'
 
-interface Chart {
-    south: number,
-    west: number,
-    north: number,
-    east: number
-    image: File
-}
+// interface Chart {
+//     south: number,
+//     west: number,
+//     north: number,
+//     east: number
+//     image: File
+// }
 
 export const ChartMenu = ({setShow}: any) => {
     const loop: number[] = [0, 1, 2]
@@ -22,9 +22,6 @@ export const ChartMenu = ({setShow}: any) => {
     }
     const handleMouseEvent = (index: number) => {
         setChart(index)
-    }
-    const show = () => {
-        setShow()
     }
     return (
         <div className="templatemenu">

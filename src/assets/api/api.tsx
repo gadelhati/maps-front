@@ -1,8 +1,6 @@
 import axios from "axios"
 import { getAccessToken } from "../../service/service.token"
 
-const token = getAccessToken();
-
 export const api = axios.create({
   // baseURL: "http://localhost:3122/maps",
   // baseURL: "http://18.217.181.203:3122/maps",

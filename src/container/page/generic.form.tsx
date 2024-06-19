@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, useEffect, useTransition } from 'react'
-import { getPayload, isValidToken } from '../../service/service.token'
+import { isValidToken } from '../../service/service.token'
 import { ErrorMessage } from '../../assets/error/errorMessage'
 import { initialErrorMessage } from '../../assets/error/errorMessage.initial'
 import { create, update, remove, retrieve, removeComposite } from '../../service/service.crud'

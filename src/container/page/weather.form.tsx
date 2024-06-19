@@ -28,7 +28,7 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
     const [states, setStates] = useState<T[]>([object.object])
     const [subStates, setSubStates] = useState<Object[][]>(SubAtributeSet(state))
     const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
-    const [atribute, setAtribute] = useState<Atribute[]>(AtributeSet(object.object))
+    const [, setAtribute] = useState<Atribute[]>(AtributeSet(object.object))
     const [page, setPage] = useState<number>(0)
     const [size, setSize] = useState<number>(5)
     const [pageable, setPageable] = useState<Pageable>(initialPageable)
@@ -38,8 +38,6 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
     const [key, setKey] = useState<string>('name')
     const [search, setSearch] = useState<string>('')
     const [tab, setTab] = useState<number>(0)
-
-    const width = object.width ?? 100;
 
     useEffect(() => {
         JSON.stringify({ ispending })
@@ -104,7 +102,7 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         }).catch(() => { networkError() })
     }
     const loadSubStates = async () => {
-        Object.entries(state).map(([key, value], index) => {
+        Object.entries(state).map(([key], index) => {
             return (
                 (key === 'observer' || key === 'station') ?
                     retrieve(key).then((data: any) => {
@@ -166,11 +164,6 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
             setState({ ...state, [event.target.name]: data?.content[0] })
         }).catch(() => { networkError() })
     }
-    const handleInputChangeSubSelectArray = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, size, 'id', event.target.value).then((data: any) => {
-            setState({ ...state, [event.target.name]: [data?.content[0]] })
-        }).catch(() => { networkError() })
-    }
     const handlePage = (page: number) => {
         setPage(page)
     }
@@ -202,10 +195,10 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         resetItem()
         loadSubStates()
     }
-    const removeTimeFromDate = (date: any) => {
-        let aux = new Date(date)
-        return new Date(aux.getFullYear(), aux.getMonth() + 1, aux.getDate()).toLocaleDateString('fr-CA');
-    }
+    // const removeTimeFromDate = (date: any) => {
+    //     let aux = new Date(date)
+    //     return new Date(aux.getFullYear(), aux.getMonth() + 1, aux.getDate()).toLocaleDateString('fr-CA');
+    // }
     const showObject = (values: any): any => {
         return (
             Object.entries(values).map(([key, value]: any, index) => {
