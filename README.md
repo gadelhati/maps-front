@@ -16,6 +16,10 @@
 ## Description
 Georeferenced information.
 
+![Alt Print 001](https://github.com/gadelhati/maps-front/blob/main/src/assets/image/print/print_001.png "Print 001")
+![Alt Print 002](https://github.com/gadelhati/maps-front/blob/main/src/assets/image/print/print_002.png "Print 002")
+![Alt Print 003](https://github.com/gadelhati/maps-front/blob/main/src/assets/image/print/print_003.png "Print 003")
+
 ### Roadmap
 #### in development
 - [x] input group
