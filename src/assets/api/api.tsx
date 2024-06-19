@@ -5,7 +5,8 @@ const token = getAccessToken();
 
 export const api = axios.create({
   // baseURL: "http://localhost:3122/maps",
-  baseURL: "http://18.217.181.203:3122/maps",
+  // baseURL: "http://18.217.181.203:3122/maps",
+  baseURL: "http://maps.institutohidrografico.com:3122/maps",
   // baseURL: "http://15.235.55.109:13739/maps",
   // headers: { 'content-type': 'application/json' }
 });
