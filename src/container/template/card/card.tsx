@@ -13,11 +13,11 @@ export const Cards = () => {
     const [states, setStates] = useState<number[]>([])
 
     const retrieveItem = (url: string):any => {
-        vector.map((element, index) =>
-            retrieve(element[0]).then((data: any) => {
-                return <>{data.totalElements}</>
-            }).catch(() => { return 'data.totalElements' })
-        )
+        // vector.map((element, index) =>
+        //     retrieve(element[0]).then((data: any) => {
+        //         return <>{data.totalElements}</>
+        //     }).catch(() => { return 'data.totalElements' })
+        // )
     }
     return (
         <div className='card'>
