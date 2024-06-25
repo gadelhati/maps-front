@@ -12,8 +12,7 @@ export const addOverlay = (ne: any, sw: any, number: string) => {
     })
 }
 
-export const addPolygon = (map: L.Map) => {
-    var polygon = L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'});
+export const addPolygon = (map: L.Map, polygon: L.Polygon) => {
     map.addLayer(polygon)
     map.fitBounds(polygon.getBounds())
     return polygon

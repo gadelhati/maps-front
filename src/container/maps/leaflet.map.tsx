@@ -7,6 +7,7 @@ import { GaugeStation } from '../../component/gauge_station/gauge_station.interf
 import { addFeatureGroup , addOverlay, addPolygon } from './addItem';
 import './leaflet.css'
 import { Chart } from '../../component/chart/chart.interface';
+import { MaritimeArea } from '../../component/maritime_area/maritime_area.interface';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
@@ -15,8 +16,10 @@ export const LeafletMap = () => {
     const [, setOverlay ] = useState<L.ImageOverlay>()
     const [ overlays ] = useState<L.ImageOverlay[]>([])
     const [ charts, setCharts ] = useState<Chart[]>([])
+    const [ maritimeArea, setMaritimeArea ] = useState<MaritimeArea[]>([])
     const [ polygon, setPolygon ] = useState<L.Polygon>()
-    const [ show, setShow ] = useState<boolean[]>([true, true, true])
+    const [ polygons, setPolygons ] = useState<L.Polygon[]>([])
+    const [ show, setShow ] = useState<boolean[]>([true, true, true, true])
     // const [ tile, setTile ] = useState<boolean>(true)
     let item: string = '/chart/'
 
@@ -29,6 +32,7 @@ export const LeafletMap = () => {
         setMap(base)
         return () => {
             retrieveCharts('chart', 'number')
+            retrieveMaritimeArea('maritimeArea', '')
             base.remove()
         }
     }, [])
@@ -65,6 +69,12 @@ export const LeafletMap = () => {
                 setCharts(data.content)
             });
     }
+    const retrieveMaritimeArea = async(url: string, sort: string) => {
+        await retrieve(url, 0, 1000, sort, undefined)
+            .then((data: any) => {
+                setMaritimeArea(data.content)
+            });
+    }
     const retrieveChart = async(index: number) => {
         toggleShow(1)
         if(overlays[index] !== undefined && map.hasLayer(overlays[index])){
@@ -83,7 +93,11 @@ export const LeafletMap = () => {
     }
     const itemPolygon = () => {
         toggleShow(2)
-        setPolygon(addPolygon(map))
+        setPolygon(addPolygon(map, L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'})))
+    }
+    const itemPolygons = () => {
+        toggleShow(3)
+        setPolygons([addPolygon(map, L.polygon(maritimeArea[2].polygon.coordinates, {color: 'green'}))])
     }
     const remove = (index: number, element: any) => {
         toggleShow(index)
@@ -103,6 +117,8 @@ export const LeafletMap = () => {
                 <button onClick={()=>retrieveChart(1)}>{show[1] ? UriToScreenFormat('overlay') : UriToScreenFormat('overlay 1')}</button> */}
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
+                <button hidden={!show[3]} onClick={itemPolygons}>{UriToScreenFormat('polygons')}{show[3]}</button>
+                <button hidden={show[3]} onClick={()=>remove(3, polygons)}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
             </div>
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{
