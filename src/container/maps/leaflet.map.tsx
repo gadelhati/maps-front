@@ -18,7 +18,7 @@ export const LeafletMap = () => {
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true])
     // const [ tile, setTile ] = useState<boolean>(true)
-    let item: string = '/public/chart/'
+    let item: string = '/chart/'
 
     useEffect(()=>{
         let base = L.map('map').setView(center, 13)
@@ -90,7 +90,7 @@ export const LeafletMap = () => {
         map.removeLayer(element)
     }
     const playSound = () => {
-        let audio = new Audio("/public/sound/click_sound.mp3")
+        let audio = new Audio("/assets/sound/click_sound.mp3")
         audio.play()
     }
     return (

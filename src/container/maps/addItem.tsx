@@ -3,7 +3,7 @@ import { GaugeStation } from '../../component/gauge_station/gauge_station.interf
 
 export const addOverlay = (ne: any, sw: any, number: string) => {
     //ref.: vectorized in https://vectorization.eu/
-    let path: string = '/public/chart/'.concat(number).concat('.svg')
+    let path: string = '/src/assets/image/chart/'.concat(number).concat('.svg')
     return L.imageOverlay(path, L.latLngBounds([ne, sw]), {
         opacity: 0.6,
         errorOverlayUrl: 'https://cdn-icons-png.flaticon.com/512/110/110686.png',
