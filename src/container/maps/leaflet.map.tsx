@@ -98,8 +98,12 @@ export const LeafletMap = () => {
     }
     const itemPolygons = () => {
         toggleShow(3)
-        console.log(polygons[0])
-        setPolygons([addPolygon(map, L.polygon(maritimeArea[2].polygon.coordinates, {color: 'green'}))])
+        maritimeArea.forEach((element: MaritimeArea)=>{
+            element.polygon.coordinates[0].forEach((item: any)=>{
+                return item.reverse()
+            })
+        })
+        setPolygons([addPolygon(map, L.polygon(maritimeArea[7].polygon.coordinates, {color: 'green'}))])
     }
     const remove = (index: number, element: any) => {
         toggleShow(index)
