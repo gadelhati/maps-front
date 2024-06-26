@@ -93,10 +93,12 @@ export const LeafletMap = () => {
     }
     const itemPolygon = () => {
         toggleShow(2)
+        console.log(polygon)
         setPolygon(addPolygon(map, L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'})))
     }
     const itemPolygons = () => {
         toggleShow(3)
+        console.log(polygons[0])
         setPolygons([addPolygon(map, L.polygon(maritimeArea[2].polygon.coordinates, {color: 'green'}))])
     }
     const remove = (index: number, element: any) => {
@@ -118,7 +120,7 @@ export const LeafletMap = () => {
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
                 <button hidden={!show[3]} onClick={itemPolygons}>{UriToScreenFormat('polygons')}{show[3]}</button>
-                <button hidden={show[3]} onClick={()=>remove(3, polygons)}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
+                <button hidden={show[3]} onClick={()=>remove(3, polygons[0])}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
             </div>
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{
