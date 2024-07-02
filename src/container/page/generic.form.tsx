@@ -22,6 +22,8 @@ import '../template/load/load.css'
 import '../template/toast/toast.css'
 import '../template/inputgroup/inputgroup.css'
 import '../template/modal/modal.css'
+import { crc16, payload } from '../../component/pix/CRC'
+import { initialPix } from '../../component/pix/pix'
 
 export const GenericForm = <T extends { id: string, name: string }>(object: any) => {
     const [state, setState] = useState<any>(object.object)
@@ -323,6 +325,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                     </dialog>
                     <Header title={object.url} function={newItem} />
                     {/* {ispending && <div className='load'></div>} */}
+                    {payload(initialPix)+crc16(payload(initialPix))}
                     <table>
                         <thead>
                             <tr>
@@ -360,7 +363,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 {states && states.map((element) => {
                                     return (
                                         <tr key={Math.random()} onClick={() => selectItem(element)}>
-                                            <td className='icon'><QRCode value="00020126420014br.gov.bcb.pix0120gadelha.ti@gmail.com52040000530398654040.015802BR5923MARCELO RIBEIRO GADELHA6014RIO DE JANEIRO62580520SAN2024052303431216050300017br.gov.bcb.brcode01051.0.0630463AA" /></td>
+                                            <td className='icon'><QRCode value={payload(initialPix)+crc16(payload(initialPix))} /></td>
                                             <>{showObject(element)}</>
                                             <td className='icon'>📥</td>
                                         </tr>)
