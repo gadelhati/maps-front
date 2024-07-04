@@ -25,14 +25,23 @@ export const initialPix : Pix = {
     merchantAccountInformation: {
         id: '26',
         GUI: { id: '00', value: 'br.gov.bcb.pix' },
-        chave: { id: '01', value: 'gadelha.ti@gmail.com' },
+        chave: { id: '01', value: '02755107600' },
     },
     merchantCategoryCode: { id: '52', value: '0000' },
     transactionCurrency: { id: '53', value: '986' },
     transactionAmount: { id: '54', value: '0.01' },
     countryCode: {id:'58', value: 'BR'},
-    merchantName: {id: '59', value: 'MARCELO RIBEIRO GADELHA' },
+    merchantName: {id: '59', value: 'ANDREA LUCIANA PAIVA' },
     merchantCity: {id: '60', value: 'RIO DE JANEIRO' },
     additionalDataFieldTemplate: { id: '62', value: '0503***' },
     CRC16: '6304',
 }
+
+// CPF 	^[0-9]{11}$ 	12345678901 	
+// CNPJ 	^[0-9]{14}$ 	12345678901234 	
+// PHONE 	^\+[1-9]\d{1,14}$ 	+5510998765432 	
+// EMAIL 	^[a-z0-9.!#$&'*+\/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$ 	pix@bcb.gov.br 	E-mail deve possuir no máximo 77 caracteres e deve ser em minúsculo
+
+// automatizar a emissão de cobranças
+// verificar Pix recebidos
+// fazer a devolução e conciliação
