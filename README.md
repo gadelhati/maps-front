@@ -53,6 +53,15 @@ Georeferenced information.
 type in terminal
 
 ```
+# check dependency version
+npm outdated
+
+# updates every package
+npm update
+
+# update to a major breaking-changes version
+npm install <package>@latest
+
 # create this project
 npm create vite@latest maps-front -- --template react-ts
 
