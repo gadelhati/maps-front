@@ -22,6 +22,14 @@ import { initialRole } from "./component/role/role.initial";
 import { initialState } from "./component/state/state.initial";
 import { initialUser } from "./component/user/user.initial";
 import './routes.css'
+import { initialStock } from "./component/stock/stock";
+import { initialPerson } from "./component/person/person";
+import { initialProduct } from "./component/product/product";
+import { initialAddress } from "./component/address/address.interface";
+import { initialLot } from "./component/lot/lot.interface";
+import { initialOrder } from "./component/order/order.interface";
+import { initialOrderItem } from "./component/order.item/order.item";
+import { Wms } from "./container/wms/wms";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -45,6 +53,14 @@ export default function AppRoutes() {
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
+                            <Route path="/wms" element={<Wms />}></Route>
+                            <Route path="/stock" element={<GenericForm key='stock' object={initialStock} url={'stock'} />}></Route>
+                            <Route path="/person" element={<GenericForm key='person' object={initialPerson} url={'person'} />}></Route>
+                            <Route path="/product" element={<GenericForm key='product' object={initialProduct} url={'product'} />}></Route>
+                            <Route path="/address" element={<GenericForm key='address' object={initialAddress} url={'address'} />}></Route>
+                            <Route path="/lot" element={<GenericForm key='lot' object={initialLot} url={'lot'} />}></Route>
+                            <Route path="/order" element={<GenericForm key='order' object={initialOrder} url={'order'} />}></Route>
+                            <Route path="/orderItem" element={<GenericForm key='orderItem' object={initialOrderItem} url={'orderItem'} />}></Route>
                             <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
                                 <Route path="/user" element={<GenericForm key='user' object={initialUser} url={'user'} />}></Route>
                                 <Route path="/role" element={<GenericForm key='role' object={initialRole} url={'role'} />}></Route>

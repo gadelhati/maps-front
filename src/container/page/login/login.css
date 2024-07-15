@@ -8,6 +8,10 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("https://replogleglobes.com/app/uploads/2022/10/history-of-navigation.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-blend-mode: multiply;
 }
 article {
     color: var(--color-fourteenth);

@@ -1,0 +1,60 @@
+import { startTransition, useEffect, useState } from "react"
+import { Address, initialAddress } from "../../component/address/address.interface"
+import { initialProduct, Product } from "../../component/product/product"
+import { initialOrder, Order } from "../../component/order/order.interface"
+import { initialOrderItem } from "../../component/order.item/order.item"
+import { initialLot } from "../../component/lot/lot.interface"
+import { initialPerson } from "../../component/person/person"
+import { initialStock, Stock } from "../../component/stock/stock"
+import { retrieve } from "../../service/service.crud"
+
+export const Wms = () => {
+    const [address, setAddress] = useState([initialAddress])
+    const [lot, setLot] = useState([initialLot])
+    const [order, setOrder] = useState([initialOrder])
+    const [orderItem, setOrderItem] = useState([initialOrderItem])
+    const [person, setPerson] = useState([initialPerson])
+    const [product, setProduct] = useState<Product[]>([initialProduct])
+    const [stock, setStock] = useState<Stock[]>([initialStock])
+    
+    useEffect(()=>{
+        retrieve('address', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setAddress(data.content))
+        })
+        retrieve('lot', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setLot(data.content))
+        })
+        retrieve('order', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setOrder(data.content))
+        })
+        retrieve('orderItem', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setOrderItem(data.content))
+        })
+        retrieve('person', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setPerson(data.content))
+        })
+        retrieve('product', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setProduct(data.content))
+        })
+        retrieve('stock', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setStock(data.content))
+        })
+    },[])
+    return (
+        <div>
+            <div>
+                <div>Address: {address.length}</div>
+                <div>Lot: {lot.length}</div>
+                <div>Order: {order.length}
+                    {/* {order.map((element: Order)=>{
+                        return <p key={Math.random()}>{JSON.stringify(element?.addressBuyer)}</p>
+                    })} */}
+                </div>
+                <div>Order Item: {orderItem.length}</div>
+                <div>Person: {person.length}</div>
+                <div>Product: {product.length}</div>
+                <div>Stock: {stock.length}</div>
+            </div>
+        </div>
+    )
+}

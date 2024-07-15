@@ -6,11 +6,21 @@ export const initialPix: Pix = {
         apresentacao: new Date("2020-04-01T18:00:00Z"),
         expiracao: 3600
     },
+    // devedor: {
+    //     cpf: '',
+    //     cnpj: '',
+    //     nome: '',
+    // },
     txid: "fc9a4366ff3d4964b5dbc6c91a8722d3",
     revisao: 3,
     status: "ATIVA",
     valor: {
         original: 500.00,
+        abatimento: 0,
+        desconto: 0,
+        juros: 0,
+        multa: 0,
+        final: 0,
         modalidadeAlteracao: 0
     },
     chave: "7407c9c8-f78b-11ea-adc1-0242ac120002",

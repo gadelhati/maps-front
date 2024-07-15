@@ -4,12 +4,22 @@ export interface Pix {
         apresentacao: Date,
         expiracao: number
     },
+    devedor?: {
+        cpf?: string,
+        cnpj?: string,
+        nome?: string,
+    },
     txid?: string,
     revisao: number,
     status: string,
     valor: {
         original: number,
-        modalidadeAlteracao: number
+        abatimento: number,
+        desconto: number,
+        juros: number,
+        multa: number,
+        final: number,
+        modalidadeAlteracao: number,
     },
     chave: string,
     solicitacaoPagador: string,
