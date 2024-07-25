@@ -1,6 +1,6 @@
 import { initialLot, Lot } from "../lot/lot.interface";
 
-export interface Product {
+export interface Item {
     readonly id: string,
     sku: string,
     gtin: string,
@@ -23,7 +23,7 @@ export interface Product {
     lot: Lot,
 }
 
-export const initialProduct: Product = {
+export const initialItem: Item = {
     id: '',
     sku: '',
     gtin: '',

@@ -24,7 +24,7 @@ import { initialUser } from "./component/user/user.initial";
 import './routes.css'
 import { initialStock } from "./component/stock/stock";
 import { initialPerson } from "./component/person/person";
-import { initialProduct } from "./component/product/product";
+import { initialItem } from "./component/item/item";
 import { initialAddress } from "./component/address/address.interface";
 import { initialLot } from "./component/lot/lot.interface";
 import { initialOrder } from "./component/order/order.interface";
@@ -56,7 +56,7 @@ export default function AppRoutes() {
                             <Route path="/wms" element={<Wms />}></Route>
                             <Route path="/stock" element={<GenericForm key='stock' object={initialStock} url={'stock'} />}></Route>
                             <Route path="/person" element={<GenericForm key='person' object={initialPerson} url={'person'} />}></Route>
-                            <Route path="/product" element={<GenericForm key='product' object={initialProduct} url={'product'} />}></Route>
+                            <Route path="/item" element={<GenericForm key='item' object={initialItem} url={'item'} />}></Route>
                             <Route path="/address" element={<GenericForm key='address' object={initialAddress} url={'address'} />}></Route>
                             <Route path="/lot" element={<GenericForm key='lot' object={initialLot} url={'lot'} />}></Route>
                             <Route path="/order" element={<GenericForm key='order' object={initialOrder} url={'order'} />}></Route>

@@ -1,6 +1,6 @@
 import { startTransition, useEffect, useState } from "react"
 import { Address, initialAddress } from "../../component/address/address.interface"
-import { initialProduct, Product } from "../../component/product/product"
+import { initialItem, Item } from "../../component/item/item"
 import { initialOrder, Order } from "../../component/order/order.interface"
 import { initialOrderItem } from "../../component/order.item/order.item"
 import { initialLot } from "../../component/lot/lot.interface"
@@ -14,7 +14,7 @@ export const Wms = () => {
     const [order, setOrder] = useState([initialOrder])
     const [orderItem, setOrderItem] = useState([initialOrderItem])
     const [person, setPerson] = useState([initialPerson])
-    const [product, setProduct] = useState<Product[]>([initialProduct])
+    const [item, setItem] = useState<Item[]>([initialItem])
     const [stock, setStock] = useState<Stock[]>([initialStock])
     
     useEffect(()=>{
@@ -33,8 +33,8 @@ export const Wms = () => {
         retrieve('person', 0, 5, 'id', '', 'ASC').then((data: any) => {
             startTransition(() => setPerson(data.content))
         })
-        retrieve('product', 0, 5, 'id', '', 'ASC').then((data: any) => {
-            startTransition(() => setProduct(data.content))
+        retrieve('item', 0, 5, 'id', '', 'ASC').then((data: any) => {
+            startTransition(() => setItem(data.content))
         })
         retrieve('stock', 0, 5, 'id', '', 'ASC').then((data: any) => {
             startTransition(() => setStock(data.content))
@@ -46,13 +46,13 @@ export const Wms = () => {
                 <div>Address: {address.length}</div>
                 <div>Lot: {lot.length}</div>
                 <div>Order: {order.length}
-                    {/* {order.map((element: Order)=>{
-                        return <p key={Math.random()}>{JSON.stringify(element?.addressBuyer)}</p>
-                    })} */}
+                    {order.map((element: Order)=>{
+                        return <p key={Math.random()}>{JSON.stringify(element.orderItem)}</p>
+                    })}
                 </div>
                 <div>Order Item: {orderItem.length}</div>
                 <div>Person: {person.length}</div>
-                <div>Product: {product.length}</div>
+                <div>Item: {item.length}</div>
                 <div>Stock: {stock.length}</div>
             </div>
         </div>

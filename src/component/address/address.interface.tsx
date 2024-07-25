@@ -1,6 +1,5 @@
 import { initialCity } from "../city/city.initial";
 import { City } from "../city/city.interface";
-import { initialPerson, Person } from "../person/person";
 
 export interface Address {
     readonly id: string,
@@ -12,7 +11,6 @@ export interface Address {
     complement: string,
     IBGECode: string,
     city: City,
-    person: Person,
 }
 
 export const initialAddress: Address = {
@@ -25,5 +23,4 @@ export const initialAddress: Address = {
     complement: '',
     IBGECode: '',
     city: initialCity,
-    person: initialPerson,
 }
