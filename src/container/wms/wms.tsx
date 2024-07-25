@@ -47,7 +47,7 @@ export const Wms = () => {
                 <div>Lot: {lot.length}</div>
                 <div>Order: {order.length}
                     {order.map((element: Order)=>{
-                        return <p key={Math.random()}>{JSON.stringify(element.orderItem)}</p>
+                        return <p key={Math.random()}>{JSON.stringify(element.person.id)}</p>
                     })}
                 </div>
                 <div>Order Item: {orderItem.length}</div>
