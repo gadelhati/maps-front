@@ -43,17 +43,17 @@ export const Wms = () => {
     return (
         <div>
             <div>
-                <div>Address: {address.length}</div>
-                <div>Lot: {lot.length}</div>
-                <div>Order: {order.length}
+                <div>Address: {JSON.stringify(address[0].city.name)}</div>
+                <div>Lot: {JSON.stringify(lot[0].number)}</div>
+                <div>Order: {JSON.stringify(order[0])}
                     {order.map((element: Order)=>{
                         return <p key={Math.random()}>{JSON.stringify(element?.person)}</p>
                     })}
                 </div>
-                <div>Order Item: {orderItem.length}</div>
-                <div>Person: {person.length}</div>
-                <div>Item: {item.length}</div>
-                <div>Stock: {stock.length}</div>
+                <div>Order Item: {JSON.stringify(orderItem[0].item.category)}</div>
+                <div>Person: {JSON.stringify(person[0].name)}</div>
+                <div>Item: {JSON.stringify(item[0].category)}</div>
+                <div>Stock: {JSON.stringify(stock[0].currentBulk)}</div>
             </div>
         </div>
     )
