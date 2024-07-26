@@ -6,7 +6,7 @@ import { create, update, remove, retrieve, removeComposite } from '../../service
 import { AtributeSet } from './generic.atribute'
 import { Atribute } from '../../component/atribute/atribute.interface'
 import { Pageable } from '../../component/pageable/pageable.interface'
-import { initialPageable } from '../../component/pageable/pageable.initial'
+import { initialPageable } from '../../component/pageable/pageable'
 import { ErrorBoundary } from 'react-error-boundary'
 import { createToast, toastDetails } from '../template/toast/toast.message'
 import { SubAtributeSet } from '../../component/atribute/subAtribute'

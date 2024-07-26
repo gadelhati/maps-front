@@ -22,6 +22,8 @@ Georeferenced information.
 
 ### Roadmap
 #### in development
+- [x] person on order is null?
+- [x] add initialOrder on stock
 - [x] input group
 - [x] extract all records in pdf
 - [x] user: improve visual of add multiple roles

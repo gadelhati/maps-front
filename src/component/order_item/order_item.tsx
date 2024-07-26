@@ -5,6 +5,7 @@ export interface OrderItem {
     unitPrice: number,
     discount: number,
     quantity: number,
+    totalCost: number,
     product: Product,
 }
 
@@ -13,5 +14,6 @@ export const initialOrderItem : OrderItem = {
     unitPrice: 0,
     discount: 0,
     quantity: 0,
+    totalCost: 0,
     product: initialProduct,
 }

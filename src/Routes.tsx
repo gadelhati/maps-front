@@ -11,24 +11,24 @@ import { NotAllowed } from "./container/page/not.allowed";
 import { Profile } from "./container/page/profile";
 import { SideList } from "./container/template/sidebar/side.list";
 
-import { initialBlind } from "./component/blind/blind.initial";
-import { initialChart } from "./component/chart/chart.initial";
-import { initialChartArea } from "./component/chart_area/chart_area.initial";
-import { initialCity } from "./component/city/city.initial";
-import { initialCountry } from "./component/country/country.initial";
-import { initialGaugeStation } from "./component/gauge_station/gauge_station.initial";
-import { initialMaritimeArea } from "./component/maritime_area/maritime_area.initial";
-import { initialRole } from "./component/role/role.initial";
-import { initialState } from "./component/state/state.initial";
-import { initialUser } from "./component/user/user.initial";
+import { initialBlind } from "./component/blind/blind";
+import { initialChart } from "./component/chart/chart";
+import { initialChartArea } from "./component/chart_area/chart_area";
+import { initialCity } from "./component/city/city";
+import { initialCountry } from "./component/country/country";
+import { initialGaugeStation } from "./component/gauge_station/gauge_station";
+import { initialMaritimeArea } from "./component/maritime_area/maritime_area";
+import { initialRole } from "./component/role/role";
+import { initialState } from "./component/state/state";
+import { initialUser } from "./component/user/user";
 import './routes.css'
 import { initialStock } from "./component/stock/stock";
 import { initialPerson } from "./component/person/person";
 import { initialProduct } from "./component/product/product";
-import { initialAddress } from "./component/address/address.interface";
-import { initialLot } from "./component/lot/lot.interface";
-import { initialOrder } from "./component/order/order.interface";
-import { initialOrderItem } from "./component/order.item/order.item";
+import { initialAddress } from "./component/address/address";
+import { initialLot } from "./component/lot/lot";
+import { initialOrder } from "./component/order/order";
+import { initialOrderItem } from "./component/order_item/order_item";
 import { Wms } from "./container/wms/wms";
 
 export const ROLES = {

@@ -3,3 +3,9 @@ export interface Country {
     code: number,
     name: string,
 }
+
+export const initialCountry : Country = {
+    id: '',
+    code: 0,
+    name: '',
+}

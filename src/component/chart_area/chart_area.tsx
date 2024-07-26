@@ -1,4 +1,7 @@
-import { ChartArea } from "./chart_area.interface";
+export interface ChartArea {
+    readonly id: string,
+    name: string,
+}
 
 export const initialChartArea : ChartArea = {
     id: '',

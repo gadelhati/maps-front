@@ -1,15 +1,17 @@
-import { initialOrder, Order } from "../order/order.interface";
+// import { initialOrder, Order } from "../order/order";
 
 export interface Stock {
     readonly id: string,
     maximumBulk: number,
     currentBulk: number,
-    order: [Order],
+    order: [],
+    // order: [Order],
 }
 
 export const initialStock: Stock = {
     id: '',
     maximumBulk: 0,
     currentBulk: 0,
-    order: [initialOrder],
+    order: [],
+    // order: [initialOrder],
 }

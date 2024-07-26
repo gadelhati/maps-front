@@ -1,5 +1,11 @@
 // import { initialPrivilege } from "../privilege/privilege.initial";
-import { Role } from "./role.interface";
+// import { Privilege } from "../privilege/privilege.interface";
+
+export interface Role {
+    readonly id: string,
+    name: string,
+    // privileges: Privilege[]
+}
 
 export const initialRole : Role = {
     id: '',

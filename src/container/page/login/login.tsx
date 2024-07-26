@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useTransition, useEffect, KeyboardEvent } from 'react'
 import { User } from "../../../component/user/user.interface"
-import { initialUser } from '../../../component/user/user.initial'
+import { initialUser } from '../../../component/user/user'
 import { ErrorMessage } from '../../../assets/error/errorMessage'
 import { initialErrorMessage } from '../../../assets/error/errorMessage.initial'
 import { login, retrieve } from '../../../service/service.crud'

@@ -1,6 +1,6 @@
-import { Address, initialAddress } from "../address/address.interface";
-import { initialCountry } from "../country/country.initial";
-import { Country } from "../country/country.interface";
+import { Address } from "../address/address";
+import { initialCountry } from "../country/country";
+import { Country } from "../country/country";
 
 export interface Person {
     readonly id: string,
