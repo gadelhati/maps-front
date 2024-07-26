@@ -19,3 +19,22 @@ export const initialOrder: Order = {
     stock: initialStock,
     person: initialPerson,
 }
+
+export interface OrderTranfer extends Order {
+    readonly id: string,
+    starts: Date,
+    finish: Date,
+    // stock: Stock,
+}
+
+export const initialOrderTransfer: OrderTranfer = {
+    id: '',
+    category: '',
+    totalCost: 0,
+    orderItem: [initialOrderItem],
+    stock: initialStock,
+    person: initialPerson,
+    starts: new Date(),
+    finish: new Date(),
+    // stock: initialStock,
+}

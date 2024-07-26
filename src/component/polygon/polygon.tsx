@@ -1,6 +1,6 @@
 export interface Polygon {
     type: string,
-    coordinates: [L.LatLngExpression[]],
+    coordinates: L.LatLngExpression[][],
 }
 
 export const initialPolygon : Polygon = {
