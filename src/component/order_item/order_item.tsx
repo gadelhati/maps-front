@@ -1,4 +1,4 @@
-import { initialProduct, Product } from "../product/product";
+import { initialItem, Item } from "../item/item";
 
 export interface OrderItem {
     readonly id: string,
@@ -6,7 +6,7 @@ export interface OrderItem {
     discount: number,
     quantity: number,
     totalCost: number,
-    product: Product,
+    item: Item,
 }
 
 export const initialOrderItem : OrderItem = {
@@ -15,5 +15,5 @@ export const initialOrderItem : OrderItem = {
     discount: 0,
     quantity: 0,
     totalCost: 0,
-    product: initialProduct,
+    item: initialItem,
 }
