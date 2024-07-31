@@ -1,4 +1,4 @@
-import { initialAtribute } from "../../component/atribute/atribute.initial";
+import { initialAtribute } from "../../component/atribute";
 
 export const AtributeSet = <T extends Object>(initial: T) => {
     var atributes: [{ type: string, worth: any }]

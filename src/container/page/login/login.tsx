@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, useTransition, useEffect, KeyboardEvent } from 'react'
-import { User } from "../../../component/user/user.interface"
-import { initialUser } from '../../../component/user/user'
+import { User, initialUser } from "../../../component/user"
 import { ErrorMessage } from '../../../assets/error/errorMessage'
 import { initialErrorMessage } from '../../../assets/error/errorMessage.initial'
 import { login, retrieve } from '../../../service/service.crud'
@@ -9,10 +8,10 @@ import { logout } from '../../../service/service.crud'
 import { getPayload, isValidToken } from '../../../service/service.token'
 import logo from '../../../assets/image/giphy.gif'
 import { Home } from '../home'
-import './login.css'
+import '../../page/login/login.css'
 import '../../template/input/input.css'
-import '../../template/tooltip/tooltip.css'
-import '../../template/toast/toast.css'
+import '../../template/tooltip.css'
+import '../../template/toast.css'
 
 export const Login = () => {
     const [state, setState] = useState<User>(initialUser)

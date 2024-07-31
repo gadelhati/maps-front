@@ -1,4 +1,4 @@
-import { Header, Payload } from "../component/token/token";
+import { Header, Payload } from "../component/token";
 
 export const existsToken = (): boolean => {
   return localStorage.getItem(`token`) != null;

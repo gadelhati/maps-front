@@ -1,0 +1,75 @@
+@import '../global.css';
+
+.inputgroup {
+    display: flex;
+    justify-content: center;
+    padding: .3rem;
+}
+.inputgroup .title, .inputgroup:not(.inputgroup[data-tip='']) .title {
+    background-color: var(--color-third);
+    color: var(--color-tenth);
+}
+.inputgroup label {
+    position: absolute;
+    padding: 0.05rem;
+    border-radius: .3rem;
+    color: var(--color-fourth);
+    font-size: .75rem;
+    background-image: linear-gradient(var(--color-ninth), var(--color-sixth));
+    transform: translatey(-.5rem);
+}
+.inputgroup input,
+.inputgroup select {
+    outline: none;
+    height: 2.2rem;
+    width: 10rem;
+    padding: 0 1rem;
+    color: var(--color-third);
+    font-size: 15px;
+    border: 1px solid var(--color-third);
+    background-color: var(--color-sixth);
+}
+.inputgroup input:first-child,
+.inputgroup select:first-child {
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+}
+.inputgroup input:not(:last-of-type),
+.inputgroup select:not(:last-of-type) {
+    border-right: none;
+}
+.inputgroup input:last-of-type,
+.inputgroup select:last-of-type {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+.inputgroup input:placeholder-shown + label,
+.inputgroup select:placeholder-shown + label {
+    transition: all .4s ease-in-out;
+    opacity: 0;
+}
+.inputgroup input:focus + label, .inputgroup input:hover + label, 
+.inputgroup select:focus + label, .inputgroup select:hover + label {
+    transition: all .4s ease-in-out;
+    color: var(--color-twelfth);
+    opacity: 1;
+}
+.inputgroup input:disabled,
+.inputgroup select:disabled {
+    background-color: var(--color-eleventh);
+    cursor: not-allowed;
+}
+.inputgroup input:disabled + label,
+.inputgroup select:disabled + label {
+    background-image: linear-gradient(var(--color-ninth) 45%, var(--color-eleventh));
+}
+.inputgroup:not(.inputgroup[data-tip='']) input,
+.inputgroup:not(.inputgroup[data-tip='']) select {
+    color: var(--color-tenth);
+    background: var(--color-fifteenth);
+}
+.inputgroup:not(.inputgroup[data-tip='']) input + label,
+.inputgroup:not(.inputgroup[data-tip='']) select + label {
+    color: var(--color-third);
+    background-image: linear-gradient(var(--color-ninth) 45%, var(--color-fifteenth));
+}

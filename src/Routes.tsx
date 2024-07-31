@@ -2,34 +2,34 @@ import { Route, HashRouter, Routes } from "react-router-dom";
 import { RequireAuth } from "./RequireAuth";
 import { isValidToken } from "./service/service.token"
 
-import { AuthProvider } from "./component/auth/auth.provider";
+import { AuthProvider } from "./assets/hook/useProvider";
 import { GenericForm } from "./container/page/generic.form";
 import { Home } from "./container/page//home";
 import { LeafletMap } from "./container/maps/leaflet.map";
 import { Login } from "./container/page/login/login";
 import { NotAllowed } from "./container/page/not.allowed";
 import { Profile } from "./container/page/profile";
-import { SideList } from "./container/template/sidebar/side.list";
+import { SideList } from "./container/page/side.list";
 
-import { initialBlind } from "./component/blind/blind";
-import { initialChart } from "./component/chart/chart";
-import { initialChartArea } from "./component/chart_area/chart_area";
-import { initialCity } from "./component/city/city";
-import { initialCountry } from "./component/country/country";
-import { initialGaugeStation } from "./component/gauge_station/gauge_station";
-import { initialMaritimeArea } from "./component/maritime_area/maritime_area";
-import { initialRole } from "./component/role/role";
-import { initialState } from "./component/state/state";
-import { initialUser } from "./component/user/user";
+import { initialBlind } from "./component/blind";
+import { initialChart } from "./component/chart";
+import { initialChartArea } from "./component/chart_area";
+import { initialCity } from "./component/city";
+import { initialCountry } from "./component/country";
+import { initialGaugeStation } from "./component/gauge_station";
+import { initialMaritimeArea } from "./component/maritime_area";
+import { initialRole } from "./component/role";
+import { initialState } from "./component/state";
+import { initialUser } from "./component/user";
 import './routes.css'
-import { initialStock } from "./component/stock/stock";
-import { initialPerson } from "./component/person/person";
-import { initialItem } from "./component/item/item";
-import { initialAddress } from "./component/address/address";
-import { initialLot } from "./component/lot/lot";
-import { initialOrder } from "./component/order/order";
-import { initialOrderItem } from "./component/order_item/order_item";
-import { Wms } from "./container/wms/wms";
+import { initialStock } from "./component/stock";
+import { initialPerson } from "./component/person";
+import { initialItem } from "./component/item";
+import { initialAddress } from "./component/address";
+import { initialLot } from "./component/lot";
+import { initialOrder } from "./component/order";
+import { initialOrderItem } from "./component/order_item";
+import { Wms } from "./container/page/wms";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',

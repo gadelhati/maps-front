@@ -1,5 +1,5 @@
 @import '../../global.css';
-@import '../../template/load/load.css';
+@import '../../template/load.css';
 
 section {
     background-color: var(--color-second);

@@ -1,0 +1,114 @@
+@import '../global.css';
+
+aside {
+    width: 2.9rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: var(--space-xxs);
+    margin: var(--space-first);
+    border-radius: .3rem;
+    background-color: var(--color-third);
+    background-image: linear-gradient(to bottom, var(--color-fourth), var(--color-third));
+    box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .1rem #AAA inset;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width .2s;
+    background-image: url("https://cartasnauticasbrasil.com.br/media/catalog/product/cache/1/image/536fd27e01b3f5e8918764d29c932f52/1/_/1.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+aside:hover {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 256px;
+}
+aside a {
+    margin-bottom: .1em;
+}
+aside a p {
+    display: none;
+}
+aside a span span, aside a span ~ svg {
+    display: none;
+}
+aside:hover a p, aside:hover a span, aside:hover a span ~ svg {
+    display: flex;
+}
+a {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-ninth);
+    background-image: transparent;
+    height: 2.2rem;
+    user-select: none;
+    border-radius: .3rem;
+    padding: var(--space-fifth);
+    margin: var(--space-zero);
+    text-transform: capitalize;
+    transition: .3s;
+}
+a img {
+    height: 1.3rem;
+}
+aside nav {
+    margin: .2rem;
+}
+nav a:hover {
+    color: var(--color-second);
+    background-color: var(--color-ninth);
+    background-image: linear-gradient(to bottom, var(--color-seventh), var(--color-eleventh));
+    box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
+}
+nav a:focus {
+    color: var(--color-first);
+    background-color: var(--color-tenth);
+    background-image: linear-gradient(var(--color-tenth), var(--color-eleventh));
+    box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
+    outline: .1rem solid var(--color-tenth);
+}
+nav a:active {
+    box-shadow: lightGray 0 3px 7px inset;
+}
+.collapse {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: .3rem;
+}
+.collapse a {
+    margin: .06rem .06rem;
+    justify-content: space-between;
+}
+
+.collapsed {
+    background-color: var(--color-eleventh);
+}
+.collapsed a:first-child {
+    color: var(--color-second);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+}
+.collapsed a {
+    color: var(--color-ninth);
+    background-color: var(--color-fourth);
+}
+.collapsed a:first-child span + svg {
+    transform: rotate(270deg);
+}
+
+.collapsible a:first-child {
+    display: flex;
+}
+.collapsible a {
+    display: none;
+}
+.collapsible a:first-child span + svg {
+    transform: rotate(90deg);
+}

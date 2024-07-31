@@ -1,5 +1,5 @@
-import { Header } from '../template/header/header';
-import { Cards } from '../template/card/card';
+import { Header } from '../page/header';
+import { Cards } from '../page/card';
 
 export const Home = () => {
     return (

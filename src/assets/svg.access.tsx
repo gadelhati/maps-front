@@ -1,4 +1,4 @@
-import menuIcon from "./menuIcon.svg";
+import menuIcon from "./image/menuIcon.svg";
 import PropTypes from 'prop-types';
 import './svg.acess.css'
 interface Icon {
