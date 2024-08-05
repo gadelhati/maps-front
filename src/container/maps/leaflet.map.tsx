@@ -3,11 +3,11 @@ import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
-import { GaugeStation } from '../../component/gauge_station/gauge_station.interface';
+import { GaugeStation } from '../../component/gauge_station';
 import { addFeatureGroup , addOverlay, addPolygon } from './addItem';
 import './leaflet.css'
-import { Chart } from '../../component/chart/chart.interface';
-import { MaritimeArea } from '../../component/maritime_area/maritime_area.interface';
+import { Chart } from '../../component/chart';
+import { MaritimeArea } from '../../component/maritime_area';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]

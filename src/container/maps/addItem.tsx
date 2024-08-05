@@ -1,5 +1,5 @@
 import * as L from 'leaflet'
-import { GaugeStation } from '../../component/gauge_station/gauge_station.interface';
+import { GaugeStation } from '../../component/gauge_station';
 
 export const addOverlay = (ne: any, sw: any, number: string) => {
     //ref.: vectorized in https://vectorization.eu/
