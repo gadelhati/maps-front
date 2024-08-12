@@ -1,5 +1,6 @@
 import * as L from 'leaflet'
 import { GaugeStation } from '../../component/gauge_station';
+import { Point } from '../../component/point';
 
 export const addOverlay = (ne: any, sw: any, number: string) => {
     //ref.: vectorized in https://vectorization.eu/
@@ -21,8 +22,26 @@ export const addPolygon = (map: L.Map, polygon: L.Polygon) => {
 export const addFeatureGroup = (map: L.Map, vector: GaugeStation[]) => {
     let featureGroup: L.FeatureGroup = L.featureGroup()
     vector.forEach((element: GaugeStation)=>{
-            featureGroup.addLayer(L.marker([element.point.coordinates[1], element.point.coordinates[0]]).bindPopup(element.title))
+        featureGroup.addLayer(L.marker([element.point.coordinates[1], element.point.coordinates[0]]).bindPopup(element.title))
     })
+    map.addLayer(featureGroup)
+    map.fitBounds(featureGroup.getBounds())
+    return featureGroup
+}
+
+export const addPointList = (map: L.Map, vector: Point[]) => {
+    let featureGroup: L.FeatureGroup = L.featureGroup()
+    vector.forEach((element: Point)=>{
+        featureGroup.addLayer(L.marker([element.coordinates[1], element.coordinates[0]]).bindPopup(element.type))
+    })
+    map.addLayer(featureGroup)
+    map.fitBounds(featureGroup.getBounds())
+    return featureGroup
+}
+
+export const addPoint = (map: L.Map, latitude: number, longitude: number, title: string) => {
+    let featureGroup: L.FeatureGroup = L.featureGroup()
+    featureGroup.addLayer(L.marker([longitude, latitude]).bindPopup(title))
     map.addLayer(featureGroup)
     map.fitBounds(featureGroup.getBounds())
     return featureGroup
