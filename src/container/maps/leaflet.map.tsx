@@ -1,15 +1,15 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
 import { GaugeStation } from '../../component/gauge_station';
-import { addFeatureGroup , addOverlay, addPoint, addPointList, addPolygon } from './addItem';
+import { addFeatureGroup , addOverlay, addPointList, addPolygon } from './addItem';
 import './leaflet.css'
 import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritime_area';
 import { initialPoint, Point } from '../../component/point';
-import { usePoint } from './useCoordinates';
+import { useComponent } from './useComponent';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
@@ -110,7 +110,7 @@ export const LeafletMap = () => {
             })
         })
     }
-    const remove = (index: number, element: any) => {
+    const removeOnMap = (index: number, element: any) => {
         toggleShow(index)
         map.removeLayer(element)
     }
@@ -126,38 +126,36 @@ export const LeafletMap = () => {
         })
         setPolygon(addPolygon(map, L.polygon(list, {color: 'red'})))
     }
-    const { pointList, addPoint, setOrder, handleInputLongitude, handleInputLatitude, removePoint } = usePoint()
+    const { list, add, setOrder, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<Point>(initialPoint, 'gaugeStation')
     return (
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
             <dialog open className='newdialog'>
-                <button onClick={()=>addPoint()}>add ➕</button>
-                {/* <button onClick={()=>addPoint(map, point.coordinates[1], point.coordinates[0], 'gadelha')}>Map Point</button> */}
-                {/* <button onClick={handleStates}>➕</button> */}
-                <button onClick={removePoint}>rm</button>
-                <button onClick={()=>addPointList(map, pointList)}>Show List</button>
-                <button onClick={show[8]? ()=>addItemPolygon(map, pointList) : ()=>remove(8, polygon)} >
+                <button onClick={()=>add()}>add</button>
+                <button onClick={()=>addPointList(map, list)}>Show List</button>
+                <button onClick={show[8]? ()=>addItemPolygon(map, list) : ()=>removeOnMap(8, polygon)} >
                     {UriToScreenFormat(show[8]?'new polygon':'rm polygon')}
                 </button>
                 <ol>
-                {pointList.map((element: Point, index: number)=>{
-                    return <li onFocus={()=>setOrder(index)}>
-                        <input name='coordinates' value={element.coordinates[0]} onChange={handleInputLongitude}></input>
-                        <input name='coordinates' value={element.coordinates[1]} onChange={handleInputLatitude}></input>
+                {list.map((element: Point, index: number)=>{
+                    return <li onFocus={()=>setOrder(index)} key={Math.random()}>
+                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[0]} onChange={handleChangeLongitude}></input>
+                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[1]} onChange={handleChangeLatitude}></input>
+                        <button onClick={remove}>rm</button>
                         </li>
                 })}
                 </ol>
             </dialog>
             <div className='menu'>
-                <button onClick={show[0] ? ()=>retrieveItem('gaugeStation', 'title') : ()=>remove(0, markers) }>
+                <button onClick={show[0] ? ()=>retrieveItem('gaugeStation', 'title') : ()=>removeOnMap(0, markers) }>
                     {UriToScreenFormat(show[0] ? 'gauge' : 'rm gauge')}{show[0]}
                 </button>
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
-                <button hidden={show[2]} onClick={()=>remove(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
+                <button hidden={show[2]} onClick={()=>removeOnMap(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
                 <button hidden={!show[3]} onClick={itemPolygons}>{UriToScreenFormat('polygons')}{show[3]}</button>
-                <button hidden={show[3]} onClick={()=>remove(3, polygon)}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
+                <button hidden={show[3]} onClick={()=>removeOnMap(3, polygon)}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
                 <button hidden={!show[4]} onClick={itemPolygons}>{UriToScreenFormat('area')}{show[4]}</button>
-                <button hidden={show[4]} onClick={()=>remove(4, polygon)}>{UriToScreenFormat('rm area')}{show[4]}➕</button>
+                <button hidden={show[4]} onClick={()=>removeOnMap(4, polygon)}>{UriToScreenFormat('rm area')}{show[4]}➕</button>
             </div>
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{

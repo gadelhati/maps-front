@@ -38,11 +38,3 @@ export const addPointList = (map: L.Map, vector: Point[]) => {
     map.fitBounds(featureGroup.getBounds())
     return featureGroup
 }
-
-export const addPoint = (map: L.Map, latitude: number, longitude: number, title: string) => {
-    let featureGroup: L.FeatureGroup = L.featureGroup()
-    featureGroup.addLayer(L.marker([longitude, latitude]).bindPopup(title))
-    map.addLayer(featureGroup)
-    map.fitBounds(featureGroup.getBounds())
-    return featureGroup
-}
