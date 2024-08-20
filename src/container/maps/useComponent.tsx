@@ -11,12 +11,11 @@ export const useComponent = <T extends { point: Point }>(url: string) => {
     useEffect(()=> {
         get()
     }, [])
-
     const add = () => {
         setPointList([...pointList, initialPoint])
     }
     const get = async () => {
-        await retrieve(url).then((data: any) => {
+        await retrieve(url, 0, 1000, 'id', undefined).then((data: any) => {
             startTransition(() => setList(data.content))
         })
         fillPointList()
@@ -67,7 +66,9 @@ export const useComponent = <T extends { point: Point }>(url: string) => {
         list,
         pointList,
         add,
+        get,
         setOrder,
+        setPointList,
         handleChange,
         handleChangeList,
         handleChangeLongitude,

@@ -1,5 +1,4 @@
 import * as L from 'leaflet'
-import { GaugeStation } from '../../component/gauge_station';
 import { Point } from '../../component/point';
 
 export const addOverlay = (ne: any, sw: any, number: string) => {
@@ -17,16 +16,6 @@ export const addPolygon = (map: L.Map, polygon: L.Polygon) => {
     map.addLayer(polygon)
     map.fitBounds(polygon.getBounds())
     return polygon
-}
-
-export const addFeatureGroup = (map: L.Map, vector: GaugeStation[]) => {
-    let featureGroup: L.FeatureGroup = L.featureGroup()
-    vector.forEach((element: GaugeStation)=>{
-        featureGroup.addLayer(L.marker([element.point.coordinates[1], element.point.coordinates[0]]).bindPopup(element.title))
-    })
-    map.addLayer(featureGroup)
-    map.fitBounds(featureGroup.getBounds())
-    return featureGroup
 }
 
 export const addPointList = (map: L.Map, vector: Point[]) => {

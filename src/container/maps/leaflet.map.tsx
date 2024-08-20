@@ -4,23 +4,24 @@ import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
 import { GaugeStation } from '../../component/gauge_station';
-import { addFeatureGroup , addOverlay, addPointList, addPolygon } from './addItem';
+import { addOverlay, addPointList, addPolygon } from './addItem';
 import './leaflet.css'
 import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritime_area';
-import { initialPoint, Point } from '../../component/point';
 import { useComponent } from './useComponent';
+import { useMap } from './useMap';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
     const [ map, setMap ] = useState<any>()
-    const [ markers, setMarkers ] = useState<L.LayerGroup>()
     const [, setOverlay ] = useState<L.ImageOverlay>()
     const [ overlays ] = useState<L.ImageOverlay[]>([])
     const [ charts, setCharts ] = useState<Chart[]>([])
     const [ maritimeArea, setMaritimeArea ] = useState<MaritimeArea[]>([])
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
+    const { list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation')
+    const { show1, markers, polygon1, addOnMap1, removeOnMap1, addPointList1 } = useMap()
     
     let item: string = '/chart/'
 
@@ -56,14 +57,6 @@ export const LeafletMap = () => {
     //         }).addTo(base)
     //     }
     // }
-    const retrieveItem = async(url: string, sort: string) => {
-        let vector: GaugeStation[] = []
-        await retrieve(url, 0, 1000, sort, undefined)
-            .then((data: any) => {
-                vector = data.content
-            });
-        itemMarkers(vector)
-    }
     const retrieveCharts = async(url: string, sort: string) => {
         await retrieve(url, 0, 1000, sort, undefined)
             .then((data: any) => {
@@ -88,9 +81,9 @@ export const LeafletMap = () => {
             setOverlay(overlays[index])
         }
     }
-    const itemMarkers = (vector: GaugeStation[]) => {
+    const itemMarkers = () => {
         toggleShow(0)
-        setMarkers(addFeatureGroup(map, vector))
+        setPointList(addPointList(map, pointList))
     }
     const itemPolygon = () => {
         toggleShow(2)
@@ -118,19 +111,15 @@ export const LeafletMap = () => {
         let audio = new Audio("/assets/sound/click_sound.mp3")
         audio.play()
     }
-    const addItemPolygon = (map: L.Map, points: Point[]) => {
-        toggleShow(8)
-        let list:[number, number][] = []
-        points.forEach((point:Point)=>{
-            list.push([point.coordinates[1], point.coordinates[0]])
-        })
-        setPolygon(addPolygon(map, L.polygon(list, {color: 'red'})))
+    const convert = () => {
+        console.log(polygon1)
     }
-    const { list, pointList, add, setOrder, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation')
+    
     return (
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
-            <dialog open className='newdialog'>
+            {/* <dialog open className='newdialog'>
+                <button onClick={()=>get()}>get</button>
                 <button onClick={()=>add()}>add</button>
                 <button onClick={()=>addPointList(map, pointList)}>Show List</button>
                 <button onClick={show[8]? ()=>addItemPolygon(map, pointList) : ()=>removeOnMap(8, polygon)} >
@@ -147,17 +136,22 @@ export const LeafletMap = () => {
                         </li>
                 })}
                 </ol>
-            </dialog>
+            </dialog> */}
             <div className='menu'>
-                <button onClick={show[0] ? ()=>retrieveItem('gaugeStation', 'title') : ()=>removeOnMap(0, markers) }>
-                    {UriToScreenFormat(show[0] ? 'gauge' : 'rm gauge')}{show[0]}
+                <button onClick={()=>get()}>{UriToScreenFormat('get')}</button>
+                <button onClick={()=>convert()}>{UriToScreenFormat('convert')}</button>
+                <button onClick={show1 ? ()=>addPointList1(map, pointList) : ()=>removeOnMap1(map, markers) }>
+                    {UriToScreenFormat(show1 ? 'p' : 'p remove')}{show[0]}
+                </button>
+                <button onClick={show1 ? ()=>addOnMap1(map, pointList) : ()=>removeOnMap1(map, polygon1) }>
+                    {UriToScreenFormat(show1 ? 'm' : 'm remove')}{show[0]}
                 </button>
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
                 <button hidden={show[2]} onClick={()=>removeOnMap(2, polygon)}>{UriToScreenFormat('rm polygon')}{show[2]}</button>
                 <button hidden={!show[3]} onClick={itemPolygons}>{UriToScreenFormat('polygons')}{show[3]}</button>
                 <button hidden={show[3]} onClick={()=>removeOnMap(3, polygon)}>{UriToScreenFormat('rm polygons')}{show[3]}</button>
-                <button hidden={!show[4]} onClick={itemPolygons}>{UriToScreenFormat('area')}{show[4]}</button>
-                <button hidden={show[4]} onClick={()=>removeOnMap(4, polygon)}>{UriToScreenFormat('rm area')}{show[4]}➕</button>
+                {/* <button hidden={!show[4]} onClick={itemPolygons}>{UriToScreenFormat('area')}{show[4]}</button>
+                <button hidden={show[4]} onClick={()=>removeOnMap(4, polygon)}>{UriToScreenFormat('rm area')}{show[4]}➕</button> */}
             </div>
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{
