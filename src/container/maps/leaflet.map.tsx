@@ -126,18 +126,20 @@ export const LeafletMap = () => {
         })
         setPolygon(addPolygon(map, L.polygon(list, {color: 'red'})))
     }
-    const { list, add, setOrder, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<Point>(initialPoint, 'gaugeStation')
+    const { list, pointList, add, setOrder, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation')
     return (
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
             <dialog open className='newdialog'>
                 <button onClick={()=>add()}>add</button>
-                <button onClick={()=>addPointList(map, list)}>Show List</button>
-                <button onClick={show[8]? ()=>addItemPolygon(map, list) : ()=>removeOnMap(8, polygon)} >
+                <button onClick={()=>addPointList(map, pointList)}>Show List</button>
+                <button onClick={show[8]? ()=>addItemPolygon(map, pointList) : ()=>removeOnMap(8, polygon)} >
                     {UriToScreenFormat(show[8]?'new polygon':'rm polygon')}
                 </button>
+                <>{JSON.stringify('list: ' + list.length)}</>
+                <>{JSON.stringify('point list: ' + pointList.length)}</>
                 <ol>
-                {list.map((element: Point, index: number)=>{
+                {pointList.map((element: Point, index: number)=>{
                     return <li onFocus={()=>setOrder(index)} key={Math.random()}>
                         <input name='coordinates' pattern='[0-8]' value={element.coordinates[0]} onChange={handleChangeLongitude}></input>
                         <input name='coordinates' pattern='[0-8]' value={element.coordinates[1]} onChange={handleChangeLatitude}></input>
