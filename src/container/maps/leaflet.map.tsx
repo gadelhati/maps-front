@@ -21,7 +21,7 @@ export const LeafletMap = () => {
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation')
-    const { show1, markers, polygon1, addOnMap1, removeOnMap1, addPointList1 } = useMap()
+    const { show1, markers, polygon1, addOnMap1, addPointList1, hideFromMap } = useMap()
     
     let item: string = '/chart/'
 
@@ -81,10 +81,6 @@ export const LeafletMap = () => {
             setOverlay(overlays[index])
         }
     }
-    const itemMarkers = () => {
-        toggleShow(0)
-        setPointList(addPointList(map, pointList))
-    }
     const itemPolygon = () => {
         toggleShow(2)
         setPolygon(addPolygon(map, L.polygon([[-28.6, -48.8166666666666667], [-31, -43], [-26, -38], [-23.0166666666666667, -42], [-28.6, -48.8166666666666667]], {color: 'red'})))
@@ -140,10 +136,10 @@ export const LeafletMap = () => {
             <div className='menu'>
                 <button onClick={()=>get()}>{UriToScreenFormat('get')}</button>
                 <button onClick={()=>convert()}>{UriToScreenFormat('convert')}</button>
-                <button onClick={show1 ? ()=>addPointList1(map, pointList) : ()=>removeOnMap1(map, markers) }>
+                <button onClick={show1 ? ()=>addPointList1(map, pointList) : ()=>hideFromMap(map, markers) }>
                     {UriToScreenFormat(show1 ? 'p' : 'p remove')}{show[0]}
                 </button>
-                <button onClick={show1 ? ()=>addOnMap1(map, pointList) : ()=>removeOnMap1(map, polygon1) }>
+                <button onClick={show1 ? ()=>addOnMap1(map, pointList) : ()=>hideFromMap(map, polygon1) }>
                     {UriToScreenFormat(show1 ? 'm' : 'm remove')}{show[0]}
                 </button>
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
