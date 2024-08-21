@@ -7,7 +7,7 @@ export const useMap = () => {
     const [ markers, setMarkers ] = useState<L.LayerGroup>()
     // const [, setOverlay ] = useState<L.ImageOverlay>()
     // const [ overlays ] = useState<L.ImageOverlay[]>([])
-    const [ polygon1, setPolygon1 ] = useState<L.Polygon>()
+    const [ polygons, setPolygons ] = useState<L.Polygon>()
 
     const addOnMap1 = (map: L.Map, points: Point[]) => {
         setShow1(!show1)
@@ -17,7 +17,7 @@ export const useMap = () => {
         })
         let polygon = L.polygon(list)
         showFromMap(map, polygon)
-        setPolygon1(polygon)
+        setPolygons(polygon)
     }   
     const addPointList1 = (map: L.Map, points: Point[]) => {
         setShow1(!show1)
@@ -39,7 +39,7 @@ export const useMap = () => {
     return {
         show1,
         markers,
-        polygon1,
+        polygons,
         addOnMap1,
         addPointList1,
         hideFromMap,

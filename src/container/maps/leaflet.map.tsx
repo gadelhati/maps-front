@@ -21,7 +21,7 @@ export const LeafletMap = () => {
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation')
-    const { show1, markers, polygon1, addOnMap1, addPointList1, hideFromMap } = useMap()
+    const { show1, markers, polygons, addOnMap1, addPointList1, hideFromMap } = useMap()
     
     let item: string = '/chart/'
 
@@ -108,7 +108,7 @@ export const LeafletMap = () => {
         audio.play()
     }
     const convert = () => {
-        console.log(polygon1)
+        console.log(polygons)
     }
     
     return (
@@ -139,7 +139,7 @@ export const LeafletMap = () => {
                 <button onClick={show1 ? ()=>addPointList1(map, pointList) : ()=>hideFromMap(map, markers) }>
                     {UriToScreenFormat(show1 ? 'p' : 'p remove')}{show[0]}
                 </button>
-                <button onClick={show1 ? ()=>addOnMap1(map, pointList) : ()=>hideFromMap(map, polygon1) }>
+                <button onClick={show1 ? ()=>addOnMap1(map, pointList) : ()=>hideFromMap(map, polygons) }>
                     {UriToScreenFormat(show1 ? 'm' : 'm remove')}{show[0]}
                 </button>
                 <button hidden={!show[2]} onClick={itemPolygon}>{UriToScreenFormat('polygon')}{show[2]}</button>
