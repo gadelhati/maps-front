@@ -12,11 +12,11 @@ export const addOverlay = (ne: any, sw: any, number: string) => {
     })
 }
 
-export const addPolygon = (map: L.Map, polygon: L.Polygon) => {
-    map.addLayer(polygon)
-    map.fitBounds(polygon.getBounds())
-    return polygon
-}
+// export const addPolygon1 = (map: L.Map, polygon: L.Polygon) => {
+//     map.addLayer(polygon)
+//     map.fitBounds(polygon.getBounds())
+//     return polygon
+// }
 
 export const addPointList = (map: L.Map, vector: Point[]) => {
     let featureGroup: L.FeatureGroup = L.featureGroup()
