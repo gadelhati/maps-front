@@ -21,7 +21,7 @@ export const LeafletMap = () => {
     const [ maritimeArea, setMaritimeArea ] = useState<MaritimeArea[]>([])
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
-    const { order, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
+    const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
     const { show, markers, polygons, addPolygon, addMarkers, hideFromMap } = useMap(0)
     
     let item: string = '/chart/'
@@ -108,9 +108,6 @@ export const LeafletMap = () => {
         let audio = new Audio("/assets/sound/click_sound.mp3")
         audio.play()
     }
-    const convert = () => {
-        console.log(polygons)
-    }
     return (
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
@@ -128,9 +125,9 @@ export const LeafletMap = () => {
                 <>{JSON.stringify('order: ' + order)}</>
                 <ol>
                 {pointList[0]?.map((element: Point, index: number)=>{
-                    return <li onFocus={()=>setOrder(index)} key={Math.random()}>
-                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[0]} onChange={handleChangeLongitude}></input>
-                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[1]} onChange={handleChangeLatitude}></input>
+                    return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
+                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[0]} onChange={handleChangeLongitude} key={Math.random()}></input>
+                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
                         <button onClick={remove}>rm</button>
                         </li>
                 })}

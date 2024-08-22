@@ -17,7 +17,7 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
         setPointList([
             ...pointList.slice(0, index),
             points,
-            ...pointList.slice(index + 1),
+            ...pointList.slice(index + 1)
         ])
     }
     const get = async () => {
@@ -25,7 +25,7 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
             startTransition(() => setList([
                 ...list.slice(0, index),
                 data.content,
-                ...list.slice(index + 1),
+                ...list.slice(index + 1)
             ]))
         })
         fillPointList()
@@ -53,7 +53,7 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
         }
     }
     const handleChangeLongitude = (event: ChangeEvent<HTMLInputElement>) => {
-        if (new RegExp(event.target.pattern).test(event.target.value) || event.target.value === '') {
+        // if (new RegExp(event.target.pattern).test(event.target.value) || event.target.value === '') {
             setPointList([
                 ...pointList.slice(0, index),
                 [
@@ -63,7 +63,7 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
                 ],
                 ...pointList.slice(index + 1)
             ])
-        }
+        // }
     }
     const handleChangeLatitude = (event: ChangeEvent<HTMLInputElement>) => {
         setPointList([
@@ -82,7 +82,7 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
         setPointList([
             ...pointList.slice(0, index),
             points,
-            ...pointList.slice(index + 1),
+            ...pointList.slice(index + 1)
         ])
     }
     return {
