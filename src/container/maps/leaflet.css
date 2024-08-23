@@ -10,14 +10,21 @@
 }
 
 .newdialog {
-    position: absolute;
+    display: flexbox;
+    justify-content: center;
+    /* position: absolute; */
     padding: 1rem;
     top: 15%;
     /* min-height: 200px; */
     max-height: auto;
     z-index: 1;
     box-sizing: border-box;
-    overflow:hidden;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.inputgroup > label {
+    padding-left: -2rem;
 }
 
 .chart {

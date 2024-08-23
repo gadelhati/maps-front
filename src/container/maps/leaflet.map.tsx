@@ -112,6 +112,7 @@ export const LeafletMap = () => {
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
             <dialog open className='newdialog'>
+            <center>
                 <button onClick={()=>get()}>get</button>
                 <button onClick={()=>add()}>add</button>
                 <button onClick={show[0] ? ()=>addMarkers(map, pointList[0]) : ()=>hideFromMap(map, markers[0]) }>
@@ -120,18 +121,22 @@ export const LeafletMap = () => {
                 <button onClick={show[0] ? ()=>addPolygon(map, pointList[0]) : ()=>hideFromMap(map, polygons[0]) }>
                     {UriToScreenFormat(show[0] ? 'm' : 'm remove')}{show[0]}
                 </button>
-                <>{JSON.stringify('list: ' + list[0]?.length)}</>
-                <>{JSON.stringify('point list: ' + pointList[0]?.length)}</>
-                <>{JSON.stringify('order: ' + order)}</>
                 <ol>
                 {pointList[0]?.map((element: Point, index: number)=>{
                     return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
-                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[0]} onChange={handleChangeLongitude} key={Math.random()}></input>
-                        <input name='coordinates' pattern='[0-8]' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
+                        <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
+                            <input name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
+                            {/* <label htmlFor={'latitude'}>{'latitude'}</label> */}
+                        </span>
+                        <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
+                            <input name='coordinates' value={element.coordinates[0]} onChange={handleChangeLongitude} key={Math.random()}></input>
+                            {/* <label htmlFor={'longitude'}>{'longitude'}</label> */}
+                        </span>
                         <button onClick={remove}>rm</button>
                         </li>
                 })}
                 </ol>
+                </center>
             </dialog>
             <div className='menu'>
                 <button onClick={()=>get()}>{UriToScreenFormat('get')}</button>

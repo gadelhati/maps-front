@@ -9,7 +9,7 @@ export const useMap = (index: number) => {
     // const [, setOverlay ] = useState<L.ImageOverlay>()
     // const [ overlays ] = useState<L.ImageOverlay[]>([])
 
-    const addPolygon = (map: L.Map, points: Point[]) => {
+    const addPolygon = (map: L.Map, points: Point[]):L.Polygon => {
         setshow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
         let list:[number, number][] = []
         points.forEach((point: Point)=>{
@@ -18,8 +18,9 @@ export const useMap = (index: number) => {
         let polygon = L.polygon(list)
         showFromMap(map, polygon)
         setPolygons([...polygons.slice(0, index), polygon, ...polygons.slice(index + 1)])
+        return polygon
     }   
-    const addMarkers = (map: L.Map, points: Point[]) => {
+    const addMarkers = (map: L.Map, points: Point[]):L.FeatureGroup => {
         setshow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
         let featureGroup: L.FeatureGroup = L.featureGroup()
         points.forEach((element: Point)=>{
@@ -27,8 +28,9 @@ export const useMap = (index: number) => {
         })
         showFromMap(map, featureGroup)
         setMarkers([...markers.slice(0, index), featureGroup, ...markers.slice(index + 1)])
+        return featureGroup
     }
-    const showFromMap = (map: L.Map, element: any) => {
+    const showFromMap = (map: L.Map, element: L.FeatureGroup | L.Polygon) => {
         map.addLayer(element)
         map.fitBounds(element.getBounds())
     }
