@@ -30,6 +30,16 @@ export const useMap = (index: number) => {
         setMarkers([...markers.slice(0, index), featureGroup, ...markers.slice(index + 1)])
         return featureGroup
     }
+    const addOverlay = (ne: any, sw: any, number: string) => {
+        //ref.: vectorized in https://vectorization.eu/
+        let path: string = '/src/assets/image/chart/'.concat(number).concat('.svg')
+        return L.imageOverlay(path, L.latLngBounds([ne, sw]), {
+            opacity: 0.6,
+            errorOverlayUrl: 'https://cdn-icons-png.flaticon.com/512/110/110686.png',
+            alt: 'Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection.',
+            // interactive: true
+        })
+    }
     const showFromMap = (map: L.Map, element: L.FeatureGroup | L.Polygon) => {
         map.addLayer(element)
         map.fitBounds(element.getBounds())
@@ -44,6 +54,7 @@ export const useMap = (index: number) => {
         polygons,
         addPolygon,
         addMarkers,
+        addOverlay,
         showFromMap,
         hideFromMap,
     }
