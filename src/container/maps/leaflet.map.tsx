@@ -4,7 +4,6 @@ import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
 import { GaugeStation } from '../../component/gauge_station';
-import { addOverlay } from './addItem';
 import './leaflet.css'
 import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritime_area';
@@ -22,7 +21,7 @@ export const LeafletMap = () => {
     const [ polygon, setPolygon ] = useState<L.Polygon>()
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
-    const { show, markers, polygons, addPolygon, addMarkers, hideFromMap } = useMap(0)
+    const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
     
     let item: string = '/chart/'
 
