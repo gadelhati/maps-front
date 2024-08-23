@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
@@ -22,7 +22,8 @@ export const LeafletMap = () => {
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
     const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
-    
+    const inputRef = useRef<HTMLInputElement>(null)
+        
     let item: string = '/chart/'
 
     useEffect(()=>{
@@ -38,6 +39,9 @@ export const LeafletMap = () => {
             base.remove()
         }
     }, [])
+    useEffect(()=>{
+        inputRef.current?.focus();
+    }, [pointList])
     // const toggleShow = (index: number) => {
     //     let value = show.slice()
     //     value[index] = !show[index]
@@ -124,7 +128,7 @@ export const LeafletMap = () => {
                 {pointList[0]?.map((element: Point, index: number)=>{
                     return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
                         <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
-                            <input name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
+                            <input ref={inputRef} name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
                             {/* <label htmlFor={'latitude'}>{'latitude'}</label> */}
                         </span>
                         <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
