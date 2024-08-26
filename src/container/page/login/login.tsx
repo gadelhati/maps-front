@@ -6,7 +6,7 @@ import { login, retrieve } from '../../../service/service.crud'
 import { Button } from '../../template/button/button';
 import { logout } from '../../../service/service.crud'
 import { getPayload, isValidToken } from '../../../service/service.token'
-import logo from '../../../assets/image/user.svg'
+import logo from '../../../assets/image/user-15261.svg'
 import { Home } from '../home'
 import '../../page/login/login.css'
 import '../../template/input/input.css'

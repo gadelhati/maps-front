@@ -51,10 +51,10 @@
     --color-silver-fiveteen: #171A21;
 
     --color-blue-one: #2589BD;
---color-blue-two: #187795;
---color-blue-three: #38686A;
---color-blue-four: #A3B4A2;
---color-blue-five: #CDC6AE;
+    --color-blue-two: #187795;
+    --color-blue-three: #38686A;
+    --color-blue-four: #A3B4A2;
+    --color-blue-five: #CDC6AE;
     
     --space-zero: 0.03rem;
     --space-first: 0.25rem;
