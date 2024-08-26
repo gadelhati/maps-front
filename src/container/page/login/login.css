@@ -6,7 +6,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("/src/assets/image/digital_wave.jpg");
+    background-image: url("/src/assets/image/particules.jpg");
     background-position: center center;
     background-size: cover;
 }
