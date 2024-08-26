@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
@@ -9,7 +9,7 @@ import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritime_area';
 import { useComponent } from './useComponent';
 import { useMap } from './useMap';
-import { Point } from '../../component/point';
+import { initialPoint, Point } from '../../component/point';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-23, -43]
@@ -22,7 +22,6 @@ export const LeafletMap = () => {
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
     const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
-    const inputRef = useRef<HTMLInputElement>(null)
         
     let item: string = '/chart/'
 
@@ -39,9 +38,18 @@ export const LeafletMap = () => {
             base.remove()
         }
     }, [])
-    useEffect(()=>{
-        inputRef.current?.focus();
-    }, [pointList])
+    const [ hook, setHook ] = useState<Point>(initialPoint)
+    useEffect(() => {
+        const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+            setHook({...hook, [event.target.name]: event.target.value })
+        }
+        document.addEventListener('change', ()=>handleChange)
+        // get()
+        return (() => {
+            // add()
+            document.removeEventListener('change', ()=>handleChange)
+        })
+    }, [hook])
     // const toggleShow = (index: number) => {
     //     let value = show.slice()
     //     value[index] = !show[index]
@@ -128,7 +136,7 @@ export const LeafletMap = () => {
                 {pointList[0]?.map((element: Point, index: number)=>{
                     return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
                         <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
-                            <input ref={inputRef} name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
+                            <input name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
                             {/* <label htmlFor={'latitude'}>{'latitude'}</label> */}
                         </span>
                         <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>

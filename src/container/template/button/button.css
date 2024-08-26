@@ -20,7 +20,7 @@ button {
     touch-action: manipulation;
 }
 button[typeof*="primary"] {
-    background-image: linear-gradient(var(--color-fifth), var(--color-second));
+    background-image: linear-gradient(var(--color-silver-nine), var(--color-second));
 }
 button[typeof*="secondary"] {
     background-image: linear-gradient(var(--color-twelfth), var(--color-sixteenth));

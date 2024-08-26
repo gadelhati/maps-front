@@ -4,12 +4,12 @@
     --color-second: #2F3E46;
     --color-third: #354F52;
     --color-fourth: #52796F;
-    --color-fifth: #84A98C;
+    --color-silver-nine: #84A98C;
     /* --color-first: #051923;
     --color-second: #003554;
     --color-third: #006494;
     --color-fourth: #0582CA;
-    --color-fifth: #00A6FB; */
+    --color-silver-nine: #00A6FB; */
     --color-sixth: #F2F2F2;
     --color-seventh: #ECECEC;
     --color-eighth: #CED4DA;
@@ -34,6 +34,28 @@
     --color-five: #C12525;
     --color-six: #FFFFFF;
 
+    --color-silver-one: #D8D4D5;
+    --color-silver-two: #E2E2E2;
+    --color-silver-three: #C5C5C5;
+    --color-silver-four: #92BCEA;
+    --color-silver-five: #AFB3F7;
+    --color-silver-six: #ACAD94;
+    --color-silver-seven: #949B96;
+    --color-silver-eight: #7A93AC;
+    --color-silver-nine: #829191;
+    --color-silver-ten: #617073;
+    --color-silver-eleven: #6E7271;
+    --color-silver-twelve: #4C5B61;
+    --color-silver-thirteen: #384D48;
+    --color-silver-fourtenn: #2C423F;
+    --color-silver-fiveteen: #171A21;
+
+    --color-blue-one: #2589BD;
+--color-blue-two: #187795;
+--color-blue-three: #38686A;
+--color-blue-four: #A3B4A2;
+--color-blue-five: #CDC6AE;
+    
     --space-zero: 0.03rem;
     --space-first: 0.25rem;
     --space-second: 0.3rem;

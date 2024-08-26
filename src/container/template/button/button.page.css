@@ -9,7 +9,7 @@
 }
 .page:disabled {
     color: var(--color-seventh);
-    background-color: var(--color-fifth);
+    background-color: var(--color-silver-nine);
 }
 .page:has(div) button:first-child {
     border-radius: 5px 0px 0px 5px,

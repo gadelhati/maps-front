@@ -53,14 +53,14 @@ main {
                 flex-basis: 0;
                 flex-grow: 1.5;
                 flex-direction: "column";
-                color: var(--color-fifth);
+                color: var(--color-silver-nine);
                 background-color: var(--color-ninth);
             }
             content {
                 height: 94vh;
                 flex-direction: "row";
                 color: var(--color-fourth);
-                background-color: var(--color-fifth);
+                background-color: var(--color-silver-nine);
             }
             nav {
                 height: 6vh;
@@ -83,6 +83,6 @@ main {
     flex-basis: 0;
     flex-grow: 1.5;
     flex-direction: column;
-    color: var(--color-fifth);
+    color: var(--color-silver-nine);
     background-color: transparent;
 }

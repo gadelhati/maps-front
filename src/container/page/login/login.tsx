@@ -6,7 +6,7 @@ import { login, retrieve } from '../../../service/service.crud'
 import { Button } from '../../template/button/button';
 import { logout } from '../../../service/service.crud'
 import { getPayload, isValidToken } from '../../../service/service.token'
-import logo from '../../../assets/image/giphy.gif'
+import logo from '../../../assets/image/user.svg'
 import { Home } from '../home'
 import '../../page/login/login.css'
 import '../../template/input/input.css'
@@ -78,7 +78,7 @@ export const Login = () => {
                 :
                 <section>
                     <article onKeyDown={submit}>
-                        <img src={logo} width="220" height="220"></img>
+                        <img src={logo} className='rotate' width="180" height="180"></img>
                         <div className='container tooltip' data-tip={validation('username')}>
                             <input type={'text'} data-tip={validation('username').length} required autoFocus name={'username'} value={state.username} onChange={handleInputChange} autoComplete='off' />
                             <label htmlFor="username">Username</label>

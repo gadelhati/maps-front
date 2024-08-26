@@ -2,31 +2,29 @@
 @import '../../template/load.css';
 
 section {
-    background-color: var(--color-second);
-    background-image: linear-gradient(to bottom, var(--color-second), var(--color-fourth));
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("https://replogleglobes.com/app/uploads/2022/10/history-of-navigation.jpg");
+    background-image: url("/src/assets/image/digital_wave.jpg");
     background-position: center center;
     background-size: cover;
-    background-blend-mode: multiply;
 }
 article {
-    color: var(--color-fourteenth);
     padding: 5rem 0rem 5rem 0;
-    border-radius: .3rem;
+    border-radius: 1rem;
+    height: 30rem;
     width: 18rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* box-shadow: 3px 12px 37px 0px rgba(189,189,189,1); */
+    box-shadow: 0px 13px 28px 0px rgba(0,0,0,0.79);
+    backdrop-filter: blur(1rem);
+
 }
 article img {
-    margin: 2em;
-}
-article span {
-    height: 1em;
+    padding-bottom: 2.5rem;
 }
 article button {
     margin: 2em;
