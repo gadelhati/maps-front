@@ -1,15 +1,14 @@
 @import '../global.css';
 
 aside {
-    width: 2.9rem;
+    height: 99%;
+    width: 2.6rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     padding: var(--space-xxs);
     margin: var(--space-first);
     border-radius: .3rem;
-    /* background-color: var(--color-silver-four); */
-    /* background-image: linear-gradient(to bottom, var(--color-silver-four), var(--color-silver-two)); */
     box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .1rem #AAA inset;
     scroll-behavior: smooth;
     overflow-y: auto;
@@ -20,15 +19,18 @@ aside {
     background-size: cover;
     background-blend-mode: multiply;
 }
+
+aside {
+    position: absolute;
+    left: 0%;
+    z-index: 1;
+}
 aside:hover {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     width: 256px;
 }
 aside a {
     margin-bottom: .1em;
-    /* backdrop-filter: blur(.1rem); */
+    backdrop-filter: blur(.1rem);
 }
 aside a p {
     display: none;
@@ -46,19 +48,16 @@ a {
     text-decoration: none;
     color: var(--color-ninth);
     background-image: transparent;
-    height: 2.2rem;
+    height: 2rem;
     user-select: none;
     border-radius: .3rem;
-    padding: var(--space-fifth);
+    padding: var(--space-fourth);
     margin: var(--space-zero);
     text-transform: capitalize;
     transition: .3s;
 }
-a img {
-    height: 1.3rem;
-}
 aside nav {
-    margin: .2rem;
+    margin: .25rem;
 }
 nav a:hover {
     color: var(--color-second);

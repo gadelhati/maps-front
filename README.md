@@ -22,24 +22,23 @@ Georeferenced information.
 
 ### Roadmap
 #### in development
-- [x] person on order is null?
 - [x] add initialOrder on stock
 - [x] input group
 - [x] extract all records in pdf
 - [x] user: improve visual of add multiple roles
 
 #### in concept
-- [ ] load privileges on role's form
 - [ ] set combobox, turn with switch
-- [ ] counter only increases by 1
-- [ ] sidebar: personal icons
-- [ ] context menu
-- [ ] charts
-- [ ] schedule
-- [ ] breadcrumb
 - [ ] input mask
+- [ ] sidebar: personal icons
 - [ ] spinner with scrool to select number
+- [ ] breadcrumb
+- [ ] schedule
+- [ ] charts
+- [ ] load privileges on role's form
+- [ ] counter only increases by 1
 - [ ] signature with mouse
+- [ ] context menu
 
 ## Summary
 * [How to work with this project](#how-to-work-with-this-project)

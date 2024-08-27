@@ -68,4 +68,5 @@
     transition: .3s;
     transform: rotateY( 0deg ) scale(1.2);
     box-shadow: 0rem 0rem 1rem .25rem rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 8px 2px rgba(54,166,48,1);
 }

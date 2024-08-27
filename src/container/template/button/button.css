@@ -20,7 +20,6 @@ button {
     touch-action: manipulation;
 }
 button[typeof*="primary"] {
-    /* background-image: linear-gradient(var(--color-silver-four), var(--color-silver-ten)); */
     background-image: linear-gradient(var(--color-one), var(--color-sixteenth));
 }
 button[typeof*="secondary"] {
@@ -45,9 +44,3 @@ button:active {
     box-shadow: lightGray 0 3px 7px inset;
     transform: translateY(2px);
 }
-/* button::after {
-    content: attr(typeof);
-    top: 25%;
-    padding: 20px 10px 0;
-    font-size: 18px;
-} */
