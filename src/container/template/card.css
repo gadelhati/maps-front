@@ -19,10 +19,10 @@
     width: 15rem;
     margin: var(--space-first);
     padding: 0 var(--space-sm) 0 var(--space-sm);
-    color: var(--color-third);
+    color: var(--color-silver-three);
     background-color: var(--color-tenth);
     border-radius: .3rem;
-    border-left: solid var(--color-fourth) .5em;
+    border-left: solid var(--color-silver-eleven) .5em;
     box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
 }
 
@@ -31,6 +31,6 @@
     width: 100%;
     display: flex;
     /* justify-content: center; */
-    color: var(--color-fourth);
+    color: var(--color-silver-eleven);
     font-size: 1.25rem;
 }

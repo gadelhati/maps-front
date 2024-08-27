@@ -1,3 +1,7 @@
+.map-tiles {
+    filter:var(--map-tiles-filter, none);
+}
+
 #map {
     opacity: 0.9;
 }

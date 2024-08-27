@@ -22,8 +22,6 @@ import '../template/load.css'
 import '../template/toast.css'
 import '../template/inputgroup.css'
 import '../template/modal.css'
-import { crc16, payload } from '../../component/pix/CRC'
-import { initialPix } from '../../component/pix/pix'
 
 export const GenericForm = <T extends { id: string, name: string }>(object: any) => {
     const [state, setState] = useState<any>(object.object)
@@ -167,13 +165,13 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
         } 
     }
     const handleInputChangeSubSelect = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, size, 'id', event.target.value).then((data: any) => {
+        await retrieve(event.target.name, 0, size, 'id', event.target.value, 'id').then((data: any) => {
             setState({ ...state, [event.target.name]: data?.content[0] })
         }).catch(() => { networkError() })
     }
     const handleInputChangeSubSelectArray = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, size, 'id', event.target.value).then((data: any) => {
-            setState({ ...state, [event.target.name]: [data?.content[0]] })
+        await retrieve(event.target.name, 0, size, 'id', event.target.value, 'id').then((data: any) => {
+            setState({ ...state, [event.target.name]: data?.content })
         }).catch(() => { networkError() })
     }
     const handlePage = (page: number) => {
@@ -309,9 +307,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 <Button category={'primary'} function={()=>confirmation('create')} hidden={compositeOrNot()} name='Create'/>
                                 <Button category={'warning'} function={()=>confirmation('update')} hidden={!compositeOrNot()} name='Update'/>
                                 <Button category={'danger'} function={()=>confirmation('delete')} hidden={!compositeOrNot()} name='Delete'/>
-                                <PDFDownloadLink document={<PDFDocument object={state} />} fileName="somename.pdf">
+                                {/* <PDFDownloadLink document={<PDFDocument object={state} />} fileName="somename.pdf">
                                     {({ loading })=><Button category={'secondary'} function={''} name={loading ? 'Wait': 'Download'} disabled={loading ? true : false}/>}
-                                </PDFDownloadLink>
+                                </PDFDownloadLink> */}
                                 <Button category={'secondary'} function={()=>close('um')} name='Close'/>
                             </footer>
                         </div>
@@ -325,7 +323,6 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                     </dialog>
                     <Header title={object.url} function={newItem} />
                     {/* {ispending && <div className='load'></div>} */}
-                    {payload(initialPix)+crc16(payload(initialPix))}
                     <table>
                         <thead>
                             <tr>
@@ -355,7 +352,7 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                         }
                                     }
                                 })}
-                                <th className='icon'>Download</th>
+                                {/* <th className='icon'>Download</th> */}
                             </tr>
                         </thead>
                         <ErrorBoundary fallback={<div> Something went wrong </div>} >
@@ -363,9 +360,9 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
                                 {states && states.map((element) => {
                                     return (
                                         <tr key={Math.random()} onClick={() => selectItem(element)}>
-                                            <td className='icon'><QRCode value={payload(initialPix)+crc16(payload(initialPix))} /></td>
+                                            <td className='icon'><QRCode value={element.id} /></td>
                                             <>{showObject(element)}</>
-                                            <td className='icon'>📥</td>
+                                            {/* <td className='icon'>📥</td> */}
                                         </tr>)
                                 })}
                             </tbody>

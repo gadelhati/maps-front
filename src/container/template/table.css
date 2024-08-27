@@ -9,7 +9,7 @@ tbody svg {
     text-align: center;
 }
 table {
-    border-left: solid var(--color-fourth) .5em;
+    border-left: solid var(--color-silver-eleven) .5em;
     max-height: 75vh;
     overflow-y: auto;
     font-family: arial, sans-serif;
@@ -31,7 +31,7 @@ table header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--color-fourth);
+    color: var(--color-silver-twelve);
 }
 table header div span:after {
     content: " ";

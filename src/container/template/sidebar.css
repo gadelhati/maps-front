@@ -8,14 +8,14 @@ aside {
     padding: var(--space-xxs);
     margin: var(--space-first);
     border-radius: .3rem;
-    background-color: var(--color-third);
-    background-image: linear-gradient(to bottom, var(--color-fourth), var(--color-third));
+    /* background-color: var(--color-silver-four); */
+    /* background-image: linear-gradient(to bottom, var(--color-silver-four), var(--color-silver-two)); */
     box-shadow: 0 .3rem .6rem rgba(0,0,0,0.16), 0 .3rem .6rem rgba(0,0,0,0.23), 0 0 .1rem #AAA inset;
     scroll-behavior: smooth;
     overflow-y: auto;
     overflow-x: hidden;
     transition: width .2s;
-    background-image: url("https://cartasnauticasbrasil.com.br/media/catalog/product/cache/1/image/536fd27e01b3f5e8918764d29c932f52/1/_/1.jpg");
+    background-image: url("/src/assets/image/kl_14.jpg");
     background-position: center center;
     background-size: cover;
     background-blend-mode: multiply;
@@ -28,6 +28,7 @@ aside:hover {
 }
 aside a {
     margin-bottom: .1em;
+    /* backdrop-filter: blur(.1rem); */
 }
 aside a p {
     display: none;
@@ -97,7 +98,7 @@ nav a:active {
 }
 .collapsed a {
     color: var(--color-ninth);
-    background-color: var(--color-fourth);
+    background-color: var(--color-silver-twelve);
 }
 .collapsed a:first-child span + svg {
     transform: rotate(270deg);

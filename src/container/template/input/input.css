@@ -14,7 +14,10 @@
     width: '100%';
 }
 .container input:is(.container input[data-tip='1']) {
-    background-color: var(--color-fifteenth);
+    background-color: #D56062;
+}
+.container input:is(.container input[data-tip='1'])~label {
+    color: white;
 }
 .container label {
     font-size: 100%;

@@ -12,7 +12,7 @@ import { useMap } from './useMap';
 import { initialPoint, Point } from '../../component/point';
 
 export const LeafletMap = () => {
-    const center: L.LatLngExpression = [-23, -43]
+    const center: L.LatLngExpression = [-22.8, -43]
     const [ map, setMap ] = useState<any>()
     const [, setOverlay ] = useState<L.ImageOverlay>()
     const [ overlays ] = useState<L.ImageOverlay[]>([])
@@ -22,14 +22,15 @@ export const LeafletMap = () => {
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
     const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
     const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
-        
+    const [ modal, showModal ] = useState<boolean>(true)
     let item: string = '/chart/'
 
     useEffect(()=>{
-        let base = L.map('map').setView(center, 13)
+        let base = L.map('map').setView(center, 11)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            className: 'map-tiles'
             // maxZoom: 8,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(base)
         setMap(base)
         return () => {
@@ -119,38 +120,43 @@ export const LeafletMap = () => {
         let audio = new Audio("/assets/sound/click_sound.mp3")
         audio.play()
     }
+    const open = (name: string) => {
+        (document.querySelector('.' + name) as HTMLDialogElement).showModal()
+        showModal(!modal)
+    }
+    const close = (name: string) => {
+        (document.querySelector('.' + name) as HTMLDialogElement).close()
+        showModal(!modal)
+    }
     return (
         <div>
             <div id='map' style={{ height: '100vh', width: '100vw' }}></div>
-            <dialog open className='newdialog'>
-            <center>
-                <button onClick={()=>get()}>get</button>
-                <button onClick={()=>add()}>add</button>
-                <button onClick={show[0] ? ()=>addMarkers(map, pointList[0]) : ()=>hideFromMap(map, markers[0]) }>
-                    {UriToScreenFormat(show[0] ? 'p' : 'p remove')}{show[0]}
-                </button>
-                <button onClick={show[0] ? ()=>addPolygon(map, pointList[0]) : ()=>hideFromMap(map, polygons[0]) }>
-                    {UriToScreenFormat(show[0] ? 'm' : 'm remove')}{show[0]}
-                </button>
-                <ol>
-                {pointList[0]?.map((element: Point, index: number)=>{
-                    return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
-                        <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
-                            <input name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
-                            {/* <label htmlFor={'latitude'}>{'latitude'}</label> */}
-                        </span>
-                        <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
-                            <input name='coordinates' value={element.coordinates[0]} onChange={handleChangeLongitude} key={Math.random()}></input>
-                            {/* <label htmlFor={'longitude'}>{'longitude'}</label> */}
-                        </span>
-                        <button onClick={remove}>rm</button>
-                        </li>
-                })}
-                </ol>
+            <dialog className='group'>
+                <header><h2>{UriToScreenFormat('map')}</h2><span onClick={() => close('group')}>&times;</span></header>
+                <center>
+                    <button onClick={()=>get()}>{UriToScreenFormat('get')}</button>
+                    <button onClick={()=>add()}>{UriToScreenFormat('add')}</button>
+                    <ol>
+                    {pointList[0]?.map((element: Point, index: number)=>{
+                        return <li onMouseEnter={()=>setOrder(index)} key={Math.random()}>
+                            <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
+                                <input name='coordinates' value={element.coordinates[1]} onChange={handleChangeLatitude} key={Math.random()}></input>
+                                {/* <label htmlFor={'latitude'}>{'latitude'}</label> */}
+                            </span>
+                            <span className={'inputgroup tooltip'} key={Math.random()} data-tip={''}>
+                                <input name='coordinates' value={element.coordinates[0]} onChange={handleChangeLongitude} key={Math.random()}></input>
+                                {/* <label htmlFor={'longitude'}>{'longitude'}</label> */}
+                            </span>
+                            <button onClick={remove} key={Math.random()}>rm</button>
+                            </li>
+                    })}
+                    </ol>
                 </center>
             </dialog>
             <div className='menu'>
-                <button onClick={()=>get()}>{UriToScreenFormat('get')}</button>
+                <button onClick={modal ? ()=>open('group') : ()=>close('group')}>
+                    {UriToScreenFormat(modal ? 'open' : 'close')}
+                </button>
                 <button onClick={show[0] ? ()=>addMarkers(map, pointList[0]) : ()=>hideFromMap(map, markers[0]) }>
                     {UriToScreenFormat(show[0] ? 'p' : 'p remove')}{show[0]}
                 </button>
@@ -167,9 +173,9 @@ export const LeafletMap = () => {
             <div className='chart'>
                 {charts.map((element:any, index:number)=>{
                     if(index < 3) {
-                        return <li className='menuitem' onClick={()=>retrieveChart(index)}>
-                            <label>{element.number}</label>
-                            <img src={item.concat(element.number).concat('.png')}/>
+                        return <li  key={Math.random()}className='menuitem' onClick={()=>retrieveChart(index)}>
+                            <label key={Math.random()}>{element.number}</label>
+                            <img src={item.concat(element.number).concat('.png')} key={Math.random()}/>
                         </li>
                     }
                 })}

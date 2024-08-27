@@ -5,7 +5,7 @@
     height: var(--space-thirteenth);
     margin: var(--space-first);
     padding: 0 var(--space-sm) 0 var(--space-sm);
-    color: var(--color-fourth);
+    color: var(--color-silver-three);
     border-radius: var(--space-second);
     box-shadow: 0 var(--space-second) .6rem rgba(0,0,0,0.16), 0 var(--space-second) .6rem rgba(0,0,0,0.23), 0 0 .25rem #AAA inset;
     justify-content: space-between;
@@ -13,7 +13,6 @@
 }
 
 .header h1 {
-    padding: var(--space-sm);
     padding-left: var(--space-md);
 }
 

@@ -1,4 +1,6 @@
 :root {
+    --map-tiles-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+    
     --color-zero: brown;
     --color-first: #00241B;
     --color-second: #2F3E46;
@@ -47,7 +49,7 @@
     --color-silver-eleven: #6E7271;
     --color-silver-twelve: #4C5B61;
     --color-silver-thirteen: #384D48;
-    --color-silver-fourtenn: #2C423F;
+    --color-silver-fourteen: #2C423F;
     --color-silver-fiveteen: #171A21;
 
     --color-blue-one: #2589BD;

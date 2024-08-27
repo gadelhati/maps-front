@@ -76,8 +76,9 @@ main {
 }
 .all {
     align-items: stretch;
-    background-color: var(--color-eighth);
-    /* background-image: url("https://mcdn.wallpapersafari.com/medium/82/75/HAz1IU.jpg"); */
+    background-color: var(--color-silver-eleven);
+    background-image: url("/src/assets/image/kl_14.jpg");
+    /* background-image: linear-gradient(var(--color-silver-two), var(--color-silver-eight)); */
 }
 .main {
     flex-basis: 0;

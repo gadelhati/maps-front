@@ -4,7 +4,7 @@ button {
     justify-content: center;
     width: var(--space-thirteenthandahalf);
     max-height: var(--space-twelfth);
-    background-image: linear-gradient(var(--color-fourth), var(--color-second));
+    background-image: linear-gradient(var(--color-twelfth), var(--color-sixteenth));
     border: 0;
     border-radius: var(--space-second);
     box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
@@ -20,7 +20,8 @@ button {
     touch-action: manipulation;
 }
 button[typeof*="primary"] {
-    background-image: linear-gradient(var(--color-silver-nine), var(--color-silver-twelve));
+    /* background-image: linear-gradient(var(--color-silver-four), var(--color-silver-ten)); */
+    background-image: linear-gradient(var(--color-one), var(--color-sixteenth));
 }
 button[typeof*="secondary"] {
     background-image: linear-gradient(var(--color-twelfth), var(--color-sixteenth));

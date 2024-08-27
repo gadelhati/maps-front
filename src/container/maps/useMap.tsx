@@ -15,7 +15,7 @@ export const useMap = (index: number) => {
         points.forEach((point: Point)=>{
             list.push([point.coordinates[1], point.coordinates[0]])
         })
-        let polygon = L.polygon(list)
+        let polygon = L.polygon(list, {color: 'green'})
         showFromMap(map, polygon)
         setPolygons([...polygons.slice(0, index), polygon, ...polygons.slice(index + 1)])
         return polygon
