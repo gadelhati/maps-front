@@ -1,8 +1,11 @@
+import { useState } from "react"
+
 export interface Data<T extends Object> {
     list: T[],
 }
 
 export const DataTable = (data: any) => {
+    const [state, setState] = useState([])
     const show = (content: any) => {
         switch(typeof content) {
             case 'boolean' : {
@@ -24,6 +27,7 @@ export const DataTable = (data: any) => {
     return (
         <table>
             <thead>
+                <tr>{JSON.stringify(state)}</tr>
                 <tr key={Math.random()} >
                     {data.list[0] !== undefined &&
                         Object.keys(data.list[0]).map((column: string)=>{
@@ -33,7 +37,7 @@ export const DataTable = (data: any) => {
             </thead>
             <tbody>
                 {data.list.map((row: any)=>{
-                    return <tr key={Math.random()} >{Object.values(row).map((column: any)=>{
+                    return <tr key={Math.random()} onClick={()=>setState(row)}>{Object.values(row).map((column: any)=>{
                         return <td key={Math.random()} >{show(column)}</td>
                     })}</tr>
                 })}
