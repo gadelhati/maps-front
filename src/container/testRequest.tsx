@@ -24,7 +24,7 @@ export const TestComponent = <T extends Object>(object: Url) => {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
         // if (new RegExp(event.target.pattern).test(event.target.value) || event.target.value === '') { 
-            setSearch({...search, [event.target.name]: value})
+            setSearch({...search, page: 0, [event.target.name]: value})
         // }
     }
     return (
@@ -34,7 +34,7 @@ export const TestComponent = <T extends Object>(object: Url) => {
                     return <option key={Math.random()} value={result}>{result}</option>
                 }))}
             </select>
-            {Object.entries(search).map(([key, value]: any, index)=>{
+            {Object.entries(search).map(([key, value]: any)=>{
                 return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
                     <input key={key} type={typeof value} name={key} value={value} onChange={handleInputChange} placeholder={key} ></input>
                     <label htmlFor={key}>{key}</label>
