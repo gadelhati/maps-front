@@ -106,6 +106,8 @@ export const GenericForm = <T extends { id: string, name: string }>(object: any)
             startTransition(() => setPageable(data))
             startTransition(() => setStates(data.content))
         }).catch(() => { networkError() })
+        console.log("Object Name:", object.name)
+        console.log("Object Display Name:", object.displayName)
     }
     const loadSubStates = async () => {
         Object.entries(state).map(([key, value], index) => {

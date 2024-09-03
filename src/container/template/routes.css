@@ -1,4 +1,4 @@
-@import './container/global.css';
+@import '../global.css';
 
 * {
     box-sizing: border-box;

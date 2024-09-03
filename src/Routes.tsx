@@ -21,7 +21,7 @@ import { initialMaritimeArea } from "./component/maritime_area";
 import { initialRole } from "./component/role";
 import { initialState } from "./component/state";
 import { initialUser } from "./component/user";
-import './routes.css'
+import './container/template/routes.css'
 import { initialStock } from "./component/stock";
 import { initialPerson } from "./component/person";
 import { initialItem } from "./component/item";
@@ -30,6 +30,7 @@ import { initialLot } from "./component/lot";
 import { initialOrder } from "./component/order";
 import { initialOrderItem } from "./component/order_item";
 import { Wms } from "./container/page/wms";
+import { TestComponent } from "./container/testRequest";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -50,6 +51,7 @@ export default function AppRoutes() {
                     {isValidToken() && <SideList />}
                     <div className='routes main'>
                         <Routes>
+                            <Route path="/testRequest" element={<TestComponent url={'role'} />}></Route>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
