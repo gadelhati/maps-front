@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { api } from "../api/api"
-import { initialPage, Page } from "../../component/page"
+import { initialPageable, Pageable } from "../../component/pageable"
 
 export const useRequest = <T extends Object>(url: string, value?: string, page?: number, size?: number, sort?: { key?: string, order?: string }) => {
     const [states, setStates] = useState<T[]>([])
-    const [pageable, setPageable] = useState<Page>(initialPage)
+    const [pageable, setPageable] = useState<Pageable>(initialPageable)
     const controller = new AbortController();
 
     useEffect(()=>{
