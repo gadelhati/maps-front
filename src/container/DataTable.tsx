@@ -32,6 +32,9 @@ export const DataTable = <T extends Object>(data: Data<T>) => {
             default: { return null }
         }
     }
+    const newItem = () => {
+        show(data.object)
+    }
     const show = (row: T) => {
         setState(row)
         if(modalRef.current) {
@@ -40,6 +43,7 @@ export const DataTable = <T extends Object>(data: Data<T>) => {
     }
     return (
         <>
+        <button onClick={newItem}>New</button>
         <Modal object={state} ref={modalRef} />
         <table>
             <thead>
