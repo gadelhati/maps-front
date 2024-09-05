@@ -1,0 +1,8 @@
+#dialog {
+    z-index: 5;
+    opacity: .45;
+    transition: opacity .8s;
+}
+#dialog:hover {
+    opacity: 1;
+}

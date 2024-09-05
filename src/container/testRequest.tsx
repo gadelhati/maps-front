@@ -34,7 +34,7 @@ export const TestComponent = <T extends Object>(object: Url<T>) => {
             return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
                     <input key={key} type={typeof value} name={key} value={value} onChange={handleSearch} placeholder={key} ></input>
                     <label htmlFor={key}>{key}</label>
-                </span>    
+                </span>
             })}
             <DataTable object={object.object} list={states} pageable={pageable} search={search} />
         </>

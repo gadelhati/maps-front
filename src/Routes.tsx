@@ -51,7 +51,7 @@ export default function AppRoutes() {
                     {isValidToken() && <SideList />}
                     <div className='routes main'>
                         <Routes>
-                            <Route path="/testRequest" element={<TestComponent object={initialUser} url={'user'} />}></Route>
+                            <Route path="/testRequest" element={<TestComponent object={initialRole} url={'role'} />}></Route>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
