@@ -6,3 +6,23 @@
 #dialog:hover {
     opacity: 1;
 }
+
+#dialog {
+    z-index: 5;
+}
+#dialog[open] {
+    animation: open 1s forwards;
+}
+#dialog::backdrop {
+    background-color: black;
+    opacity: .2;
+    /* animation: close 1s forwards; */
+}
+@keyframes open {
+    0% {    opacity: 0; }
+    100% {  opacity: 1; }
+}
+@keyframes open {
+    0% {    opacity: .45; }
+    100% {  opacity: 1; }
+}
