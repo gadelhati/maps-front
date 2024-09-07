@@ -1,7 +1,7 @@
 import { forwardRef, Ref, useEffect, useImperativeHandle } from 'react'
 import { useInput } from '../assets/hook/useInput'
+import { create, remove, update } from '../service/service.crud'
 import './modal.css'
-import { initialRole, Role } from '../component/role'
 
 export interface ModalData {
     showModal: ()=>void
@@ -37,6 +37,9 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
                     <label htmlFor={key}>{key}</label>
                 </span>
             })}
+            <button onClick={()=>create('role', state)}>Create</button>
+            <button onClick={()=>update('role', state)}>Update</button>
+            <button onClick={()=>remove('role', state.id)}>Delete</button>
             <button onClick={closeModal}>Close</button>
         </dialog>
     )
