@@ -11,7 +11,7 @@
     z-index: 5;
 }
 #dialog[open] {
-    animation: open 1s forwards;
+    animation: open .5s forwards;
 }
 #dialog::backdrop {
     background-color: black;

@@ -5,7 +5,7 @@ import { DataTable } from "./DataTable";
 import { useInput } from "../assets/hook/useInput";
 import './template/inputgroup.css'
 
-export interface Url<T extends Object> {
+interface Url<T extends Object> {
     url: string,
     object: T,
 }
@@ -13,12 +13,12 @@ export interface Url<T extends Object> {
 export const TestComponent = <T extends Object>(object: Url<T>) => {
     const controller = new AbortController();
     // const [isInterface] = useIsInterface<T, User>(initialRole, initialUser)
-    const {state: search, setState: setSearch, handleInput: handleSearch} = useInput<Search>(intialSearch)
-    const {states, pageable, retrieve} = useRequest<T>(object.url, search.value, search.page, search.size, { key: search.key, order: search.order})
-    
-    useEffect(()=>{
+    const { state: search, setState: setSearch, handleInput: handleSearch } = useInput<Search>(intialSearch)
+    const { states, pageable, retrieve } = useRequest<T>(object.url, search.value, search.page, search.size, { key: search.key, order: search.order })
+
+    useEffect(() => {
         retrieve()
-        return (()=>{
+        return (() => {
             controller.abort()
         })
     }, [search])
@@ -30,8 +30,8 @@ export const TestComponent = <T extends Object>(object: Url<T>) => {
                 }))}
             </select> */}
             {/* FIND ON DATA TABLE */}
-            {intialSearch !== undefined && Object.entries(search).map(([key, value]: [string, any])=>{
-            return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
+            {intialSearch !== undefined && Object.entries(search).map(([key, value]: [string, any]) => {
+                return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
                     <input key={key} type={typeof value} name={key} value={value} onChange={handleSearch} placeholder={key} ></input>
                     <label htmlFor={key}>{key}</label>
                 </span>
