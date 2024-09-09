@@ -1,13 +1,15 @@
 import { useRef, useState } from "react"
 import { Search } from "../component/search"
-import { Pageable } from "../component/pageable"
 import Modal, { ModalData } from "./Modal"
+// import { Pageable } from "../component/pageable"
+import { Page } from "../component/page"
 
 interface Data<T extends Object> {
     object: T,
     list: T[],
-    pageable: Pageable,
     search: Search,
+    // pageable: Pageable,
+    pageable: Page,
 }
 
 export const DataTable = <T extends Object>(data: Data<T>) => {
@@ -62,7 +64,8 @@ export const DataTable = <T extends Object>(data: Data<T>) => {
                 })}
             </tbody>
             <tfoot>
-                <tr key={Math.random()} >Total Elements: {data.pageable.totalElements}</tr>
+                {/* <tr key={Math.random()} >Total Elements: {data.pageable.totalElements}</tr> */}
+                {/* <tr key={Math.random()} >Total Elements: {data.pageable.page.totalElements}</tr> */}
             </tfoot>
         </table>
         </>

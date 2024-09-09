@@ -13,11 +13,11 @@ interface Url<T extends Object> {
 export const TestComponent = <T extends Object>(object: Url<T>) => {
     const controller = new AbortController();
     // const [isInterface] = useIsInterface<T, User>(initialRole, initialUser)
-    const { state: search, setState: setSearch, handleInput: handleSearch } = useInput<Search>(intialSearch)
+    const { state: search, handleInput: handleSearch } = useInput<Search>(intialSearch)
     const { states, pageable, retrieve } = useRequest<T>(object.url, search.value, search.page, search.size, { key: search.key, order: search.order })
 
     useEffect(() => {
-        retrieve()
+        retrieve(object.url)
         return (() => {
             controller.abort()
         })
