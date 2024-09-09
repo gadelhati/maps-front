@@ -11,7 +11,8 @@ export interface ModalData {
 
 interface Data<T> {
     object: T,
-    ref: ModalData
+    ref: ModalData,
+    url: string,
 }
 
 const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
@@ -54,9 +55,9 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
                     <label htmlFor={key}>{key}</label>
                 </span>
             })}
-            <button onClick={() => create('city', state)}>Create</button>
-            <button onClick={() => update('city', state)}>Update</button>
-            {/* <button onClick={() => remove('city', state?.id)}>Delete</button> */}
+            <button onClick={() => create(data.url, state)}>Create</button>
+            <button onClick={() => update(data.url, state)}>Update</button>
+            {/* <button onClick={() => remove(data.url, state?.id)}>Delete</button> */}
             <button onClick={closeModal}>Close</button>
         </dialog>
     )

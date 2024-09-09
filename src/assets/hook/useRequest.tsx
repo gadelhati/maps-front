@@ -23,5 +23,5 @@ export const useRequest = <T extends Object>(url: string, value?: string, page?:
             setPageable(response.data.page)
         })
     }
-    return { states, setStates, pageable, retrieve }
+    return { states, pageable, retrieve }
 }

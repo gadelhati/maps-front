@@ -10,6 +10,7 @@ interface Data<T extends Object> {
     search: Search,
     // pageable: Pageable,
     pageable: Page,
+    url: string,
 }
 
 export const DataTable = <T extends Object>(data: Data<T>) => {
@@ -46,7 +47,7 @@ export const DataTable = <T extends Object>(data: Data<T>) => {
     return (
         <>
         <button onClick={newItem}>New</button>
-        <Modal object={state} ref={modalRef} />
+        <Modal object={state} ref={modalRef} url={data.url} />
         <table>
             <thead>
                 <tr key={Math.random()} >

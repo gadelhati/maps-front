@@ -5,12 +5,12 @@ import { DataTable } from "./DataTable";
 import { useInput } from "../assets/hook/useInput";
 import './template/inputgroup.css'
 
-interface Url<T extends Object> {
-    url: string,
+interface Data<T extends Object> {
     object: T,
+    url: string,
 }
 
-export const TestComponent = <T extends Object>(object: Url<T>) => {
+export const TestComponent = <T extends Object>(object: Data<T>) => {
     const controller = new AbortController();
     // const [isInterface] = useIsInterface<T, User>(initialRole, initialUser)
     const { state: search, handleInput: handleSearch } = useInput<Search>(intialSearch)
@@ -36,7 +36,7 @@ export const TestComponent = <T extends Object>(object: Url<T>) => {
                     <label htmlFor={key}>{key}</label>
                 </span>
             })}
-            <DataTable object={object.object} list={states} pageable={pageable} search={search} />
+            <DataTable object={object.object} list={states} pageable={pageable} search={search} url={object.url} />
         </>
     )
 }
