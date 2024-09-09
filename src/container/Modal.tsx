@@ -1,6 +1,6 @@
 import { forwardRef, Ref, useEffect, useImperativeHandle } from 'react'
 import { useInput } from '../assets/hook/useInput'
-import { create, update, remove } from '../service/service.crud'
+import { create, update } from '../service/service.crud'
 import { useRequest } from '../assets/hook/useRequest'
 import './modal.css'
 
@@ -39,7 +39,6 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
         <dialog id="dialog">
             {data.object !== undefined && Object.entries(state).map(([key, value]: [string, any]) => {
                 return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
-                    {typeof value}
                     {typeof value === 'object' ?
                     // {/* {Array.isArray(value) ? */}
                         <select key={key} name={key} onClick={()=>fill(key)} onChange={handleSelect}
