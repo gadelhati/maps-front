@@ -1,16 +1,16 @@
 import { useEffect } from "react"
-import { useRequest } from "../assets/hook/useRequest"
-import { intialSearch, Search } from "../component/search"
+import { useRequest } from "../../assets/hook/useRequest"
+import { intialSearch, Search } from "../../component/search"
 import { DataTable } from "./DataTable";
-import { useInput } from "../assets/hook/useInput";
-import './template/inputgroup.css'
+import { useInput } from "../../assets/hook/useInput";
+import '../template/inputgroup.css'
 
 interface Data<T extends Object> {
     object: T,
     url: string,
 }
 
-export const TestComponent = <T extends Object>(object: Data<T>) => {
+export const GenericComponent = <T extends Object>(object: Data<T>) => {
     const controller = new AbortController();
     // const [isInterface] = useIsInterface<T, User>(initialRole, initialUser)
     const { state: search, handleInput: handleSearch } = useInput<Search>(intialSearch)

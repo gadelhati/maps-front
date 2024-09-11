@@ -1,7 +1,7 @@
 import { forwardRef, Ref, useEffect, useImperativeHandle } from 'react'
-import { useInput } from '../assets/hook/useInput'
-import { create, update } from '../service/service.crud'
-import { useRequest } from '../assets/hook/useRequest'
+import { useInput } from '../../assets/hook/useInput'
+import { create, update, remove } from '../../service/service.crud'
+import { useRequest } from '../../assets/hook/useRequest'
 import './modal.css'
 
 export interface ModalData {
@@ -30,6 +30,14 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
     const closeModal = () => {
         (document.querySelector('#dialog') as HTMLDialogElement).close()
     }
+    const crud = (action: string) => {
+        switch (action) {
+            case 'create': create(data.url, state); closeModal(); break
+            case 'update': update(data.url, state); closeModal(); break
+            // case 'delete': remove(data.url, state?.id); closeModal; break
+            default: closeModal();
+        }
+    }
     useImperativeHandle(ref, () => ({
         showModal, closeModal
     }))
@@ -55,9 +63,9 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
                     <label htmlFor={key}>{key}</label>
                 </span>
             })}
-            <button onClick={() => create(data.url, state)}>Create</button>
-            <button onClick={() => update(data.url, state)}>Update</button>
-            {/* <button onClick={() => remove(data.url, state?.id)}>Delete</button> */}
+            <button onClick={() => crud('create')}>Create</button>
+            <button onClick={() => crud('update')}>Update</button>
+            {/* <button onClick={() => crud('delete')}>Delete</button> */}
             <button onClick={closeModal}>Close</button>
         </dialog>
     )

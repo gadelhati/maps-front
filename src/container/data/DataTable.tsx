@@ -1,8 +1,8 @@
 import { useRef, useState } from "react"
-import { Search } from "../component/search"
+import { Search } from "../../component/search"
 import Modal, { ModalData } from "./Modal"
 // import { Pageable } from "../component/pageable"
-import { Page } from "../component/page"
+import { Page } from "../../component/page"
 
 interface Data<T extends Object> {
     object: T,

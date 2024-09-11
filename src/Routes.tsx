@@ -30,7 +30,7 @@ import { initialLot } from "./component/lot";
 import { initialOrder } from "./component/order";
 import { initialOrderItem } from "./component/order_item";
 import { Wms } from "./container/page/wms";
-import { TestComponent } from "./container/testRequest";
+import { GenericComponent } from "./container/data/GenericComponent";
 
 export const ROLES = {
     'USER': '7c12004d-e843-4e00-be40-01845ad75834',
@@ -51,7 +51,7 @@ export default function AppRoutes() {
                     {isValidToken() && <SideList />}
                     <div className='routes main'>
                         <Routes>
-                            <Route path="/testRequest" element={<TestComponent object={initialState} url={'state'} />}></Route>
+                            <Route path="/genericComponent" element={<GenericComponent object={initialState} url={'state'} />}></Route>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
