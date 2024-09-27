@@ -26,6 +26,7 @@ Georeferenced information.
 - [x] input group
 - [x] extract all records in pdf
 - [x] user: improve visual of add multiple roles
+- [ ] test the hooks with anothers interfaces
 
 #### in concept
 - [ ] set combobox, turn with switch
