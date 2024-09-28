@@ -1,0 +1,16 @@
+dialog {
+    height: 35rem;
+    width: 20rem;
+    padding: 1rem;
+    /* transform: skew(10deg); */
+    /* transform: skewX(-10deg); */
+    /* transform: rotateY(60deg); */
+    /* transform: rotateX(10deg) rotateY(10deg); */
+    border-radius: 1rem;
+    outline: .25rem solid #1C6EA4;
+}
+
+dialog div {
+    background-color: blueviolet;
+    border-radius: 1rem;
+}
