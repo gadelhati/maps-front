@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 // https://html-css-js.com/css/generator/transform/
 // https://css-tricks.com/almanac/properties/t/transform/#rotate
-// https://kushagra.dev/blog/css-only-3d-card/
 // https://polypane.app/css-3d-transform-examples/
 
 export const usePosition = () => {
@@ -24,7 +23,7 @@ export const usePosition = () => {
             box.addEventListener("mousemove", setParalax, false);
         }
     }
-    const setParalax = (event: any) => {
+    const setParalax = (event: MouseEvent) => {
         if (box !== null) {
             let abcissa: number = Math.floor((event.pageX * 100)/box?.offsetWidth -50)
             let ordenada: number = Math.floor((event.pageY * 100)/box?.offsetHeight -50)
