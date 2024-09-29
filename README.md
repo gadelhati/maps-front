@@ -27,6 +27,7 @@ Georeferenced information.
 - [x] extract all records in pdf
 - [x] user: improve visual of add multiple roles
 - [ ] test the hooks with anothers interfaces
+- [ ] move card only if hold
 
 #### in concept
 - [ ] set combobox, turn with switch
