@@ -6,6 +6,7 @@ import { useInput } from "../../assets/hook/useInput";
 import '../template/inputgroup.css'
 import './position.css'
 import { usePosition } from "../../assets/hook/usePosition";
+// https://www.cssportal.com/css-clip-path-generator/
 
 interface Data<T extends Object> {
     object: T,
@@ -43,7 +44,8 @@ export const GenericComponent = <T extends Object>(object: Data<T>) => {
                 </span>
             })}
             <dialog id="dial" style={{...movement}} >
-                <div>
+                <>Teste</>
+                <div style={{ boxShadow: movement.boxShadow }}>
                     {JSON.stringify(movement)}
                 </div>
             </dialog>
