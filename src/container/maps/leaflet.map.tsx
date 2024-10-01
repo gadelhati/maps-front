@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
@@ -17,10 +17,10 @@ export const LeafletMap = () => {
     const [, setOverlay ] = useState<L.ImageOverlay>()
     const [ overlays ] = useState<L.ImageOverlay[]>([])
     const [ charts, setCharts ] = useState<Chart[]>([])
-    const [ maritimeArea, setMaritimeArea ] = useState<MaritimeArea[]>([])
-    const [ polygon, setPolygon ] = useState<L.Polygon>()
+    const [ , setMaritimeArea ] = useState<MaritimeArea[]>([])
+    // const [ polygon, setPolygon ] = useState<L.Polygon>()
     // const [ show, setShow ] = useState<boolean[]>([true, true, true, true, true, true, true, true, true])
-    const { order, state, list, pointList, add, get, setOrder, setPointList, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
+    const { pointList, add, get, setOrder, handleChangeLongitude, handleChangeLatitude, remove } = useComponent<GaugeStation>('gaugeStation', 0)
     const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
     const [ modal, showModal ] = useState<boolean>(true)
     let item: string = '/chart/'

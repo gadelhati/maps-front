@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 
 export const useHook = <T extends Object>(state: T) => {
     const [ hook, setHook ] = useState<T>(state)

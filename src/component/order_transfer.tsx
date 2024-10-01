@@ -1,7 +1,7 @@
 import { initialOrderItem } from "./order_item";
 import { Order } from "./order";
 import { initialPerson } from "./person";
-import { initialStock, Stock } from "./stock";
+import { initialStock } from "./stock";
 
 export interface OrderTransfer extends Order {
     starts: Date,

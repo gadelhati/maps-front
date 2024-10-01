@@ -1,5 +1,5 @@
 import { startTransition, useEffect, useState } from "react"
-import { Address, initialAddress } from "../../component/address"
+import { initialAddress } from "../../component/address"
 import { initialItem, Item } from "../../component/item"
 import { initialOrder, Order } from "../../component/order"
 import { initialOrderItem } from "../../component/order_item"

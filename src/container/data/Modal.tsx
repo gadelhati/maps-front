@@ -1,6 +1,6 @@
 import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from 'react'
 import { useInput } from '../../assets/hook/useInput'
-import { create, update, remove } from '../../service/service.crud'
+import { create, update } from '../../service/service.crud'
 import { useRequest } from '../../assets/hook/useRequest'
 import './modal.css'
 
