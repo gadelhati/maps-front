@@ -9,6 +9,7 @@ tbody svg {
     text-align: center;
 }
 table {
+    cursor: pointer;
     border-left: solid var(--color-silver-eleven) .5em;
     max-height: 75vh;
     overflow-y: auto;
@@ -71,7 +72,6 @@ th {
     background-color: var(--color-tenth);
 }
 tr:hover {
-    cursor: pointer;
     background-color: var(--color-seventh);
 }
 tr:hover td svg {
