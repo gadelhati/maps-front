@@ -4,7 +4,6 @@ import { intialSearch, Search } from "../../component/search"
 import { DataTable } from "./DataTable";
 import { useInput } from "../../assets/hook/useInput";
 import '../template/inputgroup.css'
-import './position.css'
 import { usePosition } from "../../assets/hook/usePosition";
 // https://www.cssportal.com/css-clip-path-generator/
 
