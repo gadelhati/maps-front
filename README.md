@@ -62,6 +62,12 @@ npm outdated
 # updates every package
 npm update
 
+# check conflicting dependencies
+npm ls eslint
+
+# clean cache
+npm cache clean --force
+
 # update to a major breaking-changes version
 npm install <package>@latest
 
