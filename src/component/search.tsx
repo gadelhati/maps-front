@@ -6,7 +6,7 @@ export interface Search {
     size: number,
 }
 export const intialSearch: Search = {
-    key: 'name',
+    key: 'id',
     value: '',
     order: 'ASC',
     page: 0,
