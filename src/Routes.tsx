@@ -27,7 +27,7 @@ import { initialPerson } from "./component/person";
 import { initialItem } from "./component/item";
 import { initialAddress } from "./component/address";
 import { initialLot } from "./component/lot";
-import { initialOrder } from "./component/order";
+import { initialOrder, initialOrderTransfer } from "./component/order";
 import { initialOrderItem } from "./component/order_item";
 import { Wms } from "./container/page/wms";
 import { GenericComponent } from "./container/data/GenericComponent";
@@ -51,7 +51,7 @@ export default function AppRoutes() {
                     {isValidToken() && <SideList />}
                     <div className='routes main'>
                         <Routes>
-                            <Route path="/genericComponent" element={<GenericComponent object={initialState} url={'state'} />}></Route>
+                            <Route path="/genericComponent" element={<GenericComponent object={initialItem} url={'item'} />}></Route>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
