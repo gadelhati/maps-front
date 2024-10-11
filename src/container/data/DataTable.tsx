@@ -18,9 +18,18 @@ export const DataTable = <T extends Object>(data: Data<T>) => {
     const modalRef = useRef<ModalData>(null)
 
     const showType = (content: any) => {
+        if(content === null){
+            return 'null'
+        }
+        if(typeof content.getMonth === 'function'){
+            return 'date'
+        }
         switch (typeof content) {
             case 'boolean': {
                 return content ? 'true' : 'false'
+            }
+            case 'number': {
+                return content
             }
             case 'string': {
                 return content
