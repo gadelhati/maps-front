@@ -17,7 +17,7 @@ interface Data<T> {
 }
 
 const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
-    const { state, setState, handleInput, handleSelect } = useInput<T>(data.object)
+    const { state, setState, handleInput, handleSelect, handleMultiSelect } = useInput<T>(data.object)
     const { states, retrieve } = useRequest<T>('url')
     const [action, setAction] = useState<string>('retrieve')
     // const { states, pageable, retrieve } = useRequest<T>(object.url, search.value, search.page, search.size, { key: search.key, order: search.order })
@@ -68,8 +68,7 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
                     {data.object !== undefined && Object.entries(state).map(([key, value]: [string, any]) => {
                         return <span key={key + 'span'} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
                             {typeof value === 'object' ?
-                                // {/* {Array.isArray(value) ? */}
-                                <select key={key} name={key} onClick={() => fill(key)} onChange={handleSelect}
+                                <select key={key} name={key} onClick={() => fill(key)} onChange={Array.isArray(value) ? handleMultiSelect : handleSelect}
                                     defaultValue={value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}>
                                     <option selected value={value === undefined || value === null ? null : Array.isArray(value) ? value[0] : value}>
                                         {value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
@@ -77,7 +76,7 @@ const Modal = <T extends Object>(data: Data<T>, ref: Ref<ModalData>) => {
                                     {states?.map(((result: any) => <option key={Math.random()} value={result.id}>{result?.name ? result.name : result.id}</option>))}
                                 </select>
                                 :
-                                <input key={key} type={typeof value} name={key} value={value} onChange={handleInput} placeholder={key} ></input>
+                                <input key={key} type={typeof value} name={key} value={Array.isArray(value) ? [value] : value} onChange={handleInput} placeholder={key} ></input>
                             }
                             <label htmlFor={key}>{key}</label>
                         </span>
