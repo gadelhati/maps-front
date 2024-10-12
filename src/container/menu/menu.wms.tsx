@@ -1,0 +1,17 @@
+export const vector: string[][] = [
+    ["lot", "cpu-fill", "sixth"],
+    ["user", "people-circle", "first"],
+    ["role", "toggles2", "third"],
+    ["genericComponent", "calendar3", "second"],
+    ["wms", "table", "fourth"],
+    ["stock", "chevron-right", "sixth"],
+    ["person", "tools", "sixth"],
+    ["item", "gear-fill", "sixth"],
+    ["address", "chat-quote-fill", "sixth"],
+    ["order", "grid", "sixth"],
+    ["orderItem", "collection", "sixth"],
+    ["city", "home", "sixth"],
+    // ["city", "grid", "sixth"],
+    // ["state", "collection", "sixth"],
+    // ["country", "speedometer2", "sixth"],
+]

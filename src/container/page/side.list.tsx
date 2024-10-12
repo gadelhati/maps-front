@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Icon } from '../../assets/svg.access'
 import { UriToScreenFormat } from '../../assets/uri.format'
 import { logout } from '../../service/service.crud'
-import { vector } from '../menu/menu'
+import { vector } from '../menu/menu.wms'
 import '../template/sidebar.css'
 
 export const SideList = () => {
