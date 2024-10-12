@@ -51,18 +51,20 @@ export default function AppRoutes() {
                     {isValidToken() && <SideList />}
                     <div className='routes main'>
                         <Routes>
-                            <Route path="/genericComponent" element={<GenericComponent object={initialItem} url={'item'} />}></Route>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
-                            <Route path="/wms" element={<Wms />}></Route>
-                            <Route path="/stock" element={<GenericForm key='stock' object={initialStock} url={'stock'} />}></Route>
-                            <Route path="/person" element={<GenericForm key='person' object={initialPerson} url={'person'} />}></Route>
-                            <Route path="/item" element={<GenericForm key='item' object={initialItem} url={'item'} />}></Route>
-                            <Route path="/address" element={<GenericForm key='address' object={initialAddress} url={'address'} />}></Route>
-                            <Route path="/lot" element={<GenericForm key='lot' object={initialLot} url={'lot'} />}></Route>
-                            <Route path="/order" element={<GenericForm key='order' object={initialOrder} url={'order'} />}></Route>
-                            <Route path="/orderItem" element={<GenericForm key='orderItem' object={initialOrderItem} url={'orderItem'} />}></Route>
+                            <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
+                                <Route path="/genericComponent" element={<GenericComponent object={initialOrder} url={'order'} />}></Route>
+                                <Route path="/wms" element={<Wms />}></Route>
+                                <Route path="/stock" element={<GenericForm key='stock' object={initialStock} url={'stock'} />}></Route>
+                                <Route path="/person" element={<GenericForm key='person' object={initialPerson} url={'person'} />}></Route>
+                                <Route path="/item" element={<GenericForm key='item' object={initialItem} url={'item'} />}></Route>
+                                <Route path="/address" element={<GenericForm key='address' object={initialAddress} url={'address'} />}></Route>
+                                <Route path="/lot" element={<GenericForm key='lot' object={initialLot} url={'lot'} />}></Route>
+                                <Route path="/order" element={<GenericForm key='order' object={initialOrder} url={'order'} />}></Route>
+                                <Route path="/orderItem" element={<GenericForm key='orderItem' object={initialOrderItem} url={'orderItem'} />}></Route>
+                            </Route>
                             <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
                                 <Route path="/user" element={<GenericForm key='user' object={initialUser} url={'user'} />}></Route>
                                 <Route path="/role" element={<GenericForm key='role' object={initialRole} url={'role'} />}></Route>
