@@ -13,14 +13,13 @@ section {
 article {
     padding: 5rem 0rem 5rem 0;
     border-radius: 1rem;
-    height: 30rem;
+    height: 34rem;
     width: 18rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 13px 28px 0px rgba(0,0,0,0.79);
     backdrop-filter: blur(1rem);
-
 }
 article img {
     padding-bottom: 2.5rem;
