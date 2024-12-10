@@ -87,6 +87,10 @@ export const Login = () => {
                             <input type={'password'} data-tip={validation('password').length} required name={'password'} value={state.password} onChange={handleInputChange} autoComplete='off' />
                             <label htmlFor="password">Password</label>
                         </div>
+                        <div className='container tooltip' data-tip={validation('totpKey')}>
+                            <input type={'text'} data-tip={validation('totpKey').length} required name={'totpKey'} value={state.totpKey} onChange={handleInputChange} autoComplete='off' />
+                            <label htmlFor="totpKey">totpKey</label>
+                        </div>
                         {!isValidToken() && <Button category={'primary'} function={loginUser} name='Login'/>}
                         {isValidToken() && <Button category={'secondary'} function={logoutUser} name='Logout'/>}
                         {ispending}

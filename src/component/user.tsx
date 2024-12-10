@@ -7,6 +7,7 @@ export interface User {
 	username: string,
 	email: string,
     password: string,
+	totpKey: string,
 	active: boolean,
 	role: Role[]
 }
@@ -16,6 +17,7 @@ export const initialUser: User = {
 	username: '',
 	email: '',
 	password: '',
+	totpKey: '',
 	active: true,
 	role: [initialRole]
 }
