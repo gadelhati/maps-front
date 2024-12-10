@@ -1,8 +1,9 @@
 import { initialCountry } from "./country";
-import { LegalEntity } from "./legal_entity";
+import { LegalEntity } from "./person";
 import { initialStock, Stock } from "./stock";
 
 export interface Provider extends LegalEntity {
+    readonly id: string,
     deliveryTime: Date,
     cost: number,
     quality: number,

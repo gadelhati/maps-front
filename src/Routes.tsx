@@ -27,7 +27,7 @@ import { initialPerson } from "./component/person";
 import { initialItem } from "./component/item";
 import { initialAddress } from "./component/address";
 import { initialLot } from "./component/lot";
-import { initialOrder, initialOrderTransfer } from "./component/order";
+import { initialOrder } from "./component/order";
 import { initialOrderItem } from "./component/order_item";
 import { Wms } from "./container/page/wms";
 import { GenericComponent } from "./container/data/GenericComponent";
