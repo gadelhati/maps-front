@@ -3,7 +3,8 @@ import { getAccessToken } from "../../service/service.token"
 
 export const api = axios.create({
   // baseURL: "http://localhost:3124/mfa/v1",
-  baseURL: "http://localhost:3122/maps",
+  // baseURL: "http://localhost:3122/maps",
+  baseURL: "https://mfa-back.onrender.com/mfa/v1",
   // baseURL: "http://localhost:3122/maps",
   // baseURL: "https://marce4175.c44.integrator.host/maps-back",
   // baseURL: "http://18.217.181.203:3122/maps",
