@@ -1,6 +1,7 @@
 # _Maps_
 
 ![github](https://img.shields.io/github/stars/gadelhati/maps-front "Github")
+![github all releases](https://img.shields.io/github/downloads/gadelhati/maps-front/total?label=Downloads&style=social)
 ![typescript](https://img.shields.io/badge/typescript-5.4.5-0076c6 "Typescript")
 ![node](https://img.shields.io/badge/node-20.12.2-75AC64 "Node")
 ![vscode](https://img.shields.io/badge/vscode-1.89-1E97E8 "Visual Studio Code")
