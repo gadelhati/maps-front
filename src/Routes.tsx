@@ -55,7 +55,7 @@ export default function AppRoutes() {
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
                             <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
-                                <Route path="/genericComponent" element={<GenericComponent object={initialOrder} url={'order'} />}></Route>
+                                <Route path="/genericComponent" element={<GenericComponent object={initialRole} url={'role'} />}></Route>
                                 <Route path="/wms" element={<Wms />}></Route>
                                 <Route path="/stock" element={<GenericForm key='stock' object={initialStock} url={'stock'} />}></Route>
                                 <Route path="/person" element={<GenericForm key='person' object={initialPerson} url={'person'} />}></Route>
