@@ -4,7 +4,7 @@ import { isValidToken } from "./service/service.token"
 
 import { AuthProvider } from "./assets/hook/useProvider";
 import { GenericForm } from "./container/page/generic.form";
-import { Home } from "./container/page//home";
+import { Home } from "./container/page/home";
 import { LeafletMap } from "./container/maps/leaflet.map";
 import { Login } from "./container/page/login/login";
 import { NotAllowed } from "./container/page/not.allowed";
