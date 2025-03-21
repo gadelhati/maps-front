@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, useTransition, useEffect, KeyboardEvent } from 'react'
-import { User, initialUser } from "../../../component/user"
+import { UserAuth, initialUserAuth } from "../../../component/user"
 import { ErrorMessage } from '../../../assets/error/errorMessage'
 import { initialErrorMessage } from '../../../assets/error/errorMessage.initial'
 import { login, retrieve } from '../../../service/service.crud'
@@ -14,7 +14,7 @@ import '../../template/tooltip.css'
 import '../../template/toast.css'
 
 export const Login = () => {
-    const [state, setState] = useState<User>(initialUser)
+    const [state, setState] = useState<UserAuth>(initialUserAuth)
     const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
     const [ispending, startTransition] = useTransition()
 
@@ -30,7 +30,7 @@ export const Login = () => {
         window.location.reload()
     }
     const resetItem = () => {
-        setState(initialUser)
+        setState(initialUserAuth)
         setError([initialErrorMessage])
     }
     const validItem = (data: any) => {

@@ -13,6 +13,7 @@ export const vector: string[][] = [
     // ["legumes", "speedometer2", "sixth"],
     // ["pet", "cpu-fill", "sixth"],
 
+    ["grole", "cpu-fill", "zero"],
     ["user", "people-circle", "first"],
     ["role", "toggles2", "third"],
     ["leafletMap", "calendar3", "second"],

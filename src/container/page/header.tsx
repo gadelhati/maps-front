@@ -19,7 +19,7 @@ export const Header = (header: IHeader) => {
                 }
                 <h1>{UriToScreenFormat(header.title)}</h1>
             </div>
-            <a href={`#/${'profile'}`}><Button category={'secondary'} name={getPayload().sub} /></a>
+            <a href={`/${'profile'}`}><Button category={'secondary'} name={getPayload().sub} /></a>
         </header>
     )
 }

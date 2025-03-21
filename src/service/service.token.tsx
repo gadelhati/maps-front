@@ -1,11 +1,17 @@
-import { Header, Payload } from "../component/token";
+import { Auth, initialAuth } from '../component/auth';
+import { Header, initialHeader, initialPayload, Payload } from '../component/token'
 
-export const existsToken = (): boolean => {
-  return localStorage.getItem(`token`) != null;
+const isValidJSON = (json: string) => {
+  try {
+    JSON.parse(json);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export const isValidToken = (): boolean => {
-  if (existsToken()) {
+  if (getToken() !== null) {
     var expiration: string = new Date(getPayload().exp).getTime().toString().concat('000')
     return (new Date(Number(expiration)).getTime() > new Date().getTime())
   } else {
@@ -14,7 +20,7 @@ export const isValidToken = (): boolean => {
 }
 
 export const decodeJwt = () => {
-  if (existsToken()) {
+  if (getToken() !== null) {
     var base64Url = getToken().accessToken.split(".")[1];
     var base64 = decodeURIComponent(atob(base64Url).split('').map((c) => {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
@@ -25,17 +31,27 @@ export const decodeJwt = () => {
   }
 }
 
-export const getToken = () => {
-  return JSON.parse(`${localStorage.getItem(`token`)}`);
+export const getToken = (): Auth => {
+  let token: string = `${localStorage.getItem(`token`)}`
+  return isValidJSON(token) ? JSON.parse(token) : initialAuth;
+}
+
+export const setToken = (token: any): void => {
+  localStorage.setItem(`token`, JSON.stringify(token));
+}
+
+export const removeToken = () => {
+  localStorage.clear()
+  window.location.reload()
 }
 
 export const getHeader = (): Header => {
-  if (existsToken()) {
-    var base64 = getAccessToken().split('.')[0].replace(/-/g, '+').replace(/_/g, '/');
+  if (getToken() !== null) {
+    var base64 = getToken().accessToken.split('.')[0].replace(/-/g, '+').replace(/_/g, '/');
     var header = decodeURIComponent(window.atob(base64).split('').map((c) => {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-    return JSON.parse(header);
+    return isValidJSON(header) ? JSON.parse(header) : initialHeader;
   } else {
     let error: Header = { alg: '', typ: '' }
     return error
@@ -43,38 +59,14 @@ export const getHeader = (): Header => {
 }
 
 export const getPayload = (): Payload => {
-  if (existsToken()) {
-  var base64 = getAccessToken().split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-  var payload = decodeURIComponent(window.atob(base64).split('').map((c) => {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-  return JSON.parse(payload);
-} else {
-  let error: Payload = { jti: '', iss: '', iat: '', nbf: '', exp: '', sub: '', aud: '' }
-  return error
-}
-}
-
-export const setToken = (token: any) => {
-  localStorage.setItem(`token`, JSON.stringify(token));
-}
-
-export const getAccessToken = () => {
-  const token = JSON.parse(`${localStorage.getItem(`token`)}`);
-  return token?.accessToken;
-}
-
-export const getTokenType = () => {
-  const token = JSON.parse(`${localStorage.getItem(`token`)}`);
-  return token?.tokenType;
-}
-
-export const getRoles = () => {
-  const token = JSON.parse(`${localStorage.getItem(`token`)}`);
-  return token?.roles;
-}
-
-export const removeToken = () => {
-  localStorage.clear()
-  window.location.reload()
+  if (getToken() !== null) {
+    var base64 = getToken().accessToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    var payload = decodeURIComponent(window.atob(base64).split('').map((c) => {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return isValidJSON(payload) ? JSON.parse(payload) : initialPayload;
+  } else {
+    let error: Payload = initialPayload
+    return error
+  }
 }

@@ -1,5 +1,6 @@
 import { api } from "../assets/api/api"
 import { ErrorMessage } from "../assets/error/errorMessage"
+import { Search } from "../component/search"
 import { removeToken, setToken } from "./service.token"
 
 // Respostas de informação (100-199),
@@ -54,22 +55,21 @@ export const createAll = async<T,>(url: string, object: T[]) => {
         .catch(error => { return addError(error) })
 }
 
-export const retrieve = async<T,>(url: string, page?: number, size?: number, key?: string, value?: string, sort?: string ) => {
-    if(page === undefined && size === undefined){
+export const retrieve = async<T,>(url: string, search?: Search, signal?: AbortSignal ) => {
+    if(search?.page === undefined && search?.size === undefined){
         return await api.get<T>(`/${url}`)
         .then(response => { return response.data })
         .catch(error => { return addError(error) })
-    } else if (sort === undefined) {
-        return await api.get<T>(`/${url}?value=${value}`, { params: { page: page, size: size } } )
+    } else if (search?.sort?.order === undefined) {
+        return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size }, signal } )
         .then(response => { return response.data })
         .catch(error => { return addError(error) })
         } else {
-            return await api.get<T>(`/${url}?value=${value}`, { params: { page: page, size: size, sort: `${key},${sort}` } } )
+            return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size, sort: `${search?.sort?.key},${search?.sort?.order}` }, signal } )
             .then(response => { return response.data })
             .catch(error => { return addError(error) })
         }
 }
-
 
 export const update = async<T,>(url: string, object: T) => {
     return await api.put<T>(`/${url}`, object)

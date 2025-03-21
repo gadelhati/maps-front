@@ -21,7 +21,7 @@ import '../template/table.css'
 import '../template/load.css'
 import '../template/toast.css'
 import '../template/inputgroup.css'
-import '../template/modal.css'
+import '../template/modal2.css'
 
 export const GenericForm = <T extends { id: string, name: string }>(object: any) => {
     const [state, setState] = useState<any>(object.object)

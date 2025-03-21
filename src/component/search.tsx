@@ -1,14 +1,18 @@
 export interface Search {
-    key: string,
-    value: string,
-    order: string,
     page: number,
     size: number,
+    sort: {
+        key: string,
+        order: 'ASC' | 'DESC',
+    },
+    value: string,
 }
-export const intialSearch: Search = {
-    key: 'id',
-    value: '',
-    order: 'ASC',
+export const initialSearch: Search = {
     page: 0,
     size: 5,
+    sort: {
+        key: 'id',
+        order: 'ASC',
+    },
+    value: '',
 }

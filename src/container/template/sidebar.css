@@ -14,10 +14,10 @@ aside {
     overflow-y: auto;
     overflow-x: hidden;
     transition: width .2s;
-    background-image: url("/src/assets/image/kl_14.jpg");
+    background-image: url("/src/assets/image/chart/1.svg");
     background-position: center center;
     background-size: cover;
-    background-blend-mode: multiply;
+    /* background-blend-mode: multiply; */
 }
 
 /* aside {

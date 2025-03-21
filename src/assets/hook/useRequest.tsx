@@ -1,27 +1,43 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { ErrorMessage } from "../error/errorMessage"
+import { initialErrorMessage } from "../error/errorMessage.initial"
+import { initialPageable, Pageable } from "../../component/pageable"
 import { api } from "../api/api"
-import { initialPage, Page } from "../../component/page"
-// import { initialPageable, Pageable } from "../../component/pageable"
+import { Search } from "../../component/search"
 
-export const useRequest = <T extends Object>(url: string, value?: string, page?: number, size?: number, sort?: { key?: string, order?: string }) => {
+export const useRequest = <T extends Object>(url: string, search: Search) => {
     const [states, setStates] = useState<T[]>([])
-    // const [pageable, setPageable] = useState<Pageable>(initialPageable)
-    const [pageable, setPageable] = useState<Page>(initialPage)
-    const controller = new AbortController();
+    const [pageable, setPageable] = useState<Pageable>(initialPageable)
+    const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
 
     useEffect(() => {
-        retrieve(url)
+        const controller = new AbortController();
+        request(url, search, controller.signal).catch(()=>{});
         return (() => {
             controller.abort()
         })
-    }, [])
-    const retrieve = async (uri: string) => {
-        await api.get<T>(value === undefined ? `/${uri}` : `/${uri}?value=${value}`,
-            { params: { page: page, size: size, sort: sort === undefined ? undefined : `${sort?.key},${sort.order}` } }
-        ).then((response: any) => {
-            setStates(response.data.content)
-            setPageable(response.data.page)
-        })
-    }
-    return { states, pageable, retrieve }
+    }, [search])
+    const request = useCallback(async (url: string, search?: Search, signal?: AbortSignal ) => {
+        if(search?.page === undefined && search?.size === undefined){
+            return await api.get<T>(`/${url}`)
+            .then((response: any) => {
+                setStates(response.data.content)
+                setPageable(response.data.page)
+            })
+            .catch(error => { return setError(error) })
+        } else if (search?.sort?.order === undefined) {
+            return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size }, signal } )
+            .then((response: any) => {
+                setStates(response.data.content)
+                setPageable(response.data.page)
+            })
+            } else {
+                return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size, sort: `${search?.sort?.key},${search?.sort?.order}` }, signal } )
+                .then((response: any) => {
+                    setStates(response.data.content)
+                    setPageable(response.data.page)
+                })
+            }
+    }, [url, search])
+    return { states, pageable, error, request }
 }

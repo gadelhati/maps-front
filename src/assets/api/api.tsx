@@ -1,20 +1,13 @@
 import axios from "axios"
-import { getAccessToken } from "../../service/service.token"
+import { getToken } from "../../service/service.token"
 
 export const api = axios.create({
-  baseURL: "http://localhost:3124/mfa/v1",
-  // baseURL: "http://localhost:3122/maps",
-  // baseURL: "https://mfa-back.onrender.com/mfa/v1",
-  // baseURL: "http://localhost:3122/maps",
-  // baseURL: "https://marce4175.c44.integrator.host/maps-back",
-  // baseURL: "http://18.217.181.203:3122/maps",
-  // baseURL: "http://maps.institutohidrografico.com:3122/maps",
-  // baseURL: "http://15.235.55.109:13739/maps",
+  baseURL: import.meta.env.VITE_API_BASE,
   headers: { 'content-type': 'application/json' }
 });
 
 api.interceptors.request.use(async config => {
-  const token = getAccessToken();
+  const token = getToken()?.accessToken;
   if (token) {
     config.headers!.Authorization = `Bearer ${token}`;
   }

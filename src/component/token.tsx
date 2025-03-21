@@ -29,3 +29,18 @@ export interface Payload {
     sub: string,//Subject
     aud: string,//Audience
 }
+
+export const initialHeader: Header = {
+    alg: '',
+    typ: '',
+}
+
+export const initialPayload: Payload = {
+    jti: '',
+    iss: '',
+    iat: '',
+    nbf: '',
+    exp: '',
+    sub: '',
+    aud: '',
+}
