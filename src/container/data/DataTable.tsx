@@ -23,10 +23,10 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
         setState(updatedState)
     }
     const showType = (content: any) => {
-        if(content === null) {
+        if (content === null) {
             return 'null'
         }
-        if(typeof content.getMonth === 'function') {
+        if (typeof content.getMonth === 'function') {
             return 'date'
         }
         switch (typeof content) {
@@ -39,7 +39,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
             case 'string': {
                 return content
             }
-            case 'function' : {
+            case 'function': {
                 return new Date(content)
             }
             case 'object': {
@@ -53,7 +53,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
     }
     const show = (row: T) => {
         setState(row)
-        if(modalRef.current) {
+        if (modalRef.current) {
             modalRef.current.showModal()
         }
     }
@@ -99,31 +99,33 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                 <tfoot>
                     <tr>
                         <td>
-                        <select name={'size'} value={data.search.size} onChange={data.function}>
-                            <option value={5}>5</option>
-                            <option value={15}>15</option>
-                            <option value={25}>25</option>
-                            <option value={50}>50</option>
-                            <option value={100}>100</option>
-                        </select>
+                            <select name={'size'} value={data.search.size} onChange={data.function}>
+                                <option value={5}>5</option>
+                                <option value={15}>15</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
                         </td>
-                        <td><GButton name={'page'} onClick={data.function} value={0} disabled={data.search.page <= 0}>{"<<"}</GButton></td>
-                        <td>{data.search.page > 0 &&
-                            <GButton name={'page'} onClick={data.function} value={Number(data.search.page) - 1}>{Number(data.search.page)}</GButton>
-                        }</td>
-                        <td><GButton name={'page'} onClick={data.function} value={data.search.page}>{Number(data.search.page) + 1}</GButton></td>
-                        <td>{data.search.page < data?.pageable?.totalPages - 1 &&
-                            <GButton name={'page'} onClick={data.function} value={Number(data.search.page) + 1}>{Number(data.search.page) + 2}</GButton>
-                        }</td>
-                        <td><GButton
-                            name={'page'}
-                            onClick={data.function}
-                            value={Number(data?.pageable?.totalPages) - 1}
-                            disabled={data.search.page >= data?.pageable?.totalPages - 1}>
-                            {">>"}
-                        </GButton></td>
                     </tr>
-                    <tr key={'totalPages'} ><td>Total Elements: {data.pageable.totalElements}</td></tr>
+                    <tr>
+                        <td>
+                            <GButton name={'page'} onClick={data.function} value={0} disabled={data.search.page <= 0}>{"<<"}</GButton>
+                            {data.search.page > 0 &&
+                                <GButton name={'page'} onClick={data.function} value={Number(data.search.page) - 1}>{Number(data.search.page)}</GButton>
+                            }
+                            <GButton name={'page'} onClick={data.function} value={data.search.page}>{Number(data.search.page) + 1}</GButton>
+                            {data.search.page < data?.pageable?.totalPages - 1 &&
+                                <GButton name={'page'} onClick={data.function} value={Number(data.search.page) + 1}>{Number(data.search.page) + 2}</GButton>
+                            }
+                            <GButton name={'page'} onClick={data.function} value={data?.pageable?.totalPages - 1} disabled={data.search.page >= data?.pageable?.totalPages - 1}>{">>"}</GButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total Elements: {data.pageable.totalElements}
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
         </>

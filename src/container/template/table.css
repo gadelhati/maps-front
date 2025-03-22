@@ -44,7 +44,6 @@ table thead {
 table tfoot {
     position: sticky;
     bottom: 0;
-    height: 5rem;
     background-color: var(--color-tenth);
 }
 thead tr th {
@@ -79,11 +78,13 @@ tr:hover td svg {
 }
 tfoot {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    /* align-items: center; */
 }
-tfoot th {
-    border: none;
+tfoot tr:nth-child(2) td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 @media only screen and (max-width: 500px){

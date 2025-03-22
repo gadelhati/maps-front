@@ -16,9 +16,6 @@ export const GenericComponent = <T extends Object, S extends Object>(object: Dat
     const { states, pageable } = useRequest<T>(object.url, state )
 
     return (
-        <>
-        {JSON.stringify(state)}
         <DataTable object={object.object} validation={object.validation} list={states} pageable={pageable} search={state} url={object.url} function={handleInput} />
-        </>
     )
 }

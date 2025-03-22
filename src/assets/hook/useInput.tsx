@@ -16,6 +16,15 @@ export const useInput = <T extends Object>(data: T) => {
                     setState(prevState => ({ ...prevState, [name]: value === '' ? value : (isNaN(Number(value)) ? value : Number(value)) }))
                 }
             }
+        } else if(target instanceof HTMLSelectElement || target instanceof HTMLButtonElement){
+            console.log(target.name, target.value)
+            const { name, value } = target
+            if(name.includes('.')){
+                const [parent, child] = target.name.split('.')
+                setState(prevState => ({ ...prevState, [parent]:{ ...prevState[parent as keyof typeof prevState], [child]: value === '' ? value : (isNaN(Number(value)) ? value : Number(value)) } }))
+            } else {
+                setState(prevState => ({ ...prevState, [target.name]: value === '' ? value : (isNaN(Number(value)) ? value : Number(value)) }))
+            }
         } else if(target instanceof HTMLInputElement){
             const value = target.type === 'checkbox' ? target.checked : target.value
             // if (new RegExp(target.pattern).test(target.value) || target.value === ``) { 
