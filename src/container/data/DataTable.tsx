@@ -67,17 +67,21 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
     }
     return (
         <>
-            <GButton onClick={newItem}>New</GButton>
             <Modal object={state} validation={data.validation} ref={modalRef} url={data.url} onStateChange={setState} />
             <table>
                 <thead>
                     <tr>
-                        <td><select name={'sort.key'} value={data.search.sort.key} onChange={data.function}>
-                            {filterVisibleColumns(data?.list?.[0] ? Object.keys(data.list[0]):[]).map((element, index) =>{
-                                return <option key={element+index} value={element}>{element}</option>
-                            })}
-                        </select></td>
-                        <td><input name={'value'} value={data.search.value} onChange={data.function}></input></td>
+                        <td>
+                            <select name={'sort.key'} value={data.search.sort.key} onChange={data.function}>
+                                {filterVisibleColumns(data?.list?.[0] ? Object.keys(data.list[0]):[]).map((element, index) =>{
+                                    return <option key={element+index} value={element}>{element}</option>
+                                })}
+                            </select>
+                            <input name={'value'} value={data.search.value} onChange={data.function}></input>
+                        </td>
+                        <td>
+                            <GButton onClick={newItem}>New</GButton>
+                        </td>
                     </tr>
                     <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.function} >
                         {data.list[0] !== undefined &&
