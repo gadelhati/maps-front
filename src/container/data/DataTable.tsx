@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Search } from "../../component/search"
 import Modal, { ModalData } from "./Modal"
 import { Pageable } from "../../component/pageable"
@@ -19,6 +19,9 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
     const [state, setState] = useState<T>(data.object)
     const modalRef = useRef<ModalData>(null)
 
+    useEffect(()=>{
+        data.search.page = 0
+    }, [data.search.value])
     const handleStateChange = (updatedState: T) => {
         setState(updatedState)
     }
