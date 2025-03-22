@@ -22,9 +22,6 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
     useEffect(()=>{
         data.search.page = 0
     }, [data.search.value])
-    const handleStateChange = (updatedState: T) => {
-        setState(updatedState)
-    }
     const showType = (content: any) => {
         if (content === null) {
             return 'null'
@@ -71,7 +68,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
     return (
         <>
             <GButton onClick={newItem}>New</GButton>
-            <Modal object={state} validation={data.validation} ref={modalRef} url={data.url} onStateChange={handleStateChange} />
+            <Modal object={state} validation={data.validation} ref={modalRef} url={data.url} onStateChange={setState} />
             <table>
                 <thead>
                     <tr>

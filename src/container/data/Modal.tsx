@@ -31,11 +31,6 @@ const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<Mo
             setState(data.object);
         }
     }, [data.object])
-    // useEffect(() => {
-    //     if (data.onStateChange) {
-    //         data.onStateChange(state);
-    //     }
-    // }, [state, data.onStateChange])
     const showModal = useCallback(() => {
         modalRef.current?.showModal()
     }, [])
@@ -107,7 +102,7 @@ const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<Mo
                 <footer>
                     <GButton onClick={() => crud('create')}>Create</GButton>
                     <GButton onClick={() => crud('update')}>Update</GButton>
-                    {/* <button onClick={() => crud('delete')}>Delete</button> */}
+                    <GButton onClick={() => crud('delete')}>Delete</GButton>
                     <GButton onClick={closeModal}>Close</GButton>
                 </footer>
             </dialog>

@@ -21,21 +21,27 @@ export const useRequest = <T extends Object>(url: string, search: Search) => {
         if(search?.page === undefined && search?.size === undefined){
             return await api.get<T>(`/${url}`)
             .then((response: any) => {
-                setStates(response.data.content)
-                setPageable(response.data.page)
+                if (response.data.content.length !== 0) {
+                    setStates(response.data.content)
+                    setPageable(response.data.page)
+                }
             })
             .catch(error => { return setError(error) })
         } else if (search?.sort?.order === undefined) {
             return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size }, signal } )
             .then((response: any) => {
-                setStates(response.data.content)
-                setPageable(response.data.page)
+                if (response.data.content.length !== 0) {
+                    setStates(response.data.content)
+                    setPageable(response.data.page)
+                }
             })
             } else {
                 return await api.get<T>(`/${url}?value=${search?.value}`, { params: { page: search?.page, size: search?.size, sort: `${search?.sort?.key},${search?.sort?.order}` }, signal } )
                 .then((response: any) => {
-                    setStates(response.data.content)
-                    setPageable(response.data.page)
+                    if (response.data.content.length !== 0) {
+                        setStates(response.data.content)
+                        setPageable(response.data.page)
+                    }
                 })
             }
     }, [url, search])
