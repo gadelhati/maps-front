@@ -4,7 +4,7 @@ import Modal, { ModalData } from "./Modal"
 import { Pageable } from "../../component/pageable"
 import '../template/table.css'
 import { GButton } from "./button"
-import { GInput } from "./input"
+import { QRCodeSVG } from "qrcode.react"
 
 interface Data<T extends Object, V extends Object> {
     object: T,
@@ -43,7 +43,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                 return new Date(content)
             }
             case 'object': {
-                return Array.isArray(content) ? content[0].name : content.name
+                return Array.isArray(content) ? content[0].href : content.id
             }
             default: { return null }
         }
@@ -58,11 +58,11 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
         }
     }
     const filterVisibleColumns = (columns: string[]) => {
-        return columns.filter(column => column !== 'id' && column !== 'links');
+        return columns.filter(column => column !== 'id');
     }
     const filterVisibleValues = (row: T) => {
         const entries = Object.entries(row);
-        const filteredEntries = entries.filter(([key]) => key !== 'id' && key !== 'links');
+        const filteredEntries = entries.filter(([key]) => key !== 'id');
         return filteredEntries.map(([_, value]) => value);
     }
     return (
@@ -73,7 +73,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                 <thead>
                     <tr>
                         <td>{data.search.sort.key}</td>
-                        <td><GInput name={'value'} value={data.search.value} onChange={data.function}></GInput></td>
+                        <td><input name={'value'} value={data.search.value} onChange={data.function}></input></td>
                     </tr>
                     <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.function} >
                         {data.list[0] !== undefined &&
@@ -91,7 +91,8 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                     {data.list.map((row: T) => {
                         return <tr key={Math.random()} onClick={() => show(row)}>
                             {filterVisibleValues(row).map((column: any) => {
-                                return <td key={Math.random()} >{showType(column)}</td>
+                                if (typeof column === 'object') { return <td><a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> }
+                                else { return <td key={Math.random()} >{showType(column)}</td> }
                             })}
                         </tr>
                     })}
