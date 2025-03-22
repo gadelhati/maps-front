@@ -72,7 +72,11 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
             <table>
                 <thead>
                     <tr>
-                        <td>{data.search.sort.key}</td>
+                        <td><select name={'sort.key'} value={data.search.sort.key} onChange={data.function}>
+                            {filterVisibleColumns(data?.list?.[0] ? Object.keys(data.list[0]):[]).map((element) =>{
+                                return <option value={element}>{element}</option>
+                            })}
+                        </select></td>
                         <td><input name={'value'} value={data.search.value} onChange={data.function}></input></td>
                     </tr>
                     <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.function} >
