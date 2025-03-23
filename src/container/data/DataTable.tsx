@@ -78,7 +78,6 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
     }
     return (
         <>
-            <button onClick={() => data.request(data.url, data.search)}>Atualizar</button>
             <Modal 
                 url={data.url} 
                 object={state} 
@@ -88,7 +87,7 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
                 handleSelect={handleSelect} 
                 handleMultiSelect={handleMultiSelect}
                 ref={modalRef}
-                onActionComplete={handleActionComplete} // Nova prop para capturar eventos de conclusão
+                onActionComplete={handleActionComplete}
             />
             <table>
                 <thead>
@@ -103,6 +102,9 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
                         </td>
                         <td>
                             <GButton onClick={newItem}>New</GButton>
+                        </td>
+                        <td>
+                            <GButton onClick={() => data.request(data.url, data.search)}>Update</GButton>
                         </td>
                     </tr>
                     <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.onChangeSearch} >
