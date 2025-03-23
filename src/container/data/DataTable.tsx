@@ -1,27 +1,34 @@
 import { useEffect, useRef, useState } from "react"
 import { Search } from "../../component/search"
 import Modal, { ModalData } from "./Modal"
-import { Pageable } from "../../component/pageable"
+import { Response } from "../../component/response"
 import '../template/table.css'
 import { GButton } from "./button"
 import { QRCodeSVG } from "qrcode.react"
+import { Identifiable } from "../../component/identifiable"
+import { useInput } from "../../assets/hook/useInput"
 
 interface Data<T extends Object, V extends Object> {
-    object: T,
-    validation: V,
-    list: T[],
-    search: Search,
-    pageable: Pageable,
     url: string,
-    function: any,
+    object: T,
+    validator: V,
+    search: Search,
+    onChangeSearch: any,
+    response: Response,
+    request: any,
 }
-export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) => {
-    const [state, setState] = useState<T>(data.object)
-    const modalRef = useRef<ModalData>(null)
 
-    useEffect(()=>{
+export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T, V>) => {
+    const { state, setState, handleInput, handleSelect, handleMultiSelect } = useInput<T>(data.object)
+    const modalRef = useRef<ModalData>(null)
+    const [refreshTrigger, setRefreshTrigger] = useState<boolean>(true)
+
+    useEffect(() => {
         data.search.page = 0
     }, [data.search.value])
+    useEffect(() => {
+        data.request(data.url, data.search)
+    }, [refreshTrigger])
     const showType = (content: any) => {
         if (content === null) {
             return 'null'
@@ -65,40 +72,58 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
         const filteredEntries = entries.filter(([key]) => key !== 'id');
         return filteredEntries.map(([_, value]) => value);
     }
+    const handleActionComplete = () => {
+        setRefreshTrigger(!refreshTrigger);
+        data.request(data.url, data.search);
+    }
     return (
         <>
-            <Modal object={state} validation={data.validation} ref={modalRef} url={data.url} onStateChange={setState} />
+            <button onClick={() => data.request(data.url, data.search)}>Atualizar</button>
+            <Modal 
+                url={data.url} 
+                object={state} 
+                validator={data.validator} 
+                onObjectChange={setState} 
+                handleInput={handleInput} 
+                handleSelect={handleSelect} 
+                handleMultiSelect={handleMultiSelect}
+                ref={modalRef}
+                onActionComplete={handleActionComplete} // Nova prop para capturar eventos de conclusão
+            />
             <table>
                 <thead>
                     <tr>
                         <td>
-                            <select name={'sort.key'} value={data.search.sort.key} onChange={data.function}>
-                                {filterVisibleColumns(data?.list?.[0] ? Object.keys(data.list[0]):[]).map((element, index) =>{
+                            <select name={'sort.key'} value={data.search.sort.key} onChange={data.onChangeSearch}>
+                                {filterVisibleColumns(Object.keys(data.object)).map((element, index) =>{
                                     return <option key={element+index} value={element}>{element}</option>
                                 })}
                             </select>
-                            <input name={'value'} value={data.search.value} onChange={data.function}></input>
+                            <input name={'value'} value={data.search.value} onChange={data.onChangeSearch}></input>
                         </td>
                         <td>
                             <GButton onClick={newItem}>New</GButton>
                         </td>
                     </tr>
-                    <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.function} >
-                        {data.list[0] !== undefined &&
-                            filterVisibleColumns(Object.keys(data.list[0])).map((column: string, index) => {
+                    <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.onChangeSearch} >
+                        {data?.response?.content !== undefined &&
+                            filterVisibleColumns(Object.keys(data.object)).map((column: string, index) => {
                                 return <th key={column+index}>
-                                        <div data-name={'sort.key'} data-value={column} onClick={data.function}>{column}</div>
+                                        <div data-name={'sort.key'} data-value={column} onClick={data.onChangeSearch}>{column}</div>
                                     </th>
                             })
                         }
                     </tr>
                 </thead>
                 <tbody>
-                    {data.list.map((row: T) => {
+                    {data?.response?.content?.map((row: T) => {
                         return <tr key={Math.random()} onClick={() => show(row)}>
                             {filterVisibleValues(row).map((column: any) => {
-                                if (typeof column === 'object') { return <td key={row+column}><a key={row+column} href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> }
-                                else { return <td key={row+column} >{showType(column)}</td> }
+                                if (typeof column === 'object') { 
+                                    return <td key={row+column}><a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> 
+                                } else { 
+                                    return <td key={row+column}>{showType(column)}</td> 
+                                }
                             })}
                         </tr>
                     })}
@@ -106,7 +131,7 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                 <tfoot>
                     <tr>
                         <td>
-                            <select name={'size'} value={data.search.size} onChange={data.function}>
+                            <select name={'size'} value={data.search.size} onChange={data.onChangeSearch}>
                                 <option value={5}>5</option>
                                 <option value={15}>15</option>
                                 <option value={25}>25</option>
@@ -117,20 +142,20 @@ export const DataTable = <T extends Object, V extends Object>(data: Data<T, V>) 
                     </tr>
                     <tr>
                         <td>
-                            <GButton name={'page'} onClick={data.function} value={0} disabled={data.search.page <= 0}>{"<<"}</GButton>
+                            <GButton name={'page'} onClick={data.onChangeSearch} value={0} disabled={data.search.page <= 0}>{"<<"}</GButton>
                             {data.search.page > 0 &&
-                                <GButton name={'page'} onClick={data.function} value={Number(data.search.page) - 1}>{Number(data.search.page)}</GButton>
+                                <GButton name={'page'} onClick={data.onChangeSearch} value={Number(data.search.page) - 1}>{Number(data.search.page)}</GButton>
                             }
-                            <GButton name={'page'} onClick={data.function} value={data.search.page}>{Number(data.search.page) + 1}</GButton>
-                            {data.search.page < data?.pageable?.totalPages - 1 &&
-                                <GButton name={'page'} onClick={data.function} value={Number(data.search.page) + 1}>{Number(data.search.page) + 2}</GButton>
+                            <GButton name={'page'} onClick={data.onChangeSearch} value={data.search.page}>{Number(data.search.page) + 1}</GButton>
+                            {data.search.page < data?.response?.page?.totalPages - 1 &&
+                                <GButton name={'page'} onClick={data.onChangeSearch} value={Number(data.search.page) + 1}>{Number(data.search.page) + 2}</GButton>
                             }
-                            <GButton name={'page'} onClick={data.function} value={data?.pageable?.totalPages - 1} disabled={data.search.page >= data?.pageable?.totalPages - 1}>{">>"}</GButton>
+                            <GButton name={'page'} onClick={data?.onChangeSearch} value={data?.response?.page?.totalPages - 1} disabled={data.search.page >= data?.response?.page?.totalPages - 1}>{">>"}</GButton>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Total Elements: {data.pageable.totalElements}
+                            Total Elements: {data?.response?.page?.totalElements}
                         </td>
                     </tr>
                 </tfoot>

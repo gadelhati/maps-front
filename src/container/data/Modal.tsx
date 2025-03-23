@@ -1,5 +1,4 @@
-import { forwardRef, Ref, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { useInput } from '../../assets/hook/useInput'
+import { forwardRef, Ref, useCallback, useImperativeHandle, useRef, useState } from 'react'
 import { create, remove, update } from '../../service/service.crud'
 import { useRequest } from '../../assets/hook/useRequest'
 import { UriToScreenFormat } from '../../assets/uri.format'
@@ -7,55 +6,65 @@ import { GButton } from './button'
 import './modal.css'
 import '../template/modal2.css'
 import { initialSearch } from '../../component/search'
+import { Identifiable } from '../../component/identifiable'
 
 export interface ModalData {
     showModal: () => void
     closeModal: () => void
 }
 interface Data<T, S> {
-    object: T,
-    validation: S,
     url: string,
-    onStateChange?: any,
+    object: T,
+    validator: S,
+    onObjectChange?: any,
+    handleInput: any,
+    handleSelect: any,
+    handleMultiSelect: any,
+    onActionComplete?: any,
 }
-const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<ModalData>) => {
-    const { state, setState, handleInput, handleSelect, handleMultiSelect } = useInput<T>(data.object)
-    const { states, request } = useRequest<T>(data.url, initialSearch)
+const Modal = <T extends Identifiable, S extends Object>(data: Data<T, S>, ref: Ref<ModalData>) => {
+    const { response, request } = useRequest(data.url, initialSearch)
     const [action, setAction] = useState<string>('retrieve')
-    // const { states, pageable, retrieve } = useRequest<T>(object.url, search.value, search.page, search.size, { key: search.key, order: search.order })
     const modalRef = useRef<HTMLDialogElement>(null);
     const confirmRef = useRef<HTMLDialogElement>(null);
+    const [currentObject, setCurrentObject] = useState<T>(data.object);
 
-    useEffect(() => {
-        if (JSON.stringify(data.object) !== JSON.stringify(state)) {
-            setState(data.object);
-        }
-    }, [data.object])
-    const showModal = useCallback(() => {
-        modalRef.current?.showModal()
-    }, [])
+    // Atualiza o estado interno quando o objeto externo muda
+    useImperativeHandle(ref, () => ({
+        showModal: () => {
+            setCurrentObject(data.object); // Atualiza o estado interno com o objeto recebido
+            modalRef.current?.showModal();
+        },
+        closeModal
+    }))
     const showConfirm = useCallback(() => {
-        confirmRef.current?.showModal()
+        confirmRef.current?.showModal();
     }, [])
     const closeModal = useCallback(() => {
         modalRef.current?.close();
-        confirmRef.current?.close()
+        confirmRef.current?.close();
     }, [])
-    useImperativeHandle(ref, () => ({
-        showModal, closeModal
-    }))
     const crud = (action: string) => {
         setAction(action)
         closeModal()
         showConfirm()
     }
-    const confirmCrud = () => {
+    const confirmCrud = async () => {
         switch (action) {
-            case 'create': create(data.url, state); closeModal(); break
-            case 'update': update(data.url, state); closeModal(); break
-            case 'delete': remove(data.url, state?.id); closeModal(); break
-            default: closeModal();
+            case 'create':
+                await create(data.url, data.object);
+                break;
+            case 'update':
+                await update(data.url, data.object);
+                break;
+            case 'delete':
+                await remove(data.url, data.object?.id);
+                break;
+            default:
+                break;
         }
+        data.onActionComplete();
+        closeModal();
     }
     const shouldRenderField = (key: string) => {
         return key !== 'id' && key !== 'links';
@@ -66,7 +75,7 @@ const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<Mo
         }
         return <span key={key} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
             {typeof value === 'object' ?
-                <select name={key} onClick={() => request(key)} onChange={Array.isArray(value) ? handleMultiSelect : handleSelect}
+                <select name={key} onClick={() => request(key)} onChange={Array.isArray(value) ? data.handleMultiSelect : data.handleSelect}
                     defaultValue={Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id}
                 // defaultValue={Array.isArray(value) ? value[0]?.id ?? '' : value?.id ?? ''}
                 // defaultValue={value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
@@ -81,10 +90,10 @@ const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<Mo
                             </option>
                         )}
                     </option>
-                    {states?.map(((result: any) => <option key={result.id} value={result.id}>{result?.name ? result.name : result.id}</option>))}
+                    {response.content?.map(((result: any) => <option key={result.id} value={result.id}>{result?.name ? result.name : result.id}</option>))}
                 </select>
                 :
-                <input type={typeof value} name={key} value={Array.isArray(value) ? [value] : value} onChange={handleInput} placeholder={key} pattern={Object.values(data.validation)[index]} ></input>
+                <input type={typeof value} name={key} value={Array.isArray(value) ? [value] : value} onChange={data.handleInput} placeholder={key} pattern={Object.values(data.validator)[index]} ></input>
             }
             <label htmlFor={key}>{key}</label>
         </span>
@@ -97,7 +106,7 @@ const Modal = <T extends Object, S extends Object>(data: Data<T, S>, ref: Ref<Mo
                     <span onClick={closeModal}>&times;</span>
                 </header>
                 <center>
-                    {Object.entries(state).map(renderInput)}
+                    {Object.entries(data.object).map(renderInput)}
                 </center>
                 <footer>
                     <GButton onClick={() => crud('create')}>Create</GButton>

@@ -1,23 +1,20 @@
-interface PageIn {
+interface Page {
     size: number,
 	number: number,
 	totalElements: number,
 	totalPages: number,
 }
-
-const initialPageIn: PageIn = {
+const initialPage: Page = {
 	size: 0,
 	number: 0,
 	totalElements: 0,
 	totalPages: 0,
 }
-
-export interface Page {
+export interface Response {
 	content: [],
-	page: PageIn
+	page: Page
 }
-
-export const initialPage: Page = {
+export const initialResponse: Response = {
 	content: [],
-	page: initialPageIn
+	page: initialPage
 }
