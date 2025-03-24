@@ -10,7 +10,7 @@ export interface BlindSignalValidation {
 }
 export const initialBlindSignalValidation: BlindSignalValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    category: `^[0-9]+$`,
+    category: `^[a-zA-Z0-9]+$`,
 }
 export const initialBlindSignal : BlindSignal = {
     id: '',

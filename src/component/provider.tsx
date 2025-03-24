@@ -14,13 +14,23 @@ export interface Provider extends LegalEntity {
 }
 export interface ProviderValidation {
     readonly id: string,
-    readonly name: string,
-    readonly privileges: string[],
+    readonly deliveryTime: string,
+    readonly cost: string,
+    readonly quality: string,
+    readonly paymentTerms: string,
+    readonly flexibility: string,
+    readonly service: string,
+    readonly stock: string,
 }
 export const initialProviderValidation: ProviderValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    deliveryTime: `^[a-zA-Z0-9]+$`,
+    cost: `^[a-zA-Z0-9]+$`,
+    quality: `^[a-zA-Z0-9]+$`,
+    paymentTerms: `^[a-zA-Z0-9]+$`,
+    flexibility: `^[a-zA-Z0-9]+$`,
+    service: `^[a-zA-Z0-9]+$`,
+    stock: `^[a-zA-Z0-9]+$`,
 }
 export const initialProvider: Provider = {
     id: '',

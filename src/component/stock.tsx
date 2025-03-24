@@ -19,7 +19,7 @@ export const initialStockValidation: StockValidation = {
     id: `^[a-zA-Z0-9]+$`,
     maximumBulk: `^[0-9]+$`,
     currentBulk: `^[0-9]+$`,
-    order: `^[0-9]+$`,
+    order: `^[a-zA-Z0-9]+$`,
 }
 export const initialStock: Stock = {
     id: '',

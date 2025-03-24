@@ -15,12 +15,20 @@ export interface Person extends Hateoas {
 export interface PersonValidation {
     readonly id: string,
     readonly name: string,
-    readonly privileges: string[],
+    readonly birth: string,
+    readonly email: string,
+    readonly telephone: string,
+    readonly country: string,
+    readonly address: string,
 }
 export const initialPersonValidation: PersonValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    name: `^[a-zA-Z0-9]+$`,
+    birth: `/^\d{2}\/\d{2}\/\d{4}$/`,
+    email: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`,
+    telephone: `/^\+\d{2} \(\d{2}\) \d{1,2} \d{4}-\d{4}$/`,
+    country: `^[a-zA-Z0-9]+$`,
+    address: `^[a-zA-Z0-9]+$`,
 }
 export const initialPerson: Person = {
     id: '',
@@ -51,6 +59,10 @@ export const initialNaturalPerson: NaturalPerson = {
     address: [],
     cpf: '',
     rg: '',
+    links: {
+        rel: '',
+        href: '',
+    },
 }
 
 export interface LegalEntity extends Person {
@@ -66,4 +78,8 @@ export const initialLegalEntity: LegalEntity = {
     country: initialCountry,
     address: [],
     cnpj: '',
+    links: {
+        rel: '',
+        href: '',
+    },
 }

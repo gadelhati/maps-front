@@ -7,12 +7,10 @@ export interface ChartArea extends Hateoas {
 export interface ChartAreaValidation {
     readonly id: string,
     readonly name: string,
-    readonly privileges: string[],
 }
 export const initialChartAreaValidation: ChartAreaValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    name: `^[a-zA-Z0-9]+$`,
 }
 export const initialChartArea : ChartArea = {
     id: '',

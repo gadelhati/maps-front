@@ -9,12 +9,12 @@ export interface Role extends Hateoas {
 export interface RoleValidation {
     readonly id: string,
     readonly name: string,
-    readonly privileges: string[],
+    readonly privileges: string,
 }
 export const initialRoleValidation: RoleValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    name: `^[a-zA-Z0-9]+$`,
+    privileges: `^[a-zA-Z0-9]+$`,
 }
 export const initialRole: Role = {
     id: '',

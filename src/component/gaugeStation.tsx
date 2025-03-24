@@ -14,13 +14,19 @@ export interface GaugeStation extends Hateoas {
 }
 export interface GaugeStationValidation {
     readonly id: string,
-    readonly name: string,
-    readonly privileges: string[],
+    readonly number: string,
+    readonly title: string,
+    readonly point: string,
+    readonly state?: string,
+    readonly chartArea?: string,
 }
 export const initialGaugeStationValidation: GaugeStationValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    number: `^[0-9]+$`,
+    title: `^[a-zA-Z0-9]+$`,
+    point: `^[a-zA-Z0-9]+$`,
+    state: `^[a-zA-Z0-9]+$`,
+    chartArea: `^[a-zA-Z0-9]+$`,
 }
 export const initialGaugeStation : GaugeStation = {
     id: '',

@@ -10,7 +10,7 @@ export interface PrivilegeValidation {
 }
 export const initialPrivilegeValidation: PrivilegeValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
+    name: `^[a-zA-Z0-9]+$`,
 }
 export const initialPrivilege: Privilege = {
     id: '',

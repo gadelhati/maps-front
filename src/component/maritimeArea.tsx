@@ -13,13 +13,21 @@ export interface MaritimeArea extends Hateoas {
 }
 export interface MaritimeAreaValidation {
     readonly id: string,
+    readonly code: string,
     readonly name: string,
-    readonly privileges: string[],
+    readonly start: string,
+    readonly finish: string,
+    readonly polygon: string,
+    readonly multiPolygon: string,
 }
 export const initialMaritimeAreaValidation: MaritimeAreaValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    code: `^[a-zA-Z0-9]+$`,
+    name: `^[a-zA-Z0-9]+$`,
+    start: `^[a-zA-Z0-9]+$`,
+    finish: `^[a-zA-Z0-9]+$`,
+    polygon: `^[a-zA-Z0-9]+$`,
+    multiPolygon: `^[a-zA-Z0-9]+$`,
 }
 export const initialMaritimeArea : MaritimeArea = {
     id: '',

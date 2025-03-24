@@ -11,7 +11,22 @@ export interface Order extends Hateoas {
     stock: Stock,
     person: Person,
 }
-
+export interface OrderValidation {
+    readonly id: string,
+    readonly category: string,
+    readonly totalCost: string,
+    readonly orderItem: string,
+    readonly stock: string,
+    readonly person: string,
+}
+export const initialOrderValidation: OrderValidation = {
+    id: `^[a-zA-Z0-9]+$`,
+    category: `^[0-9]+$`,
+    totalCost: `^[0-9]+$`,
+    orderItem: `^[0-9]+$`,
+    stock: `^[0-9]+$`,
+    person: `^[0-9]+$`,
+}
 export const initialOrder: Order = {
     id: '',
     category: '',
@@ -42,4 +57,8 @@ export const initialOrderTransfer: OrderTranfer = {
     starts: new Date(),
     finish: new Date(),
     // stock: initialStock,
+    links: {
+        rel: '',
+        href: '',
+    },
 }

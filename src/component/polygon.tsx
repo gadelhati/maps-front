@@ -12,8 +12,8 @@ export interface PolygonValidation {
 }
 export const initialPolygonValidation: PolygonValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    type: `^[0-9]+$`,
-    coordinates: `^[0-9]+$`,
+    type: `^[a-zA-Z0-9]+$`,
+    coordinates: `^[a-zA-Z0-9]+$`,
 }
 export const initialPolygon : Polygon = {
     id: '',

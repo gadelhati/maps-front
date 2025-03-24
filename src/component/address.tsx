@@ -14,13 +14,25 @@ export interface Address {
 }
 export interface AddressValidation {
     readonly id: string,
-    readonly name: string,
-    readonly privileges: string[],
+    readonly cepNumber: string,
+    readonly cepCategory: string,
+    readonly cepSubCategory: string,
+    readonly neighborhood: string,
+    readonly address: string,
+    readonly complement: string,
+    readonly IBGECode: string,
+    readonly city: string,
 }
 export const initialAddressValidation: AddressValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    cepNumber: `^[a-zA-Z0-9]+$`,
+    cepCategory: `^[a-zA-Z0-9]+$`,
+    cepSubCategory: `^[a-zA-Z0-9]+$`,
+    neighborhood: `^[a-zA-Z0-9]+$`,
+    address: `^[a-zA-Z0-9]+$`,
+    complement: `^[a-zA-Z0-9]+$`,
+    IBGECode: `^[a-zA-Z0-9]+$`,
+    city: `^[a-zA-Z0-9]+$`,
 }
 export const initialAddress: Address = {
     id: '',

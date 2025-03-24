@@ -9,13 +9,15 @@ export interface City extends Hateoas {
 }
 export interface CityValidation {
     readonly id: string,
+    readonly code: string,
     readonly name: string,
-    readonly privileges: string[],
+    readonly state: string,
 }
 export const initialCityValidation: CityValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    code: `^[0-9]+$`,
+    name: `^[a-zA-Z0-9]+$`,
+    state: `^[a-zA-Z0-9]+$`,
 }
 export const initialCity : City = {
     id: '',

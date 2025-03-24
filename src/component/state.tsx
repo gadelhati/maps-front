@@ -14,8 +14,8 @@ export interface StateValidation {
 }
 export const initialStateValidation: StateValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    code: `^[0-9]+$`,
-    name: `^[0-9]+$`,
+    code: `^[a-zA-Z0-9]+$`,
+    name: `^[a-zA-Z0-9]+$`,
 }
 export const initialState : State = {
     id: '',

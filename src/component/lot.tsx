@@ -8,13 +8,15 @@ export interface Lot extends Hateoas {
 }
 export interface LotValidation {
     readonly id: string,
-    readonly name: string,
-    readonly privileges: string[],
+    readonly number: string,
+    readonly manufacturing: string,
+    readonly overdue: string,
 }
 export const initialLotValidation: LotValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    name: `^[0-9]+$`,
-    privileges: [`^[0-9]+$`],
+    number: `^[a-zA-Z0-9]+$`,
+    manufacturing: `^[a-zA-Z0-9]+$`,
+    overdue: `^[a-zA-Z0-9]+$`,
 }
 export const initialLot: Lot = {
     id: '',
