@@ -5,8 +5,7 @@ import { initialErrorMessage } from '../../assets/error/errorMessage.initial'
 import { create, update, remove, retrieve, removeComposite } from '../../service/service.crud'
 import { AtributeSet } from './generic.atribute'
 import { Atribute } from '../../component/atribute'
-import { Pageable } from '../../component/pageable'
-import { initialPageable } from '../../component/pageable'
+import { initialResponse, Response } from '../../component/response'
 import { ErrorBoundary } from 'react-error-boundary'
 import { createToast, toastDetails } from './toast.message'
 import { SubAtributeSet } from '../../assets/hook/useAtribute'
@@ -21,6 +20,7 @@ import { ButtonPage } from '../template/button/button.page'
 import '../template/load.css'
 import '../template/toast/toast.css'
 import '../template/inputgroup.css'
+import { Search } from '../../component/search'
 
 export const WeatherForm = <T extends { id: string, name: string }>(object: any) => {
     const [state, setState] = useState<any>(object.object)
@@ -31,7 +31,7 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
     const [, setAtribute] = useState<Atribute[]>(AtributeSet(object.object))
     const [page, setPage] = useState<number>(0)
     const [size, setSize] = useState<number>(5)
-    const [pageable, setPageable] = useState<Pageable>(initialPageable)
+    const [pageable, setPageable] = useState<Response>(initialResponse)
     const [ispending, startTransition] = useTransition()
     const [modal, setModal] = useState<boolean>(true)
     const [confirm, setConfirm] = useState<{message: '', show: boolean, action: string}>({message: '', show: true, action: ''})
@@ -53,7 +53,8 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         setTab(index)
     }
     const searchValue = async () => {
-        await retrieve(object.url, page, size, key, search).then((data: any) => {
+        let searched: Search = {page: page, size: size, sort: {key: key, order: 'ASC'}, value: search}
+        await retrieve(object.url, searched).then((data: any) => {
             startTransition(() => setPageable(data))
             startTransition(() => setStates(data.content))
         }).catch(() => { networkError() })
@@ -96,7 +97,8 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         }).catch(() => { networkError() })
     }
     const retrieveItem = async () => {
-        await retrieve(object.url, page, size, key, search).then((data: any) => {
+        let searched: Search = {page: page, size: size, sort: {key: key, order: 'ASC'}, value: search}
+        await retrieve(object.url, searched).then((data: any) => {
             startTransition(() => setPageable(data))
             startTransition(() => setStates(data.content))
         }).catch(() => { networkError() })
@@ -160,7 +162,8 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         setState({ ...state, [event.target.name]: event.target.value })
     }
     const handleInputChangeSubSelect = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, size, 'id', event.target.value).then((data: any) => {
+        let searched: Search = {page: 0, size: size, sort: {key: 'id', order: 'ASC'}, value: event.target.value}
+        await retrieve(event.target.name, searched).then((data: any) => {
             setState({ ...state, [event.target.name]: data?.content[0] })
         }).catch(() => { networkError() })
     }
@@ -792,12 +795,12 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
                                     <ButtonPage name={'<'} function={() => handlePage(page - 1)} disabled={page <= 0 ? true : false}/>
                                     <ButtonPage name={page} function={() => handlePage(page - 1)} hidden={page <= 0 ? true : false}/>
                                     <ButtonPage name={page + 1} disabled/>
-                                    <ButtonPage name={page + 2} function={() => handlePage(page + 1)} hidden={page >= pageable.totalPages - 1 ? true : false}/>
-                                    <ButtonPage name={'>'} function={() => handlePage(page + 1)} disabled={page >= pageable.totalPages - 2 ? true : false}/>
-                                    <ButtonPage name={'>>'} function={() => handlePage(pageable.totalPages - 1)}/>
+                                    <ButtonPage name={page + 2} function={() => handlePage(page + 1)} hidden={page >= pageable.page.totalPages - 1 ? true : false}/>
+                                    <ButtonPage name={'>'} function={() => handlePage(page + 1)} disabled={page >= pageable.page.totalPages - 2 ? true : false}/>
+                                    <ButtonPage name={'>>'} function={() => handlePage(pageable.page.totalPages - 1)}/>
                                 </th>
                             </tr>
-                            <tr><th>Total amount {pageable.totalElements}</th></tr>
+                            <tr><th>Total amount {pageable.page.totalElements}</th></tr>
                         </tfoot>
                     </table>
                     <ul className="toast notifications"></ul>

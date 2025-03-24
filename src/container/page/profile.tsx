@@ -8,6 +8,7 @@ import { logout } from '../../service/service.crud'
 import { getPayload } from '../../service/service.token'
 import { useNavigate } from 'react-router-dom'
 import { Header } from './header'
+import { Search } from '../../component/search'
 
 export const Profile = () => {
     const [state, setState] = useState<User>(initialUser)
@@ -20,7 +21,8 @@ export const Profile = () => {
         retrieveItem()
     }, [])
     const retrieveItem = async () => {
-        await retrieve('userEntity', 0, 20, 'username', getPayload().sub).then((data: any) => {
+        let searched: Search = {page: 0, size: 20, sort: {key: 'username', order: 'ASC'}, value: getPayload().sub}
+        await retrieve('userEntity', searched).then((data: any) => {
             startTransition(() => setState(data?.content[0]))
         }).catch(() => { networkError() })
         setState({ ...state, password: '' })

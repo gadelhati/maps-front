@@ -7,6 +7,7 @@ import { SubAtributeSet } from '../../../assets/hook/useAtribute'
 import { SetAtributes } from './assets/setAtributes'
 import { initialInput } from './assets/input.initial'
 import './assets/input.css'
+import { Search } from '../../../component/search'
 
 export const Input = (object: InputInterface) => {
     const [state, setState] = useState<any>(initialInput)
@@ -27,8 +28,9 @@ export const Input = (object: InputInterface) => {
         return vector
     }
     const loadSubStates = async () => {
+        let searched: Search = {page: 0, size: 1000, sort: {key: '', order: 'ASC'}, value: '' }
         Array.isArray(object.value) &&
-            retrieve(object.name, 0, 1000, '', '').then((data: any) => {
+            retrieve(object.name, searched).then((data: any) => {
                 startTransition(() => {
                     setSubStates(data.content)
                 })
@@ -46,12 +48,14 @@ export const Input = (object: InputInterface) => {
         object.childToParent(state)
     }
     const handleInputChangeSubSelect = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, 1000, event.target.name, event.target.value).then((data: any) => {
+        let searched: Search = {page: 0, size: 1000, sort: {key: 'id', order: 'ASC'}, value: event.target.value }
+        await retrieve(event.target.name, searched).then((data: any) => {
             setState({ ...state, value: data?.content[0] })
         }).catch(() => { networkError() })
     }
     const handleInputChangeSubSelectArray = async (event: ChangeEvent<HTMLSelectElement>) => {
-        await retrieve(event.target.name, 0, 1000, 'id', event.target.value).then((data: any) => {
+        let searched: Search = {page: 0, size: 1000, sort: {key: 'id', order: 'ASC'}, value: event.target.value }
+        await retrieve(event.target.name, searched).then((data: any) => {
             setState({ ...state, value: [data?.content[0]] })
         }).catch(() => { networkError() })
     }

@@ -4,6 +4,7 @@ import { createAll, retrieve } from '../../service/service.crud';
 // import { initialErrorMessage } from '../../assets/error/errorMessage.initial';
 // import { ErrorMessage } from '../../assets/error/errorMessage';
 import '../template/upload.css'
+import { initialSearch } from '../../component/search';
 
 export const WeatherUpload = <T extends { id: string, name: string }>(object: any) => {
     const [state, setState] = useState<T[]>([object.object])
@@ -17,7 +18,7 @@ export const WeatherUpload = <T extends { id: string, name: string }>(object: an
         })
     }
     const retrieveItem = async () => {
-        await retrieve("weather", 0, 20, '', '').then((obj: any) => {
+        await retrieve("weather", initialSearch).then((obj: any) => {
             startTransition(() => setState(obj?.ok))
         })
     }

@@ -12,6 +12,7 @@ import '../../page/login/login.css'
 import '../../template/input/input.css'
 import '../../template/tooltip.css'
 import '../../template/toast.css'
+import { Search } from '../../../component/search'
 
 export const Login = () => {
     const [state, setState] = useState<UserAuth>(initialUserAuth)
@@ -22,7 +23,8 @@ export const Login = () => {
         retrieveItem()
     }, [])
     const retrieveItem = async () => {
-        await retrieve('user', 0, 20, 'username', getPayload().sub).then((data: any) => {
+        let searched: Search = {page: 0, size: 20, sort: {key: 'username', order: 'ASC'}, value: getPayload().sub}
+        await retrieve('user', searched).then((data: any) => {
             startTransition(() => setState(data?.content[0]))
         }).catch((error) => { setError(error) })
     }

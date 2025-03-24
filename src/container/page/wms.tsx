@@ -7,6 +7,7 @@ import { initialLot } from "../../component/lot"
 import { initialPerson } from "../../component/person"
 import { initialStock, Stock } from "../../component/stock"
 import { retrieve } from "../../service/service.crud"
+import { initialSearch } from "../../component/search"
 
 export const Wms = () => {
     const [address, setAddress] = useState([initialAddress])
@@ -18,25 +19,25 @@ export const Wms = () => {
     const [stock, setStock] = useState<Stock[]>([initialStock])
     
     useEffect(()=>{
-        retrieve('address', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('address', initialSearch).then((data: any) => {
             startTransition(() => setAddress(data.content))
         })
-        retrieve('lot', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('lot', initialSearch).then((data: any) => {
             startTransition(() => setLot(data.content))
         })
-        retrieve('order', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('order', initialSearch).then((data: any) => {
             startTransition(() => setOrder(data.content))
         })
-        retrieve('orderItem', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('orderItem', initialSearch).then((data: any) => {
             startTransition(() => setOrderItem(data.content))
         })
-        retrieve('person', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('person', initialSearch).then((data: any) => {
             startTransition(() => setPerson(data.content))
         })
-        retrieve('item', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('item', initialSearch).then((data: any) => {
             startTransition(() => setItem(data.content))
         })
-        retrieve('stock', 0, 5, 'id', '', 'ASC').then((data: any) => {
+        retrieve('stock', initialSearch).then((data: any) => {
             startTransition(() => setStock(data.content))
         })
     },[])

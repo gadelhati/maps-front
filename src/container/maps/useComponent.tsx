@@ -1,6 +1,7 @@
 import { ChangeEvent, startTransition, useEffect, useState } from "react"
 import { initialPoint, Point } from "../../component/point"
 import { retrieve } from "../../service/service.crud"
+import { Search } from "../../component/search"
 
 export const useComponent = <T extends { point: Point }>(url: string, index: number) => {
     const [ order, setOrder ] = useState<number>(0)
@@ -21,7 +22,8 @@ export const useComponent = <T extends { point: Point }>(url: string, index: num
         ])
     }
     const get = async () => {
-        await retrieve(url, 0, 1000, 'id', undefined).then((data: any) => {
+        let searched: Search = {page: 0, size: 1000, sort: {key: 'id', order: 'ASC'}, value: ''}
+        await retrieve(url, searched).then((data: any) => {
             startTransition(() => setList([
                 ...list.slice(0, index),
                 data.content,

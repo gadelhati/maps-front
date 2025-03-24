@@ -10,6 +10,7 @@ import { MaritimeArea } from '../../component/maritimeArea';
 import { useComponent } from './useComponent';
 import { useMap } from './useMap';
 import { initialPoint, Point } from '../../component/point';
+import { Search } from '../../component/search';
 
 export const LeafletMap = () => {
     const center: L.LatLngExpression = [-22.8, -43]
@@ -71,13 +72,15 @@ export const LeafletMap = () => {
     //     }
     // }
     const retrieveCharts = async(url: string, sort: string) => {
-        await retrieve(url, 0, 1000, sort, undefined)
+        let searched: Search = {page: 0, size: 1000, sort: {key: sort, order: 'ASC'}, value: ''}
+        await retrieve(url, searched)
             .then((data: any) => {
                 setCharts(data.content)
             });
     }
     const retrieveMaritimeArea = async(url: string, sort: string) => {
-        await retrieve(url, 0, 1000, sort, undefined)
+        let searched: Search = {page: 0, size: 1000, sort: {key: sort, order: 'ASC'}, value: ''}
+        await retrieve(url, searched)
             .then((data: any) => {
                 setMaritimeArea(data.content)
             });
