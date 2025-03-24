@@ -27,22 +27,20 @@ const Modal = <T extends Identifiable, S extends Object>(data: Data<T, S>, ref: 
     const [action, setAction] = useState<string>('retrieve')
     const modalRef = useRef<HTMLDialogElement>(null);
     const confirmRef = useRef<HTMLDialogElement>(null);
-    const [currentObject, setCurrentObject] = useState<T>(data.object);
 
-    // Atualiza o estado interno quando o objeto externo muda
     useImperativeHandle(ref, () => ({
-        showModal: () => {
-            setCurrentObject(data.object); // Atualiza o estado interno com o objeto recebido
-            modalRef.current?.showModal();
-        },
+        showModal,
         closeModal
     }))
+    const showModal = useCallback(() => {
+        modalRef.current?.showModal()
+    }, [])
     const showConfirm = useCallback(() => {
-        confirmRef.current?.showModal();
+        confirmRef.current?.showModal()
     }, [])
     const closeModal = useCallback(() => {
-        modalRef.current?.close();
-        confirmRef.current?.close();
+        modalRef.current?.close()
+        confirmRef.current?.close()
     }, [])
     const crud = (action: string) => {
         setAction(action)
@@ -63,8 +61,8 @@ const Modal = <T extends Identifiable, S extends Object>(data: Data<T, S>, ref: 
             default:
                 break;
         }
-        data.onActionComplete();
-        closeModal();
+        data.onActionComplete()
+        closeModal()
     }
     const shouldRenderField = (key: string) => {
         return key !== 'id' && key !== 'links';
