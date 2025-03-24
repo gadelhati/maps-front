@@ -88,17 +88,17 @@ ul li :before {
 }
 
 @keyframes show_toast {
-    0% { transform: translateX(100%), };
-    40% { transform: translateX(-5%), };
-    80% { transform: translateX(0%), };
-    100% { transform: translateX(-10px), };
+    0% { transform: translateX(100%), }
+    40% { transform: translateX(-5%), }
+    80% { transform: translateX(0%), }
+    100% { transform: translateX(-10px), }
 }
 @keyframes hide_toast {
-    0% { transform: translateX(-10px), };
-    40% { transform: translateX(0%), };
-    80% { transform: translateX(-5%), };
-    100% { transform: translateX(calc(100% + 20px)), };
+    0% { transform: translateX(-10px), }
+    40% { transform: translateX(0%), }
+    80% { transform: translateX(-5%), }
+    100% { transform: translateX(calc(100% + 20px)), }
 }
 @keyframes progress {
-    100% { width: 0%, };
+    100% { width: 0%, }
 }
