@@ -3,10 +3,10 @@ import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/uri.format';
-import { GaugeStation } from '../../component/gauge_station';
+import { GaugeStation } from '../../component/gaugeStation';
 import './leaflet.css'
 import { Chart } from '../../component/chart';
-import { MaritimeArea } from '../../component/maritime_area';
+import { MaritimeArea } from '../../component/maritimeArea';
 import { useComponent } from './useComponent';
 import { useMap } from './useMap';
 import { initialPoint, Point } from '../../component/point';

@@ -1,8 +1,9 @@
 import { Address } from "./address";
 import { initialCountry } from "./country";
 import { Country } from "./country";
+import { Hateoas } from "./hetoas";
 
-export interface Person {
+export interface Person extends Hateoas {
     readonly id: string,
     name: string,
     birth: Date,
@@ -11,7 +12,16 @@ export interface Person {
     country: Country,
     address: Address[],
 }
-
+export interface PersonValidation {
+    readonly id: string,
+    readonly name: string,
+    readonly privileges: string[],
+}
+export const initialPersonValidation: PersonValidation = {
+    id: `^[a-zA-Z0-9]+$`,
+    name: `^[0-9]+$`,
+    privileges: [`^[0-9]+$`],
+}
 export const initialPerson: Person = {
     id: '',
     name: '',
@@ -20,6 +30,10 @@ export const initialPerson: Person = {
     telephone: [],
     country: initialCountry,
     address: [],
+	links: {
+        rel: '',
+        href: '',
+    },
 }
 
 export interface NaturalPerson extends Person {

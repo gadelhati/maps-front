@@ -1,6 +1,7 @@
+import { Hateoas } from "./hetoas"
 import { initialPrivilege, Privilege } from "./privilege"
 
-export interface Role {
+export interface Role extends Hateoas {
     readonly id: string,
     name: string,
     privileges: Privilege[]
@@ -19,4 +20,8 @@ export const initialRole: Role = {
     id: '',
     name: '',
     privileges: [initialPrivilege],
+    links: {
+        rel: '',
+        href: '',
+    },
 }

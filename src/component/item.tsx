@@ -1,6 +1,7 @@
+import { Hateoas } from "./hetoas";
 import { initialLot, Lot } from "./lot";
 
-export interface Item {
+export interface Item extends Hateoas {
     readonly id: string,
     sku: string,
     gtin: string,
@@ -22,7 +23,16 @@ export interface Item {
     url: string,
     lot: Lot,
 }
-
+export interface ItemValidation {
+    readonly id: string,
+    readonly name: string,
+    readonly privileges: string[],
+}
+export const initialItemValidation: ItemValidation = {
+    id: `^[a-zA-Z0-9]+$`,
+    name: `^[0-9]+$`,
+    privileges: [`^[0-9]+$`],
+}
 export const initialItem: Item = {
     id: '',
     sku: '',
@@ -44,4 +54,8 @@ export const initialItem: Item = {
     netWeight: 0,
     url: '',
     lot: initialLot,
+	links: {
+        rel: '',
+        href: '',
+    },
 }

@@ -12,7 +12,16 @@ export interface Provider extends LegalEntity {
     service: number,
     stock: Stock,
 }
-
+export interface ProviderValidation {
+    readonly id: string,
+    readonly name: string,
+    readonly privileges: string[],
+}
+export const initialProviderValidation: ProviderValidation = {
+    id: `^[a-zA-Z0-9]+$`,
+    name: `^[0-9]+$`,
+    privileges: [`^[0-9]+$`],
+}
 export const initialProvider: Provider = {
     id: '',
     name: '',
@@ -29,4 +38,8 @@ export const initialProvider: Provider = {
     flexibility: 0,
     service: 0,
     stock: initialStock,
+	links: {
+        rel: '',
+        href: '',
+    },
 }

@@ -1,4 +1,6 @@
-export interface Country {
+import { Hateoas } from "./hetoas"
+
+export interface Country extends Hateoas {
     readonly id: string,
     code: number,
     name: string,
@@ -17,4 +19,8 @@ export const initialCountry: Country = {
     id: '',
     code: 0,
     name: '',
+	links: {
+        rel: '',
+        href: '',
+    },
 }

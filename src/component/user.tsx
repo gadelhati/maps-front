@@ -1,6 +1,7 @@
+import { Hateoas } from './hetoas'
 import { initialRole, Role } from './role'
 
-export interface User {
+export interface User extends Hateoas {
 	readonly id: string,
 	username: string,
 	email: string,
@@ -30,7 +31,11 @@ export const initialUser: User = {
 	email: '',
 	password: '',
 	active: true,
-	roles: [initialRole]
+	roles: [initialRole],
+	links: {
+        rel: '',
+        href: '',
+    },
 }
 
 export interface UserAuth {

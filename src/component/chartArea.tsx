@@ -1,25 +1,23 @@
 import { Hateoas } from "./hetoas"
 
-export interface Point extends Hateoas {
+export interface ChartArea extends Hateoas {
     readonly id: string,
-    type: string,
-    coordinates: [number, number],
+    name: string,
 }
-export interface PointValidation {
+export interface ChartAreaValidation {
     readonly id: string,
     readonly name: string,
     readonly privileges: string[],
 }
-export const initialPointValidation: PointValidation = {
+export const initialChartAreaValidation: ChartAreaValidation = {
     id: `^[a-zA-Z0-9]+$`,
     name: `^[0-9]+$`,
     privileges: [`^[0-9]+$`],
 }
-export const initialPoint : Point = {
+export const initialChartArea : ChartArea = {
     id: '',
-    type: '',
-    coordinates: [0, 0],
-	links: {
+    name: '',
+    links: {
         rel: '',
         href: '',
     },

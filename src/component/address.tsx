@@ -12,7 +12,16 @@ export interface Address {
     IBGECode: string,
     city: City,
 }
-
+export interface AddressValidation {
+    readonly id: string,
+    readonly name: string,
+    readonly privileges: string[],
+}
+export const initialAddressValidation: AddressValidation = {
+    id: `^[a-zA-Z0-9]+$`,
+    name: `^[0-9]+$`,
+    privileges: [`^[0-9]+$`],
+}
 export const initialAddress: Address = {
     id: '',
     cepNumber: '',

@@ -1,8 +1,9 @@
-import { initialOrderItem, OrderItem } from "./order_item";
+import { Hateoas } from "./hetoas";
+import { initialOrderItem, OrderItem } from "./orderItem";
 import { initialPerson, Person } from "./person";
 import { initialStock, Stock } from "./stock";
 
-export interface Order {
+export interface Order extends Hateoas {
     readonly id: string,
     category: string,
     totalCost: number,
@@ -18,6 +19,10 @@ export const initialOrder: Order = {
     orderItem: [initialOrderItem],
     stock: initialStock,
     person: initialPerson,
+	links: {
+        rel: '',
+        href: '',
+    },
 }
 
 export interface OrderTranfer extends Order {
