@@ -7,7 +7,7 @@ export interface User extends Hateoas {
 	email: string,
     password: string,
 	active: boolean,
-	roles: Role[]
+	role: Role[]
 }
 export interface UserValidation {
 	readonly id: string,
@@ -15,7 +15,7 @@ export interface UserValidation {
 	readonly email: string,
     readonly password: string,
 	readonly active: string,
-	readonly roles: Role[],
+	readonly role: string,
 }
 export const initialUserValidation: UserValidation = {
 	id: `^[a-zA-Z0-9]+$`,
@@ -23,7 +23,7 @@ export const initialUserValidation: UserValidation = {
 	email: `^[a-zA-Z0-9]+$`,
 	password: `^[a-zA-Z0-9]+$`,
 	active: `^[a-zA-Z0-9]+$`,
-	roles: [initialRole],
+	role: `^[a-zA-Z0-9]+$`,
 }
 export const initialUser: User = {
 	id: '',
@@ -31,7 +31,7 @@ export const initialUser: User = {
 	email: '',
 	password: '',
 	active: true,
-	roles: [initialRole],
+	role: [initialRole],
 	links: {
         rel: '',
         href: '',
