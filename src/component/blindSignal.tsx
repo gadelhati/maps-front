@@ -1,20 +1,47 @@
+import { ChartArea, initialChartArea } from "./chartArea"
 import { Hateoas } from "./hetoas"
+import { initialPoint, Point } from "./point"
+import { initialState, State } from "./state"
 
 export interface BlindSignal extends Hateoas {
     readonly id: string,
-    category: string,
+    name: string,
+    chart: string,
+    point: Point,
+    description: string,
+    observation: string,
+    chartArea: ChartArea,
+    state: State,
 }
 export interface BlindSignalValidation {
     readonly id: string,
-    readonly category: string,
+    readonly name: string,
+    readonly chart: string,
+    readonly point: string,
+    readonly description: string,
+    readonly observation: string,
+    readonly chartArea: string,
+    readonly state: string,
 }
 export const initialBlindSignalValidation: BlindSignalValidation = {
     id: `^[a-zA-Z0-9]+$`,
-    category: `^[a-zA-Z0-9]+$`,
+    name: `^[a-zA-Z0-9]+$`,
+    chart: `^[a-zA-Z0-9]+$`,
+    point: `^[a-zA-Z0-9]+$`,
+    description: `^[a-zA-Z0-9]+$`,
+    observation: `^[a-zA-Z0-9]+$`,
+    chartArea: `^[a-zA-Z0-9]+$`,
+    state: `^[a-zA-Z0-9]+$`,
 }
 export const initialBlindSignal : BlindSignal = {
     id: '',
-    category: '',
+    name: '',
+    chart: '',
+    point: initialPoint,
+    description: '',
+    observation: '',
+    chartArea: initialChartArea,
+    state: initialState,
     links: {
         rel: '',
         href: '',

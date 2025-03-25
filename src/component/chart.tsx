@@ -21,7 +21,7 @@ export interface ChartValidation {
     edition: string,
     ne: string,
     sw: string,
-    chartArea?: string,
+    chartArea: string,
 }
 export const initialChartValidation: ChartValidation = {
     id: `^[a-zA-Z0-9]+$`,
