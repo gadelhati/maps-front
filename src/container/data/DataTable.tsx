@@ -31,7 +31,7 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
     }, [refreshTrigger])
     const showType = (content: any) => {
         if (content === null) {
-            return 'null'
+            return ''
         }
         if (typeof content.getMonth === 'function') {
             return 'date'
@@ -50,9 +50,18 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
                 return new Date(content)
             }
             case 'object': {
-                return Array.isArray(content) ? content[0].href : content.id
+                return Array.isArray(content) ? showObject(content[0]) : showObject(content)
             }
             default: { return null }
+        }
+    }
+    const showObject = (content: Record<string, any>) => {
+        if (content.hasOwnProperty('href')) {
+            return content?.href
+        } else if (content.hasOwnProperty('coordinates')) {
+            return content?.coordinates
+        } else if (content.hasOwnProperty('name')) {
+            return content?.name
         }
     }
     const newItem = () => {
@@ -121,8 +130,8 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
                     {data?.response?.content?.map((row: T) => {
                         return <tr key={Math.random()} onClick={() => show(row)}>
                             {filterVisibleValues(row).map((column: any) => {
-                                if (typeof column === 'object') { 
-                                    return <td key={row+column}><a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> 
+                                if (Array.isArray(column) && column[0].hasOwnProperty('href')) { 
+                                    return <td key={row+column[0]}><a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> 
                                 } else { 
                                     return <td key={row+column}>{showType(column)}</td> 
                                 }

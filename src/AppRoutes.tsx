@@ -35,7 +35,7 @@ import { initialPolygon, initialPolygonValidation } from "./component/polygon";
 import { initialPoint, initialPointValidation } from "./component/point";
 import { initialProvider, initialProviderValidation } from "./component/provider";
 
-export const ROLES = {
+export const ROLE = {
     'ADMIN': 'ADMIN',
     'MODERATOR': 'MODERATOR',
     'USER': 'USER',
@@ -57,12 +57,12 @@ export default function AppRoutes() {
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
-                            <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
+                            <Route element={<RequireAuth allowedRoles={[ROLE.ADMIN]} />}>
                                 <Route path="/user" element={<GenericComponent url={'user'} object={initialUser} validator={initialUserValidation} />}></Route>
                                 <Route path="/role" element={<GenericComponent url={'role'} object={initialRole} validator={initialRoleValidation} />}></Route>
                                 <Route path="/privilege" element={<GenericComponent url={'privilege'} object={initialPrivilege} validator={initialPrivilegeValidation} />}></Route>
                             </Route>
-                            <Route element={<RequireAuth allowedRoles={[ROLES.OPERATOR, ROLES.REVIEWER, ROLES.VERIFIER]} />}>
+                            <Route element={<RequireAuth allowedRoles={[ROLE.OPERATOR, ROLE.REVIEWER, ROLE.VERIFIER]} />}>
                                 <Route path="/wms" element={<Wms />}></Route>
                                 <Route path="/addess" element={<GenericComponent url={'addess'} object={initialAddress} validator={initialAddressValidation} />}></Route>
                                 <Route path="/item" element={<GenericComponent url={'item'} object={initialItem} validator={initialItemValidation} />}></Route>
@@ -73,7 +73,7 @@ export default function AppRoutes() {
                                 <Route path="/provider" element={<GenericComponent url={'provider'} object={initialProvider} validator={initialProviderValidation} />}></Route>
                                 <Route path="/stock" element={<GenericComponent url={'stock'} object={initialStock} validator={initialStockValidation} />}></Route>
                             </Route>
-                            <Route element={<RequireAuth allowedRoles={[ROLES.USER, ROLES.ADMIN, ROLES.MODERATOR]} />}>
+                            <Route element={<RequireAuth allowedRoles={[ROLE.USER, ROLE.ADMIN, ROLE.MODERATOR]} />}>
                                 <Route path="/home" element={<Home />}></Route>
                                 <Route path="/profile" element={<Profile />}></Route>
                                 <Route path="/leafletMap" element={<LeafletMap />}></Route>

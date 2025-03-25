@@ -7,11 +7,11 @@ export const useAuth = () => {
 }
 
 export const RequireAuth = ({ allowedRoles }: any) => {
-    const { roles, accessToken } = useAuth();
+    const { role, accessToken } = useAuth();
     const location = useLocation();
 
     return (
-        roles?.find((role: any) => allowedRoles?.includes(role))
+        role?.find((role: any) => allowedRoles?.includes(role))
             ? <Outlet />
             : accessToken
                 ? <Navigate to="/notAllowed" state={{ from: location }} replace />

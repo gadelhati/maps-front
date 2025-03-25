@@ -2,12 +2,12 @@ export interface Auth {
     readonly accessToken: string,
 	refreshToken: string,
 	tokenType: string,
-	roles: []
+	role: []
 }
 
 export const initialAuth : Auth = {
     accessToken: '',
 	refreshToken: '',
 	tokenType: '',
-	roles: []
+	role: []
 }
