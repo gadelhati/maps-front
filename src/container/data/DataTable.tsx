@@ -8,17 +8,17 @@ import { QRCodeSVG } from "qrcode.react"
 import { Identifiable } from "../../component/identifiable"
 import { useInput } from "../../assets/hook/useInput"
 
-interface Data<T extends Object, V extends Object> {
+export interface DataTableContent<T extends Object, V extends Object> {
     url: string,
     object: T,
     validator: V,
     search: Search,
     onChangeSearch: any,
-    response: Response,
-    request: any,
+    response?: Response,
+    request?: any,
 }
 
-export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T, V>) => {
+export const DataTable = <T extends Identifiable, V extends Object>(data: DataTableContent<T, V>) => {
     const { state, setState, handleInput, handleSelect, handleMultiSelect } = useInput<T>(data.object)
     const modalRef = useRef<ModalData>(null)
     const [refreshTrigger, setRefreshTrigger] = useState<boolean>(true)
@@ -158,10 +158,10 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: Data<T
                                 <GButton name={'page'} onClick={data.onChangeSearch} value={Number(data.search.page) - 1}>{Number(data.search.page)}</GButton>
                             }
                             <GButton name={'page'} onClick={data.onChangeSearch} value={data.search.page}>{Number(data.search.page) + 1}</GButton>
-                            {data.search.page < data?.response?.page?.totalPages - 1 &&
+                            {data.response !== undefined && data.search.page < data?.response?.page?.totalPages - 1 &&
                                 <GButton name={'page'} onClick={data.onChangeSearch} value={Number(data.search.page) + 1}>{Number(data.search.page) + 2}</GButton>
                             }
-                            <GButton name={'page'} onClick={data?.onChangeSearch} value={data?.response?.page?.totalPages - 1} disabled={data.search.page >= data?.response?.page?.totalPages - 1}>{">>"}</GButton>
+                            <GButton name={'page'} onClick={data?.onChangeSearch} value={data.response !== undefined ? data?.response?.page?.totalPages - 1 : ''} disabled={data.response !== undefined && data.search.page >= data?.response?.page?.totalPages - 1}>{">>"}</GButton>
                         </td>
                     </tr>
                     <tr>

@@ -17,7 +17,6 @@ export const useInput = <T extends Object>(data: T) => {
                 }
             }
         } else if(target instanceof HTMLSelectElement || target instanceof HTMLButtonElement){
-            console.log(target.name, target.value)
             const { name, value } = target
             if(name.includes('.')){
                 const [parent, child] = target.name.split('.')
