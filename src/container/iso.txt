@@ -1,0 +1,3 @@
+country code:    https://www.iso.org/obp/ui/#search + international waters
+harbor code:     https://service.unece.org/trade/locode/br.htm
+cep, logradouro, número, complemento, estado, cidade, bairro
