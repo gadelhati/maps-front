@@ -103,20 +103,17 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: DataTa
             <table>
                 <thead>
                     <tr>
-                        <td>
+                        <th colSpan={Object.keys(data.object).length - 2}>
                             <select name={'sort.key'} value={data.search.sort.key} onChange={data.onChangeSearch}>
                                 {filterVisibleColumns(Object.keys(data.object)).map((element, index) =>{
                                     return <option key={element+index} value={element}>{element}</option>
                                 })}
                             </select>
                             <input name={'value'} value={data.search.value} onChange={data.onChangeSearch}></input>
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             <GButton onClick={newItem}>New</GButton>
-                        </td>
-                        <td>
-                            <GButton onClick={() => data.request(data.url, data.search)}>Update</GButton>
-                        </td>
+                        </th>
                     </tr>
                     <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.onChangeSearch} >
                         {data?.response?.content !== undefined &&

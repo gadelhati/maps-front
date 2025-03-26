@@ -26,6 +26,7 @@ import { initialProvider, initialProviderValidation } from "../../component/prov
 import { initialState, initialStateValidation } from "../../component/state";
 import { initialStock, initialStockValidation } from "../../component/stock";
 import { initialUser, initialUserValidation } from "../../component/user";
+import './generic.component.css'
 
 interface Data<T extends Object, V extends Object> {
     url: string,
@@ -116,7 +117,7 @@ export const GenericComponent = <T extends Identifiable, V extends Object>(gener
     }
     return (
         <>
-            <select onChange={(event)=>setObject(event.target.value)}>
+            <select id="header" onChange={(event)=>setObject(event.target.value)}>
                 <option value={'chart'}>Chart</option>
                 <option value={'chartArea'}>Chart Area</option>
                 <option value={'city'}>City</option>
