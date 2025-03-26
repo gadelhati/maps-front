@@ -4,6 +4,7 @@ import { useRequest } from '../../assets/hook/useRequest'
 import { UriToScreenFormat } from '../../assets/uri.format'
 import { GButton } from './Button'
 import '../template/modal.css'
+import '../template/modal2.css'
 import { initialSearch } from '../../component/search'
 import { Identifiable } from '../../component/identifiable'
 
