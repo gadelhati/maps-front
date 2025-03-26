@@ -9,7 +9,7 @@ export interface Search {
 }
 export const initialSearch: Search = {
     page: 0,
-    size: 5,
+    size: 15,
     sort: {
         key: 'id',
         order: 'ASC',
