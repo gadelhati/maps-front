@@ -11,7 +11,7 @@ tbody svg {
 table {
     cursor: pointer;
     border-left: solid var(--color-silver-eleven) .5em;
-    max-height: 75vh;
+    max-height: 95vh;
     overflow-y: auto;
     font-family: arial, sans-serif;
     font-size: 0.95rem;
