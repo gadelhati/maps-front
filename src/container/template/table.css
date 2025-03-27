@@ -70,6 +70,12 @@ tr:nth-child(odd) {
 th {
     background-color: var(--color-tenth);
 }
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 10rem;
+}
 tr:hover {
     background-color: var(--color-seventh);
 }
