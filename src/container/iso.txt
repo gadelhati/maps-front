@@ -1,3 +1,9 @@
 country code:    https://www.iso.org/obp/ui/#search + international waters
 harbor code:     https://service.unece.org/trade/locode/br.htm
+
+STATUS
+cpf, cnpj
+nome, indicativo naval, código da OM, sigla da OM, nome, tipo de navio, imo, irin, tonelagem, velocidade de cruzeiro
 cep, logradouro, número, complemento, estado, cidade, bairro
+email, ddi + ddd + telefone, ramal
+coordenadas
