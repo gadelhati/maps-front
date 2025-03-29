@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    port: 10000
+    port: 10000,
+    allowedHosts: ["maps-front.onrender.com"]
   }
 })
