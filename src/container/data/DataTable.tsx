@@ -3,7 +3,7 @@ import { Search } from "../../component/search"
 import Modal, { ModalData } from "./Modal"
 import { Response } from "../../component/response"
 import '../template/table.css'
-import { GButton } from "./Button"
+import { GButton } from "./GButton"
 import { QRCodeSVG } from "qrcode.react"
 import { Identifiable } from "../../component/identifiable"
 import { useInput } from "../../assets/hook/useInput"

@@ -2,7 +2,7 @@ import { forwardRef, Ref, useCallback, useImperativeHandle, useRef, useState } f
 import { create, remove, update } from '../../service/service.crud'
 import { useRequest } from '../../assets/hook/useRequest'
 import { UriToScreenFormat } from '../../assets/uri.format'
-import { GButton } from './Button'
+import { GButton } from './GButton'
 import '../template/modal.css'
 import '../template/modal2.css'
 import { initialSearch } from '../../component/search'
