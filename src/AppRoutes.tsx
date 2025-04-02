@@ -34,6 +34,7 @@ import { initialPrivilege, initialPrivilegeValidation } from "./component/privil
 import { initialPolygon, initialPolygonValidation } from "./component/polygon";
 import { initialPoint, initialPointValidation } from "./component/point";
 import { initialProvider, initialProviderValidation } from "./component/provider";
+import { Noaa } from "./container/data/Noaa";
 
 export const ROLE = {
     'ADMIN': 'ADMIN',
@@ -56,6 +57,7 @@ export default function AppRoutes() {
                         <Routes>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
+                            <Route path="/noaa" element={<Noaa />}></Route>
                             <Route path="/notAllowed" element={<NotAllowed />}></Route>
                             <Route element={<RequireAuth allowedRoles={[ROLE.ADMIN]} />}>
                                 <Route path="/user" element={<GenericComponent url={'user'} object={initialUser} validator={initialUserValidation} />}></Route>

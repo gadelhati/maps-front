@@ -42,6 +42,10 @@ Georeferenced information.
 - [ ] counter only increases by 1
 - [ ] signature with mouse
 - [ ] context menu
+- [ ] consumes api do INMET, https://portal.inmet.gov.br/
+- [ ] consumes api: OpenWeatherMap, WeatherAPI, AccuWeather, Weatherbit, Tomorrow.io (anteriormente Climacell)
+- [ ] consumes api, https://www.ncei.noaa.gov/cdo-web/api/v2/
+- [ ] consumes api, https://www.tidesandcurrents.noaa.gov/map/?id=9415020
 
 ## Summary
 * [How to work with this project](#how-to-work-with-this-project)
