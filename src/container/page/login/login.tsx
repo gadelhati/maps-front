@@ -25,7 +25,7 @@ export const Login = () => {
     const retrieveItem = async () => {
         let searched: Search = {page: 0, size: 20, sort: {key: 'username', order: 'ASC'}, value: getPayload().sub}
         await retrieve('user', searched).then((data: any) => {
-            startTransition(() => setState(data?.content[0]))
+            if(data.content[0]) startTransition(() => setState(data.content[0]))
         }).catch((error) => { setError(error) })
     }
     const refresh = () => {
