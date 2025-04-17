@@ -67,6 +67,9 @@ npm outdated
 # updates every package
 npm update
 
+# update to the latest available versions
+npx npm-check-updates -u
+
 # check conflicting dependencies
 npm ls eslint
 
@@ -130,7 +133,7 @@ location /<folder> {
 
 ### API running locally
 
-> [http://localhost:8080/maps](http://localhost:8080/maps)
+> [http://localhost:8080/maps/v1](http://localhost:8080/maps)
 
 ## Git tips
 
