@@ -7,9 +7,9 @@ import '../template/sidebar.css'
 
 export const SideList = () => {
   const [collapsible, setCollapsible] = useState(true)
-  const showCollapsible = () => { setCollapsible(!collapsible) }
+  const toggleCollapsible = () => { setCollapsible(!collapsible) }
 
-  const collapse: string[][] = [
+  const collapseItens: string[][] = [
     ["weather", "bootstrap", "sixth"],
     ["weatherOffShore", "table", "sixth"],
     ["weatherOnShore", "geo-fill", "sixth"],
@@ -18,19 +18,24 @@ export const SideList = () => {
   return (
     <aside>
       <nav>
-        <a key={0} href={`#/`} ><Icon name={'home'} /><p>{UriToScreenFormat('home')}</p></a>
+        <a key={0} href={`#/`} ><Icon name={'home'} size={18} /><p>{UriToScreenFormat('home')}</p></a>
         <div className={collapsible ? 'collapse collapsible' : 'collapse collapsed'}>
-            <a key={1} onClick={showCollapsible} ><span><Icon name={'geo3'} /><span>{UriToScreenFormat('historic')}</span></span><Icon name={'geo2'} /></a>
-            {collapse.map((element) => {
-              return <a key={element[1]} href={`/${element[0]}`} ><span><Icon name={element[1]} /><span>{UriToScreenFormat(element[0])}</span></span></a>
+            <a key={1} onClick={toggleCollapsible} >
+              <span><Icon name={'geo3'} size={18} /><span>{UriToScreenFormat('historic')}</span></span>
+              <Icon name={'geo2'} size={18} />
+            </a>
+            {collapseItens.map(([route, iconName]) => {
+              return (<a key={Math.random()} href={`/${route}`} >
+                  <span><Icon name={iconName} size={18} /><span>{UriToScreenFormat(route)}</span></span>
+                </a>)
             })}
         </div>
       </nav>
       <nav>
-      {vector.map((element) => {
-          return <a key={Math.random()} href={`/${element[0]}`}><Icon name={element[1]} /><p>{UriToScreenFormat(element[0])}</p></a>
+      {vector.map(([route, iconName]) => {
+          return (<a key={Math.random()} href={`/${route}`}><Icon name={iconName} size={18} /><p>{UriToScreenFormat(route)}</p></a>)
       })}
-      <a key={'logout'} href={`#/${'login'}`} onClick={logout}><Icon name={'geo-fill'} /><p>logout</p></a>
+      <a key={'logout'} href={`#/${'login'}`} onClick={logout}><Icon name={'geo-fill'} size={18} /><p>logout</p></a>
       </nav>
     </aside>
   )

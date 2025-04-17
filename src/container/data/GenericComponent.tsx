@@ -117,7 +117,7 @@ export const GenericComponent = <T extends Identifiable, V extends Object>(gener
     }
     return (
         <>
-            <select id="header" onChange={(event)=>setObject(event.target.value)}>
+            <select id="header" value={data.url} onChange={(event)=>setObject(event.target.value)}>
                 <option value={'chart'}>Chart</option>
                 <option value={'chartArea'}>Chart Area</option>
                 <option value={'city'}>City</option>

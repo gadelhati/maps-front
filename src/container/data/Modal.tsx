@@ -74,21 +74,17 @@ const Modal = <T extends Identifiable, S extends Object>(data: Data<T, S>, ref: 
         return <span key={key} className={'inputgroup tooltip'} data-tip={[]} style={{ display: 'flex' }}>
             {typeof value === 'object' ?
                 <select name={key} onClick={() => request(key)} onChange={Array.isArray(value) ? data.handleMultiSelect : data.handleSelect}
-                    defaultValue={Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id}
-                // defaultValue={Array.isArray(value) ? value[0]?.id ?? '' : value?.id ?? ''}
-                // defaultValue={value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id}
+                value={Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id || ''}
+                key={`select-${key}-${value.id}`}
                 >
-                    <option selected value={value === undefined || value === null ? null : Array.isArray(value) ? value[0] : value}>
-                        {/* {value === undefined || value === null ? null : Array.isArray(value) && value[0] !== undefined ? (value[0].hasOwnProperty('name') ? value[0]?.name : value[0]?.id) : value.name !== undefined ? value?.name : value?.id} */}
-                        {value === undefined || value === null ? (
-                            <option value="">Selecione...</option>
-                        ) : (
-                            <option value={Array.isArray(value) ? value[0]?.id : value?.id}>
-                                {Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id}
-                            </option>
-                        )}
+                    <option value={Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id || ''}>
+                        {value === undefined || value === null ? 'Selecione...'
+                        :
+                        <>{Array.isArray(value) ? value[0]?.name || value[0]?.id : value?.name || value?.id}</>}
                     </option>
-                    {response.content?.map(((result: any) => <option key={result.id} value={result.id}>{result?.name ? result.name : result.id}</option>))}
+                    {response.content?.map(((result: any) => 
+                        <option key={result.id} value={result.id}>{result.name || result.id}</option>
+                    ))}
                 </select>
                 :
                 <input type={typeof value} name={key} value={Array.isArray(value) ? [value] : value} onChange={data.handleInput} placeholder={key} pattern={Object.values(data.validator)[index]} ></input>

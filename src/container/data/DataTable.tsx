@@ -105,8 +105,8 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: DataTa
                     <tr>
                         <th colSpan={Object.keys(data.object).length - 2}>
                             <select name={'sort.key'} value={data.search.sort.key} onChange={data.onChangeSearch}>
-                                {filterVisibleColumns(Object.keys(data.object)).map((element, index) =>{
-                                    return <option key={element+index} value={element}>{element}</option>
+                                {filterVisibleColumns(Object.keys(data.object)).map((element) =>{
+                                    return <option key={`option-${element}`} value={element}>{element}</option>
                                 })}
                             </select>
                             <input name={'value'} value={data.search.value} onChange={data.onChangeSearch}></input>
@@ -115,7 +115,7 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: DataTa
                             <GButton onClick={newItem}>New</GButton>
                         </th>
                     </tr>
-                    <tr key={Math.random()} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.onChangeSearch} >
+                    <tr key={'header-sorting-row'} data-name={'sort.order'} data-value={data.search.sort.order === 'ASC' ? 'DESC' : 'ASC'} onClick={data.onChangeSearch} >
                         {data?.response?.content !== undefined &&
                             filterVisibleColumns(Object.keys(data.object)).map((column: string, index) => {
                                 return <th key={column+index}>
@@ -127,12 +127,14 @@ export const DataTable = <T extends Identifiable, V extends Object>(data: DataTa
                 </thead>
                 <tbody>
                     {data?.response?.content?.map((row: T) => {
-                        return <tr key={Math.random()} onClick={() => show(row)}>
-                            {filterVisibleValues(row).map((column: any) => {
+                        return <tr key={row.id} onClick={() => show(row)}>
+                            {filterVisibleValues(row).map((column: any, index: number) => {
                                 if (Array.isArray(column) && column[0].hasOwnProperty('href')) { 
-                                    return <td key={row+column[0]}><a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a></td> 
+                                    return (<td key={`${row.id}-${index}`}>
+                                            <a href={showType(column)} target="_blank"><QRCodeSVG value={showType(column)}/></a>
+                                        </td>)
                                 } else { 
-                                    return <td key={row+column}>{showType(column)}</td> 
+                                    return <td key={`${row.id}-${index}`}>{showType(column)}</td> 
                                 }
                             })}
                         </tr>
