@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
-import { UriToScreenFormat } from '../../assets/uri.format';
+import { UriToScreenFormat } from '../../assets/hook/useUriFormat';
 import { GaugeStation } from '../../component/gaugeStation';
 import './leaflet.css'
 import { Chart } from '../../component/chart';

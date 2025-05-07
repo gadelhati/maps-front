@@ -1,5 +1,5 @@
 import menuIcon from "../image/menuIcon.svg";
-import './svg.acess.css'
+import './useSvg.css'
 
 interface Icon {
     name: string,

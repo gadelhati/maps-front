@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Icon } from '../../assets/image/svg.access'
-import { UriToScreenFormat } from '../../assets/uri.format'
+import { Icon } from '../../assets/hook/useSvg'
+import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 import { logout } from '../../service/service.crud'
 import { vector } from '../data/menu'
 import '../template/sidebar.css'

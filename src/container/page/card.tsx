@@ -1,5 +1,5 @@
-import { UriToScreenFormat } from '../../assets/uri.format'
-import { Icon } from '../../assets/image/svg.access'
+import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
+import { Icon } from '../../assets/hook/useSvg'
 import { vector } from '../data/menu'
 import '../template/card.css'
 

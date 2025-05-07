@@ -1,4 +1,4 @@
-import { UriToScreenFormat } from '../../assets/uri.format'
+import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 import { getPayload } from '../../service/service.token'
 import { Button } from '../template/button/button'
 import '../template/header.css'
