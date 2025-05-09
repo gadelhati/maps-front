@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react"
 import { Search } from "../../component/search"
 import Modal, { ModalData } from "./Modal"
 import { Response } from "../../component/response"
-import '../template/table.css'
+// import '../template/table.css'
 import { GButton } from "./GButton"
 import { QRCodeSVG } from "qrcode.react"
 import { Identifiable } from "../../component/identifiable"
 import { useInput } from "../../assets/hook/useInput"
 // import { createToast, toastDetails } from '../page/toast.message'
-import '../template/toast.css'
+// import '../template/toast.css'
 
 export interface DataTableContent<T extends Object, V extends Object> {
     url: string,

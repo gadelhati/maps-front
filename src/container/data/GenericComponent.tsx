@@ -2,7 +2,7 @@ import { useRequest } from "../../assets/hook/useRequest"
 import { initialSearch, Search } from "../../component/search"
 import { DataTable, DataTableContent } from "./DataTable";
 import { useInput } from "../../assets/hook/useInput";
-import '../template/inputgroup.css'
+// import '../template/inputgroup.css'
 import { Identifiable } from "../../component/identifiable";
 import { useState } from "react";
 import { initialPrivilege, initialPrivilegeValidation } from "../../component/privilege";
@@ -26,7 +26,7 @@ import { initialProvider, initialProviderValidation } from "../../component/prov
 import { initialState, initialStateValidation } from "../../component/state";
 import { initialStock, initialStockValidation } from "../../component/stock";
 import { initialUser, initialUserValidation } from "../../component/user";
-import './generic.component.css'
+// import './generic.component.css'
 
 interface Data<T extends Object, V extends Object> {
     url: string,

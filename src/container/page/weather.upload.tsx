@@ -3,7 +3,7 @@ import { Button } from '../template/button/button';
 import { createAll, retrieve } from '../../service/service.crud';
 // import { initialErrorMessage } from '../../assets/error/errorMessage.initial';
 // import { ErrorMessage } from '../../assets/error/errorMessage';
-import '../template/upload.css'
+// import '../template/upload.css'
 import { initialSearch } from '../../component/search';
 
 export const WeatherUpload = <T extends { id: string, name: string }>(object: any) => {

@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { retrieve } from '../../service/service.crud';
 import { UriToScreenFormat } from '../../assets/hook/useUriFormat';
 import { GaugeStation } from '../../component/gaugeStation';
-import './leaflet.css'
+// import './leaflet.css'
 import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritimeArea';
 import { useComponent } from './useComponent';

@@ -19,7 +19,7 @@ import { initialMaritimeArea, initialMaritimeAreaValidation } from "./component/
 import { initialRole, initialRoleValidation } from "./component/role";
 import { initialState, initialStateValidation } from "./component/state";
 import { initialUser, initialUserValidation } from "./component/user";
-import './container/template/routes.css'
+// import './container/template/routes.css'
 import { initialStock, initialStockValidation } from "./component/stock";
 import { initialPerson, initialPersonValidation } from "./component/person";
 import { initialItem, initialItemValidation } from "./component/item";
@@ -36,6 +36,9 @@ import { initialPoint, initialPointValidation } from "./component/point";
 import { initialProvider, initialProviderValidation } from "./component/provider";
 import { Noaa } from "./container/data/Noaa";
 import { Gtin } from "./container/page/gtin";
+import { GLogin } from "./container/glogin";
+import { LoginPage } from "./container/g2login";
+import { G3Login } from "./container/g3login";
 
 export const ROLE = {
     'ADMIN': 'ADMIN',
@@ -57,6 +60,9 @@ export default function AppRoutes() {
                     <div className='routes main'>
                         <Routes>
                             <Route path="*" element={<Login />}></Route>
+                            <Route path="/thymeleaf" element={<GLogin />}></Route>
+                            <Route path="/g2" element={<LoginPage />}></Route>
+                            <Route path="/g3" element={<G3Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/gtin" element={<Gtin />}></Route>
                             <Route path="/noaa" element={<Noaa />}></Route>

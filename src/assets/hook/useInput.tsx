@@ -31,19 +31,25 @@ export const useInput = <T extends Object>(data: T) => {
         })
     }
     const updateState = (name: string, value: any) => {
+        let processedValue
+        if (typeof value === 'string' && value.match(/^0\d+$/)) {
+            processedValue = value;
+        } else {
+            processedValue = value === '' ? value : (isNaN(Number(value)) || typeof value === 'boolean' ? value : Number(value))
+        }
         if (name.includes('.')) {
             const [parent, child] = name.split('.');
             setState(prevState => ({
                 ...prevState,
                 [parent]: {
                     ...prevState[parent as keyof typeof prevState],
-                    [child]: value === '' ? value : (isNaN(Number(value)) || typeof value === 'boolean' ? value : Number(value))
+                    [child]: processedValue
                 }
             }));
         } else {
             setState(prevState => ({
                 ...prevState,
-                [name]: value === '' ? value : (isNaN(Number(value)) || typeof value === 'boolean' ? value : Number(value))
+                [name]: processedValue
             }));
         }
     }

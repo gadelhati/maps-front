@@ -17,9 +17,9 @@ import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 import { Button } from '../template/button/button'
 import { Header } from '../page/header'
 import { ButtonPage } from '../template/button/button.page'
-import '../template/load.css'
-import '../template/toast/toast.css'
-import '../template/inputgroup.css'
+// import '../template/load.css'
+// import '../template/toast/toast.css'
+// import '../template/inputgroup.css'
 import { Search } from '../../component/search'
 
 export const WeatherForm = <T extends { id: string, name: string }>(object: any) => {

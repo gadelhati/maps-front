@@ -1,8 +1,8 @@
 import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 import { getPayload } from '../../service/service.token'
 import { Button } from '../template/button/button'
-import '../template/header.css'
-import '../template/inputgroup.css'
+// import '../template/header.css'
+// import '../template/inputgroup.css'
 
 interface IHeader {
     title: string,
