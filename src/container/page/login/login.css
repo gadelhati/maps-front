@@ -25,7 +25,7 @@ article img {
     padding-bottom: 2.5rem;
 }
 article button {
-    margin: 2em;
+    /* margin: 2em; */
 }
 .rotate {
     animation: spin 4s linear infinite;

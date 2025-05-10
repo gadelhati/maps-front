@@ -4,7 +4,7 @@ import { isValidToken } from "./service/service.token"
 import { AuthProvider } from "./assets/hook/useProvider";
 import { Home } from "./container/page/home";
 import { LeafletMap } from "./container/maps/leaflet.map";
-import { Login } from "./container/page/login/login";
+// import { Login } from "./container/page/login/login";
 import { NotAllowed } from "./container/page/not.allowed";
 import { Profile } from "./container/page/profile";
 import { SideList } from "./container/page/side.list";
@@ -38,7 +38,7 @@ import { Noaa } from "./container/data/Noaa";
 import { Gtin } from "./container/page/gtin";
 import { GLogin } from "./container/glogin";
 import { LoginPage } from "./container/g2login";
-import { G3Login } from "./container/g3login";
+import { Login } from "./container/login";
 
 export const ROLE = {
     'ADMIN': 'ADMIN',
@@ -60,9 +60,9 @@ export default function AppRoutes() {
                     <div className='routes main'>
                         <Routes>
                             <Route path="*" element={<Login />}></Route>
-                            <Route path="/thymeleaf" element={<GLogin />}></Route>
-                            <Route path="/g2" element={<LoginPage />}></Route>
-                            <Route path="/g3" element={<G3Login />}></Route>
+                            {/* <Route path="/thymeleaf" element={<GLogin />}></Route> */}
+                            {/* <Route path="/g2" element={<LoginPage />}></Route> */}
+                            <Route path="/g3" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/gtin" element={<Gtin />}></Route>
                             <Route path="/noaa" element={<Noaa />}></Route>
