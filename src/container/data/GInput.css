@@ -61,3 +61,22 @@
     transform: translateX(-50%);
     font-size: 0.8em;
 }
+
+/* .inputGroup input[type="password"] {
+    
+} */
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+.toggle-password:hover {
+    color: #ffffff;
+}
