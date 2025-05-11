@@ -1,11 +1,15 @@
 .inputGroup {
-    /* width: 55rem; */
     padding: .3rem;
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
     position: relative;
     border-radius: .5rem;
     transition: all 0.3s ease;
+}
+
+.inputGroup:focus-within {
+    background-color: #222533;
+    border-color: #00ff99;
 }
 
 .inputGroup input {
@@ -24,17 +28,12 @@
     transition: all 0.3s ease;
 }
 
-.inputGroup input[type="number"] {
-    appearance: textfield;
-}
-
-.inputGroup:focus-within {
-    background-color: #222533;
-    border-color: #00ff99;
-}
-
 .inputGroup input:hover {
     background-color: #222533;
+}
+
+.inputGroup input[type="number"] {
+    appearance: textfield;
 }
 
 .inputGroup i {
@@ -44,27 +43,15 @@
     transition: all 0.3s ease;
 }
 
-.inputGroup label {
+.inputGroup i:first-of-type {
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 10px;
     top: 50%;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    width: max-content;
-    text-align: center;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+    z-index: 1;
 }
-
-.inputGroup input:focus-within+label,
-.inputGroup input:not(:placeholder-shown)+label {
-    top: 1rem;
-    transform: translateX(-50%);
-    font-size: 0.8em;
-}
-
-/* .inputGroup input[type="password"] {
-    
-} */
 
 .toggle-password {
     position: absolute;
@@ -79,4 +66,22 @@
 
 .toggle-password:hover {
     color: #ffffff;
+}
+
+.inputGroup label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    text-align: center;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.inputGroup input:focus-within+label,
+.inputGroup input:not(:placeholder-shown)+label {
+    top: 1rem;
+    transform: translateX(-50%);
+    font-size: 0.8em;
 }
