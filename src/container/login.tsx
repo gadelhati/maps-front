@@ -1,8 +1,43 @@
 import { GInput } from './data/GInput';
 import { GButton } from './data/GButton';
-// import './login.css'
+import { useState, useTransition } from 'react';
+import { useInput } from '../assets/hook/useInput';
+import { login } from '../service/service.crud';
+import { ErrorMessage } from '../assets/error/errorMessage';
+import { initialErrorMessage } from '../assets/error/errorMessage.initial';
+import { initialUserAuth, UserAuth } from '../component/user';
+import { Link } from 'react-router-dom';
+import { createToast, toastDetails } from './page/toast.message';
+import './template/Nova pasta/toast.css'
+// import './template/load.css'
+import './login.css'
 
 export const Login = () => {
+    const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
+    const {state, setState, handleInput} = useInput<UserAuth>(initialUserAuth)
+    const [, startTransition] = useTransition()
+
+    const loginUser = async () => {
+        await login('auth/login', state).then((data: any) => {
+            if(data?.content[0]) startTransition(() => validItem(data!.content[0]))
+        }).catch((error) => { setError(error) })
+    }
+    const validItem = (data: any) => {
+        if (data?.hasOwnProperty('accessToken')) {
+            // setConfirm({ ...confirm, show: !confirm.show })
+            setState(data)
+            setError([initialErrorMessage])
+            refresh()
+            createToast(toastDetails[0])
+        } else {
+            // handleConfirm('')
+            setError(data)
+            createToast(toastDetails[1])
+        }
+    }
+    const refresh = () => {
+        window.location.reload()
+    }
     return (
         <section className="login-container">
             <article className="login-box">
@@ -10,21 +45,25 @@ export const Login = () => {
                     <h2>Bem vindo de volta</h2>
                     <p>Entre com suas credenciais</p>
                 </div>
-                <GInput name='username' resource='fas fa-user' ></GInput>
-                <GInput name='password' resource='fas fa-lock' type='password' ></GInput>
-                <GInput name='totpKey' resource='fas fa-key' ></GInput>
-                <input type="hidden" id="captchaToken" name="captchaToken" />
-                <GButton type="submit" className="submit-button">Entrar</GButton>
+                <form action={loginUser} method="post" id="captchaForm">
+                    <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
+                    <GInput name='password' resource='fas fa-lock' type='password' required value={state.password} onChange={handleInput}></GInput>
+                    <GInput name='totpKey' resource='fas fa-key' required value={state.totpKey} onChange={handleInput}></GInput>
+                    <input type="hidden" id="captchaToken" name="captchaToken" />
+                    <GButton type="submit" className="submit-button" onClick={loginUser}>Entrar</GButton>
+                </form>
                 <div className="login-footer">
-                    <p>Não tem uma conta? <a href="@{/register}">Cadastre-se</a></p>
+                    <p>Não tem uma conta? <Link to="/register">Cadastre-se</Link></p>
                 </div>
                 <div className="login-footer">
-                    <p><a href="@{/resetPassword}">Esqueci minha senha</a></p>
+                    <p><Link to="/resetPassword">Esqueci minha senha</Link></p>
                 </div>
                 <div className="login-footer">
-                    <p><a href="@{/resetTotp}">Esqueci minha semente</a></p>
+                    <p><Link to="/resetTotp">Esqueci minha semente</Link></p>
                 </div>
             </article>
+            {/* {ispending && <div className='load'></div>} */}
+            {JSON.stringify(error)}
         </section>
     )
 }
