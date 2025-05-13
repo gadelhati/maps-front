@@ -12,6 +12,7 @@
     border-color: #00ff99;
 }
 
+/* Estilo padrão para os inputs */
 .inputGroup input {
     width: 100%;
     background: none;
@@ -26,6 +27,42 @@
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
     box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
     transition: all 0.3s ease;
+}
+
+/* Estilo para inputs com autofill */
+.inputGroup input:-webkit-autofill,
+.inputGroup input:-webkit-autofill:hover,
+.inputGroup input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e, 0 0 0 1000px #222533 inset !important;
+    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e, 0 0 0 1000px #222533 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #fff;
+    background-clip: content-box !important;
+}
+
+/* Para navegadores não-WebKit */
+.inputGroup input:autofill,
+.inputGroup input:autofill:hover,
+.inputGroup input:autofill:focus {
+    color: #fff !important;
+    background-color: #222533 !important;
+    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e, 0 0 0 1000px #222533 inset !important;
+    caret-color: #fff;
+}
+
+/* Solução adicional usando animation */
+@keyframes autofill-animation {
+    to {
+        color: #fff;
+        background-color: #222533;
+        box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
+    }
+}
+
+.inputGroup input:-webkit-autofill {
+    animation-name: autofill-animation;
+    animation-fill-mode: both;
 }
 
 .inputGroup input:hover {
