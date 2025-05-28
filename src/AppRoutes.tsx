@@ -39,6 +39,7 @@ import { Gtin } from "./container/page/gtin";
 import { Login } from "./container/login";
 import { Register } from "./container/register";
 import { ViewMap } from "./container/maps/viewMap";
+import LudoBoard from "./container/ludoBoard";
 
 export const ROLE = {
     'ADMIN': 'ADMIN',
@@ -61,6 +62,7 @@ export default function AppRoutes() {
                         <Routes>
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
+                            <Route path="/ludoBoard" element={<LudoBoard />}></Route>
                             <Route path="/viewMap" element={<ViewMap />}></Route>
                             <Route path="/login" element={<Login />}></Route>
                             <Route path="/register" element={<Register />}></Route>
