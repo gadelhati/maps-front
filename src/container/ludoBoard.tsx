@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import './LudoBoard.css';
+import './ludoBoard.css';
 
 export default function LudoBoard() {
     const [rotation, setRotation] = useState(60);
