@@ -1,6 +1,4 @@
-import { useRequest } from "../assets/hook/useRequest"
 import { useInput } from "../assets/hook/useInput"
-import { initialSearch, Search } from "../component/search"
 import './style.css'
 import { login } from "../service/service.crud"
 import { initialUserAuth, UserAuth } from "../component/user"
@@ -10,9 +8,9 @@ import { initialErrorMessage } from "../assets/error/errorMessage.initial"
 
 export const GLogin = () => {
 	// const [state, setState] = useState<UserAuth>(initialUserAuth)
-	const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
+	const [, setError] = useState<ErrorMessage[]>([initialErrorMessage])
 	const { state , setState, handleInput } = useInput<UserAuth>(initialUserAuth)
-	const [ispending, startTransition] = useTransition()
+	const [, startTransition] = useTransition()
 
 	const loginUser = async () => {
 		await login('auth/login', state).then((data) => {
