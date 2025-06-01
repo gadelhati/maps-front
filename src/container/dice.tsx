@@ -9,6 +9,7 @@ type DiceFace = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 export const Dice: React.FC = () => {
     const [rotation, setRotation] = useState({ x: 60, y: 0 });
     const [translateY, setTranslateY] = useState(0);
+    const [translateZ, setTranslateZ] = useState(0);
     const [faceUp, setFaceUp] = useState<DiceFace>(1);
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -22,10 +23,12 @@ export const Dice: React.FC = () => {
         const maxBounces = 4;
 
         let velocityY = 25;
+        let velocityZ = 25;
         const gravity = 1;
-        const bounceDamping = 0.5;
+        const resistance = 0.2;
 
         let posY = 0;
+        let posZ = 0;
 
         let rotX = rotation.x;
         let rotY = rotation.y;
@@ -44,6 +47,11 @@ export const Dice: React.FC = () => {
             posY += velocityY;
             velocityY -= gravity;
 
+            posZ += velocityZ;
+            velocityZ -= resistance;
+
+            if (velocityZ < 0) velocityZ = 0;
+
             if (posY <= 0) {
                 posY = 0;
                 bounces++;
@@ -53,11 +61,12 @@ export const Dice: React.FC = () => {
                     return;
                 }
 
-                velocityY = velocityY * -bounceDamping;
+                velocityY = velocityY * -0.5;
             }
 
             setRotation({ x: rotX, y: rotY });
             setTranslateY(-posY);
+            setTranslateZ(-posZ);
 
             animationRef.current = requestAnimationFrame(animate);
         };
@@ -87,9 +96,9 @@ export const Dice: React.FC = () => {
 
             setFaceUp(result);
             setTranslateY(0);
+            setTranslateZ(0);  // ✅ reseta afastamento
             setIsAnimating(false);
 
-            // Ajuste final: mantemos o mesmo Y e fazemos X += 60
             setRotation({ x: normalizedX + 60, y: normalizedY });
         };
 
@@ -103,12 +112,13 @@ export const Dice: React.FC = () => {
                 style={{
                     transform: `
                         translateY(${translateY}px)
+                        translateZ(${translateZ}px)
                         rotateX(${rotation.x}deg)
                         rotateY(${rotation.y}deg)
                     `,
                     transition: isAnimating ? 'none' : 'transform 0.5s ease-out'
                 }}
-                onClick={throwDice} 
+                onClick={throwDice}
             >
                 <div className="face one">1</div>
                 <div className="face two">2</div>
@@ -117,7 +127,6 @@ export const Dice: React.FC = () => {
                 <div className="face five">5</div>
                 <div className="face six">6</div>
             </div>
-            <div>{JSON.stringify(faceUp)}</div>
             {/* <p>Face up: {faceUp}</p>
             <div>{JSON.stringify(nxa)}</div>
             <div>{JSON.stringify(nya)}</div> */}
