@@ -10,14 +10,12 @@
 .cube {
     width: 100px;
     height: 100px;
+    cursor: pointer;
+    user-select: none;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
     border-radius: 12px;
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.3),
-        inset 0 0 10px rgba(255, 255, 255, 0.3);
-    /* background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%); */
 }
 
 .cube::before {
@@ -77,26 +75,13 @@
     transform: rotateY(180deg) translateZ(50px);
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    background: linear-gradient(135deg, #4caf50, #2e7d32);
-    color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease;
-}
-
 button:hover {
     background: linear-gradient(135deg, #66bb6a, #388e3c);
 }
 
 .ground {
     position: absolute;
-    bottom: 40px; /* Ajuste conforme desejado */
+    bottom: 40px;
     left: 50%;
     transform: 
         translateX(-50%) 
