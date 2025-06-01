@@ -129,7 +129,7 @@ location /<folder> {
 ## Links
 ### API download link
 
-> [https://github.com/gadelhati/maps-back](https://github.com/gadelhati/maps-back)
+> [https://github.com/gadelhati/maps](https://github.com/gadelhati/maps)
 
 ### API running locally
 
