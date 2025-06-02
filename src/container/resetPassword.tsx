@@ -1,40 +1,31 @@
 import { GInput } from './data/GInput';
 import { GButton } from './data/GButton';
-import { useState, useTransition } from 'react';
+import { useTransition } from 'react';
 import { useInput } from '../assets/hook/useInput';
 import { login } from '../service/service.crud';
-import { ErrorMessage, initialErrorMessage } from '../assets/error/errorMessage';
 import { initialUserAuth, UserAuth } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
-// import './template/load.css'
+import './template/toast.css'
 import './login.css'
 
 export const ResetPassword = () => {
-    const [error, setError] = useState<ErrorMessage[]>([initialErrorMessage])
     const {state, setState, handleInput} = useInput<UserAuth>(initialUserAuth)
     const [, startTransition] = useTransition()
 
-    const loginUser = async () => {
-        await login('auth/login', state).then((data: any) => {
-            if(data?.content[0]) startTransition(() => validItem(data!.content[0]))
-        }).catch((error) => { setError(error) })
+    const resetPassword = async () => {
+        await login('user/resetPasssword', state).then((data: any) => {
+            startTransition(() => validItem(data))
+            createToast(toastDetails[1], data)
+        }).catch((error) => {
+            createToast(toastDetails[1], error)
+        })
     }
     const validItem = (data: any) => {
         if (data?.hasOwnProperty('accessToken')) {
-            // setConfirm({ ...confirm, show: !confirm.show })
             setState(data)
-            setError([initialErrorMessage])
-            refresh()
-            createToast(toastDetails[0])
-        } else {
-            // handleConfirm('')
-            setError(data)
-            createToast(toastDetails[1])
+            window.location.reload()
         }
-    }
-    const refresh = () => {
-        window.location.reload()
     }
     return (
         <section className="login-container">
@@ -43,10 +34,10 @@ export const ResetPassword = () => {
                     <h2>Reset de Senha</h2>
                     <p>Entre com seu nome de usuário</p>
                 </div>
-                <form action={loginUser} method="post" id="captchaForm">
+                <form action={resetPassword} id="captchaForm">
                     <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
                     <input type="hidden" id="captchaToken" name="captchaToken" />
-                    <GButton type="submit" className="submit-button" onClick={loginUser}>Entrar</GButton>
+                    <GButton type="submit" className="submit-button" onClick={resetPassword}>Entrar</GButton>
                 </form>
                 <div className="login-footer">
                     <p>Não tem uma conta? <Link to="/register">Cadastre-se</Link></p>
@@ -58,8 +49,6 @@ export const ResetPassword = () => {
                     <p><Link to="/resetTotp">Esqueci minha semente</Link></p>
                 </div>
             </article>
-            {/* {ispending && <div className='load'></div>} */}
-            {JSON.stringify(error)}
         </section>
     )
 }

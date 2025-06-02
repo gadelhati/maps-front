@@ -6,7 +6,7 @@ import { login } from '../service/service.crud';
 import { initialUserAuth, UserAuth } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
-import './template/Nova pasta/toast.css'
+import './template/toast.css'
 import './login.css'
 
 export const Login = () => {

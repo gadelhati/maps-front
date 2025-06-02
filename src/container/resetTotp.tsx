@@ -3,18 +3,18 @@ import { GButton } from './data/GButton';
 import { useTransition } from 'react';
 import { useInput } from '../assets/hook/useInput';
 import { login } from '../service/service.crud';
-import { initialUser, User } from '../component/user';
+import { initialUserAuth, UserAuth } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
 import './template/toast.css'
 import './login.css'
 
-export const Register = () => {
-    const {state, setState, handleInput} = useInput<User>(initialUser)
+export const ResetTotp = () => {
+    const {state, setState, handleInput} = useInput<UserAuth>(initialUserAuth)
     const [, startTransition] = useTransition()
 
-    const register = async () => {
-        await login('user/register', state).then((data: any) => {
+    const resetTotp = async () => {
+        await login('user/resetTotp', state).then((data: any) => {
             startTransition(() => validItem(data))
             createToast(toastDetails[1], data)
         }).catch((error) => {
@@ -31,22 +31,19 @@ export const Register = () => {
         <section className="login-container">
             <article className="login-box">
                 <div className="login-header">
-                    <h2>Bem vindo</h2>
-                    <p>Crie sua conta</p>
+                    <h2>Reset de Semente</h2>
+                    <p>Entre com seu nome de usuário</p>
                 </div>
-                <form action={register} id="captchaForm">
+                <form action={resetTotp} id="captchaForm">
                     <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
-                    <GInput name='email' resource='fas fa-envelope' required value={state.email} onChange={handleInput}></GInput>
-                    <GInput name='password' resource='fas fa-lock' type='password' required value={state.password} onChange={handleInput}></GInput>
-					{/* <GInput name='password' resource='fas fa-lock' type='password' required value={state.password} onChange={handleInput}></GInput> */}
                     <input type="hidden" id="captchaToken" name="captchaToken" />
-                    <GButton type="submit" className="submit-button" onClick={register}>Entrar</GButton>
+                    <GButton type="submit" className="submit-button" onClick={resetTotp}>Entrar</GButton>
                 </form>
                 <div className="login-footer">
-                    <p>Entrar com minha conta? <Link to="/login">Entra</Link></p>
+                    <p>Não tem uma conta? <Link to="/register">Cadastre-se</Link></p>
                 </div>
                 <div className="login-footer">
-                    <p><Link to="/resetPassword">Esqueci minha senha</Link></p>
+                    <p><Link to="/login">Faça login na sua conta</Link></p>
                 </div>
                 <div className="login-footer">
                     <p><Link to="/resetTotp">Esqueci minha semente</Link></p>

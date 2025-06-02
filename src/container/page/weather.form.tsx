@@ -6,7 +6,6 @@ import { AtributeSet } from './generic.atribute'
 import { Atribute } from '../../component/atribute'
 import { initialResponse, Response } from '../../component/response'
 import { ErrorBoundary } from 'react-error-boundary'
-import { createToast, toastDetails } from './toast.message'
 import { SubAtributeSet } from '../../assets/hook/useAtribute'
 import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 // import { PDFDownloadLink } from '@react-pdf/renderer'
@@ -79,11 +78,6 @@ export const WeatherForm = <T extends { id: string, name: string }>(object: any)
         if (data?.hasOwnProperty('id') || data?.hasOwnProperty('ii') && data?.hasOwnProperty('iii') || data?.hasOwnProperty('ddddddd') || data?.hasOwnProperty('name') && data?.hasOwnProperty('number')) {
             setConfirm({ ...confirm, show: !confirm.show })
             retrieveItem()
-            createToast(toastDetails[0])
-        } else {
-            handleConfirm('')
-            startTransition(() => setError(data))
-            createToast(toastDetails[1])
         }
     }
     const networkError = () => {
