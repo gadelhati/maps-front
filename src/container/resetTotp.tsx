@@ -46,7 +46,7 @@ export const ResetTotp = () => {
                     <p><Link to="/login">Faça login na sua conta</Link></p>
                 </div>
                 <div className="login-footer">
-                    <p><Link to="/resetTotp">Esqueci minha semente</Link></p>
+                    <p><Link to="/resetPassword">Esqueci minha senha</Link></p>
                 </div>
             </article>
         </section>
