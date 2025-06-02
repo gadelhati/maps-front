@@ -1,36 +1,28 @@
-import { ErrorMessage, initialErrorMessage } from "../../assets/error/errorMessage"
+import { ErrorMessage } from "../../assets/error/errorMessage"
 
 interface ToastDetails {
     name: string,
     icon: string,
-    title: string,
-    text: string,
+    title?: string,
+    text?: string,
 }
 
 export const toastDetails : ToastDetails[] = [
     {
         name: 'success',
-        icon: '&#10004;',
-        title: 'Success',
-        text: 'This is a success toast.',
+        icon: '&#10004;'
     },
     {
         name: 'error',
-        icon: '&#10008;',
-        title: 'Error',
-        text: 'This is an error toast.',
+        icon: '&#10008;'
     },
     {
         name: 'warning',
-        icon: '&#9888;',
-        title: 'Warning',
-        text: 'This is a warning toast.',
+        icon: '&#9888;'
     },
     {
         name: 'info',
-        icon: '&#8505;',
-        title: 'Info',
-        text: 'This is an information toast.',
+        icon: '&#8505;'
     }
 ]
 
@@ -40,19 +32,15 @@ const removeToast = (toast: any) => {
     setTimeout(() => toast.remove(), 500)
 }
 
-export const createToast = (classe: ToastDetails, error: ErrorMessage[]) => {
-    // if (error[0]!.message === '') {
-    //     return;
-    // }
+export const createToast = (classe: ToastDetails, errors: ErrorMessage[]) => {
     const notifications = document.querySelector(".notifications");
-    error.forEach(err => {
+    errors.forEach(error => {
         const toast = document.createElement("li");
         toast.className = `toast ${classe.name}`;
         toast.innerHTML = `<div class="column">
-                             <i>${err.field}</i>
-                             <p>${err.message}</p>
+                             <i>${error.field}</i>
+                             <p>${error.message}</p>
                            </div>`;
-
         notifications?.appendChild(toast);
         setTimeout(() => removeToast(toast), 4000);
     });
