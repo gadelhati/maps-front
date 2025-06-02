@@ -19,7 +19,7 @@ export const Login = () => {
 
     const loginUser = async () => {
         await login('auth/login', state).then((data: any) => {
-            if(data?.content[0]) startTransition(() => validItem(data!.content[0]))
+            startTransition(() => validItem(data))
         }).catch((error) => { setError(error) })
     }
     const validItem = (data: any) => {
