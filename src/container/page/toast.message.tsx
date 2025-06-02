@@ -1,3 +1,5 @@
+import { ErrorMessage, initialErrorMessage } from "../../assets/error/errorMessage"
+
 interface ToastDetails {
     name: string,
     icon: string,
@@ -38,15 +40,20 @@ const removeToast = (toast: any) => {
     setTimeout(() => toast.remove(), 500)
 }
 
-export const createToast = (classe: ToastDetails) => {
-    const notifications = document.querySelector(".notifications")
-    const toast = document.createElement("li");
-    toast.className = `toast ${classe.name}`;
-    toast.innerHTML = `<div class="column">
-                         <i>${classe.icon}</i>                     
-                         <i>${classe.title}</i>
-                         <p>${classe.text}</p>
-                      </div>`;
-    notifications?.appendChild(toast);
-    setTimeout(()=> removeToast(toast), 4000)
+export const createToast = (classe: ToastDetails, error: ErrorMessage[]) => {
+    // if (error[0]!.message === '') {
+    //     return;
+    // }
+    const notifications = document.querySelector(".notifications");
+    error.forEach(err => {
+        const toast = document.createElement("li");
+        toast.className = `toast ${classe.name}`;
+        toast.innerHTML = `<div class="column">
+                             <i>${err.field}</i>
+                             <p>${err.message}</p>
+                           </div>`;
+
+        notifications?.appendChild(toast);
+        setTimeout(() => removeToast(toast), 4000);
+    });
 }

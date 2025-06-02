@@ -3,12 +3,10 @@ import { GButton } from './data/GButton';
 import { useState, useTransition } from 'react';
 import { useInput } from '../assets/hook/useInput';
 import { login } from '../service/service.crud';
-import { ErrorMessage } from '../assets/error/errorMessage';
-import { initialErrorMessage } from '../assets/error/errorMessage.initial';
+import { ErrorMessage, initialErrorMessage } from '../assets/error/errorMessage';
 import { initialUser, User } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
-import './template/Nova pasta/toast.css'
 // import './template/load.css'
 import './login.css'
 

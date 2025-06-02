@@ -8,7 +8,6 @@ import { QRCodeSVG } from "qrcode.react"
 import { Identifiable } from "../../component/identifiable"
 import { useInput } from "../../assets/hook/useInput"
 // import { createToast, toastDetails } from '../page/toast.message'
-// import '../template/toast.css'
 
 export interface DataTableContent<T extends Object, V extends Object> {
     url: string,

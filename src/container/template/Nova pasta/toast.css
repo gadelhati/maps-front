@@ -1,104 +1,73 @@
-ul {
-    z-index: 1;
+.notifications {
     position: fixed;
-    top: 30px;
+    top: 20px;
     right: 20px;
-}
-ul:where(li, .column) {
-    display: flex;
-    align-items: center;
-}
-ul .success {
-    border: var(--color-fourteenth) solid 0.1rem;
-    border-left: var(--color-fourteenth) solid 1rem;
-}
-ul .success :before {
-    background: var(--color-fourteenth);
-}
-ul .success .column i {
-    color: var(--color-fourteenth);
-}
-ul .error {
-    border: red solid 0.1rem;
-    border-left: red solid 1rem;
-}
-ul .error :before {
-    background: var(--color-seventeenth);
-}
-ul .error .column i {
-    color: var(--color-seventeenth);
-}
-ul .warning {
-    border: var(--color-nineteenth) solid 0.1rem;
-    border-left: var(--color-nineteenth) solid 1rem;
-}
-ul .warning :before {
-    background: var(--color-nineteenth);
-}
-ul .warning .column i {
-    color: var(--color-nineteenth);
-}
-ul .info {
-    border: var(--color-twentieth) solid 0.1rem;
-    border-left: var(--color-twentieth) solid 1rem;
-}
-ul .info :before {
-    background: var(--color-twentieth);
-}
-ul .info .column i {
-    color: var(--color-twentieth);
-}
-ul .hide {
-    animation: hide_toast 0.3s ease forwards;
-}
-ul .column i {
-    font-size: var(--color-lg);
-}
-ul .column span {
-    font-size: var(--color-rg);
-    margin-left: 12px;
-}
-ul i:last-child {
-    color: #aeb0d7;
-    cursor: pointer;
-}
-ul i:last-child:hover {
-    color: var(--color-twelfth);
-}
-ul li {
-    width: 400px;
-    position: relative;
-    overflow: hidden;
     list-style: none;
-    border-radius: .3rem;
-    padding: 16px 17px;
-    margin-bottom: 10px;
-    background: var(--color-tenth);
-    justify-content: space-between;
-    animation: show_toast 0.3s ease forwards;
-}
-ul li :before {
-    position: absolute;
-    content: "";
-    height: 3px;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    animation: progress 5s linear forwards;
+    padding: 0;
+    margin: 0;
+    z-index: 9999;
 }
 
-@keyframes show_toast {
-    0% { transform: translateX(100%), }
-    40% { transform: translateX(-5%), }
-    80% { transform: translateX(0%), }
-    100% { transform: translateX(-10px), }
+.toast {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    animation: fadeIn 0.8s ease forwards;
+    transition: transform 0.3s ease, opacity 0.5s ease;
 }
-@keyframes hide_toast {
-    0% { transform: translateX(-10px), }
-    40% { transform: translateX(0%), }
-    80% { transform: translateX(-5%), }
-    100% { transform: translateX(calc(100% + 20px)), }
+
+.toast.hide {
+    opacity: 0;
+    transform: translateX(100%);
 }
-@keyframes progress {
-    100% { width: 0%, }
+
+.toast .column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.toast i {
+    font-size: 20px;
+}
+
+.toast p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Tipos de toast */
+.toast.success {
+    border-left: 5px solid #6a11cb;
+}
+
+.toast.error {
+    border-left: 5px solid #ff4d4f;
+}
+
+.toast.warning {
+    border-left: 5px solid #faad14;
+}
+
+.toast.info {
+    border-left: 5px solid #1890ff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

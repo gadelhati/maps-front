@@ -102,6 +102,7 @@ export default function AppRoutes() {
                         </Routes>
                     </div>
                 </div>
+                <div className="notifications"></div>
             </AuthProvider>
         </BrowserRouter>
     )

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { ErrorMessage } from "../error/errorMessage"
-import { initialErrorMessage } from "../error/errorMessage.initial"
+import { ErrorMessage, initialErrorMessage } from "../error/errorMessage"
 import { initialResponse, Response } from "../../component/response"
 import { api } from "../api/api"
 import { Search } from "../../component/search"

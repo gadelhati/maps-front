@@ -4,7 +4,7 @@ import { login } from "../service/service.crud"
 import { initialUserAuth, UserAuth } from "../component/user"
 import { ErrorMessage } from "../assets/error/errorMessage"
 import { useState, useTransition } from "react"
-import { initialErrorMessage } from "../assets/error/errorMessage.initial"
+import { initialErrorMessage } from "../assets/error/errorMessage"
 
 export const GLogin = () => {
 	// const [state, setState] = useState<UserAuth>(initialUserAuth)

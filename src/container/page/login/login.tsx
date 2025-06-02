@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, useTransition, useEffect, KeyboardEvent } from 'react'
 import { UserAuth, initialUserAuth } from "../../../component/user"
-import { ErrorMessage } from '../../../assets/error/errorMessage'
-import { initialErrorMessage } from '../../../assets/error/errorMessage.initial'
+import { ErrorMessage, initialErrorMessage } from '../../../assets/error/errorMessage'
 import { login, retrieve } from '../../../service/service.crud'
 import { Button } from '../../template/button/button';
 import { logout } from '../../../service/service.crud'
@@ -11,7 +10,6 @@ import { Home } from '../home'
 // import '../../page/login/login.css'
 // import '../../template/input/input.css'
 // import '../../template/tooltip.css'
-// import '../../template/toast.css'
 import { Search } from '../../../component/search'
 
 export const Login = () => {

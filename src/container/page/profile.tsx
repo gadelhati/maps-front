@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, useTransition, useEffect } from 'react'
 import { User, initialUser } from "../../component/user"
-import { ErrorMessage } from '../../assets/error/errorMessage'
-import { initialErrorMessage } from '../../assets/error/errorMessage.initial'
+import { ErrorMessage, initialErrorMessage } from '../../assets/error/errorMessage'
 import { changePassword, retrieve } from '../../service/service.crud'
 import { Button } from '../template/button/button'
 import { logout } from '../../service/service.crud'
