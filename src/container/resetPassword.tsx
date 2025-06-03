@@ -29,7 +29,7 @@ export const ResetPassword = () => {
                     e.preventDefault();
                     resetPassword(); 
                 }} id="captchaForm">
-                    <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
+                    <GInput name='username' resource='fas fa-user' value={state.username} onChange={handleInput}></GInput>
                     <input type="hidden" id="captchaToken" name="captchaToken" />
                     <GButton type="submit" className="submit-button">Entrar</GButton>
                 </form>

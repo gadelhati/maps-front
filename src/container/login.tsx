@@ -36,9 +36,9 @@ export const Login = () => {
                     e.preventDefault();
                     loginUser(); 
                 }} id="captchaForm">
-                    <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
-                    <GInput name='password' resource='fas fa-lock' type='password' required value={state.password} onChange={handleInput}></GInput>
-                    <GInput name='totpKey' resource='fas fa-key' required value={state.totpKey} onChange={handleInput}></GInput>
+                    <GInput name='username' resource='fas fa-user' value={state.username} onChange={handleInput}></GInput>
+                    <GInput name='password' resource='fas fa-lock' type='password' value={state.password} onChange={handleInput}></GInput>
+                    <GInput name='totpKey' resource='fas fa-key' value={state.totpKey} onChange={handleInput}></GInput>
                     <input type="hidden" id="captchaToken" name="captchaToken" />
                     <GButton type="submit" className="submit-button">Entrar</GButton>
                 </form>
