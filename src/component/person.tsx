@@ -1,9 +1,9 @@
 import { Address } from "./address";
 import { initialCountry } from "./country";
 import { Country } from "./country";
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 
-export interface Person extends Hateoas {
+export interface Person extends Identifiable {
     readonly id: string,
     name: string,
     birth: Date,
@@ -32,16 +32,13 @@ export const initialPersonValidation: PersonValidation = {
 }
 export const initialPerson: Person = {
     id: '',
+    links: initialHateoas,
     name: '',
     birth: new Date(),
     email: '',
     telephone: [],
     country: initialCountry,
     address: [],
-	links: {
-        rel: '',
-        href: '',
-    },
 }
 
 export interface NaturalPerson extends Person {
@@ -51,6 +48,7 @@ export interface NaturalPerson extends Person {
 
 export const initialNaturalPerson: NaturalPerson = {
     id: '',
+    links: initialHateoas,
     name: '',
     birth: new Date(),
     email: '',
@@ -59,10 +57,6 @@ export const initialNaturalPerson: NaturalPerson = {
     address: [],
     cpf: '',
     rg: '',
-    links: {
-        rel: '',
-        href: '',
-    },
 }
 
 export interface LegalEntity extends Person {
@@ -71,6 +65,7 @@ export interface LegalEntity extends Person {
 
 export const initialLegalEntity: LegalEntity = {
     id: '',
+    links: initialHateoas,
     name: '',
     birth: new Date(),
     email: '',
@@ -78,8 +73,4 @@ export const initialLegalEntity: LegalEntity = {
     country: initialCountry,
     address: [],
     cnpj: '',
-    links: {
-        rel: '',
-        href: '',
-    },
 }

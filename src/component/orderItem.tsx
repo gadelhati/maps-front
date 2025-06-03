@@ -1,7 +1,7 @@
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialItem, Item } from "./item";
 
-export interface OrderItem extends Hateoas {
+export interface OrderItem extends Identifiable {
     readonly id: string,
     unitPrice: number,
     discount: number,
@@ -27,13 +27,10 @@ export const initialOrderItemValidation: OrderItemValidation = {
 }
 export const initialOrderItem : OrderItem = {
     id: '',
+    links: initialHateoas,
     unitPrice: 0,
     discount: 0,
     quantity: 0,
     totalCost: 0,
     item: initialItem,
-	links: {
-        rel: '',
-        href: '',
-    },
 }

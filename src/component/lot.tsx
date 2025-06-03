@@ -1,6 +1,6 @@
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 
-export interface Lot extends Hateoas {
+export interface Lot extends Identifiable {
     readonly id: string,
     number: string,
     manufacturing: Date,
@@ -20,11 +20,8 @@ export const initialLotValidation: LotValidation = {
 }
 export const initialLot: Lot = {
     id: '',
+    links: initialHateoas,
     number: '',
     manufacturing: new Date(),
     overdue: new Date(),
-	links: {
-        rel: '',
-        href: '',
-    },
 }

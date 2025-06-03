@@ -2,10 +2,9 @@ import { initialPoint } from "./point";
 import { ChartArea } from "./chartArea";
 import { Point } from "./point";
 import { State } from "./state";
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 
-export interface GaugeStation extends Hateoas {
-    readonly id: string,
+export interface GaugeStation extends Identifiable {
     number: number,
     title: string,
     point: Point,
@@ -30,13 +29,10 @@ export const initialGaugeStationValidation: GaugeStationValidation = {
 }
 export const initialGaugeStation : GaugeStation = {
     id: '',
+    links: initialHateoas,
     number: 0,
     title: '',
     point: initialPoint,
     state: undefined,
     chartArea: undefined,
-	links: {
-        rel: '',
-        href: '',
-    },
 }

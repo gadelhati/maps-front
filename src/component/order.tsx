@@ -1,9 +1,9 @@
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialOrderItem, OrderItem } from "./orderItem";
 import { initialPerson, Person } from "./person";
 import { initialStock, Stock } from "./stock";
 
-export interface Order extends Hateoas {
+export interface Order extends Identifiable {
     readonly id: string,
     category: string,
     totalCost: number,
@@ -29,15 +29,12 @@ export const initialOrderValidation: OrderValidation = {
 }
 export const initialOrder: Order = {
     id: '',
+    links: initialHateoas,
     category: '',
     totalCost: 0,
     orderItem: [initialOrderItem],
     stock: initialStock,
     person: initialPerson,
-	links: {
-        rel: '',
-        href: '',
-    },
 }
 
 export interface OrderTranfer extends Order {
@@ -49,6 +46,7 @@ export interface OrderTranfer extends Order {
 
 export const initialOrderTransfer: OrderTranfer = {
     id: '',
+    links: initialHateoas,
     category: '',
     totalCost: 0,
     orderItem: [initialOrderItem],
@@ -57,8 +55,4 @@ export const initialOrderTransfer: OrderTranfer = {
     starts: new Date(),
     finish: new Date(),
     // stock: initialStock,
-    links: {
-        rel: '',
-        href: '',
-    },
 }

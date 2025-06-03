@@ -1,9 +1,9 @@
 import { ChartArea, initialChartArea } from "./chartArea"
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 import { initialPoint, Point } from "./point"
 import { initialState, State } from "./state"
 
-export interface BlindSignal extends Hateoas {
+export interface BlindSignal extends Identifiable {
     readonly id: string,
     name: string,
     chart: string,
@@ -35,6 +35,7 @@ export const initialBlindSignalValidation: BlindSignalValidation = {
 }
 export const initialBlindSignal : BlindSignal = {
     id: '',
+    links: initialHateoas,
     name: '',
     chart: '',
     point: initialPoint,
@@ -42,8 +43,4 @@ export const initialBlindSignal : BlindSignal = {
     observation: '',
     chartArea: initialChartArea,
     state: initialState,
-    links: {
-        rel: '',
-        href: '',
-    },
 }

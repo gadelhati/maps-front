@@ -1,9 +1,9 @@
 import { ChartArea, initialChartArea } from "./chartArea";
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialPoint } from "./point";
 import { Point } from "./point";
 
-export interface Chart extends Hateoas {
+export interface Chart extends Identifiable {
     readonly id: string,
     number: number,
     title: string,
@@ -35,6 +35,7 @@ export const initialChartValidation: ChartValidation = {
 }
 export const initialChart : Chart = {
     id: '',
+    links: initialHateoas,
     number: 0,
     title: '',
     scale: 0,
@@ -42,8 +43,4 @@ export const initialChart : Chart = {
     ne: initialPoint,
     sw: initialPoint,
     chartArea: initialChartArea,
-    links: {
-        rel: '',
-        href: '',
-    },
 }

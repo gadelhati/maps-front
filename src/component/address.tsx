@@ -1,7 +1,8 @@
 import { initialCity } from "./city";
 import { City } from "./city";
+import { Identifiable, initialHateoas } from "./identifiable";
 
-export interface Address {
+export interface Address extends Identifiable {
     readonly id: string,
     cepNumber: string,
     cepCategory: string,
@@ -36,6 +37,7 @@ export const initialAddressValidation: AddressValidation = {
 }
 export const initialAddress: Address = {
     id: '',
+    links: initialHateoas,
     cepNumber: '',
     cepCategory: '',
     cepSubCategory: '',

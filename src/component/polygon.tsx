@@ -1,6 +1,6 @@
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 
-export interface Polygon extends Hateoas {
+export interface Polygon extends Identifiable {
     readonly id: string,
     type: string,
     coordinates: L.LatLngExpression[][],
@@ -17,10 +17,7 @@ export const initialPolygonValidation: PolygonValidation = {
 }
 export const initialPolygon : Polygon = {
     id: '',
+    links: initialHateoas,
     type: '',
     coordinates: [],
-	links: {
-        rel: '',
-        href: '',
-    },
 }

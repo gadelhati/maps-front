@@ -1,7 +1,7 @@
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 import { initialPrivilege, Privilege } from "./privilege"
 
-export interface Role extends Hateoas {
+export interface Role extends Identifiable {
     readonly id: string,
     name: string,
     privilege: Privilege[]
@@ -18,10 +18,7 @@ export const initialRoleValidation: RoleValidation = {
 }
 export const initialRole: Role = {
     id: '',
+    links: initialHateoas,
     name: '',
     privilege: [initialPrivilege],
-    links: {
-        rel: '',
-        href: '',
-    },
 }

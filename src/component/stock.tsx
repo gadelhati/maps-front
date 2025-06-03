@@ -1,8 +1,7 @@
 // import { initialOrder, Order } from "./order";
+import { Identifiable, initialHateoas } from "./identifiable"
 
-import { Hateoas } from "./hetoas"
-
-export interface Stock extends Hateoas {
+export interface Stock extends Identifiable {
     readonly id: string,
     maximumBulk: number,
     currentBulk: number,
@@ -23,12 +22,9 @@ export const initialStockValidation: StockValidation = {
 }
 export const initialStock: Stock = {
     id: '',
+    links: initialHateoas,
     maximumBulk: 0,
     currentBulk: 0,
     order: [],
     // order: [initialOrder],
-	links: {
-        rel: '',
-        href: '',
-    },
 }

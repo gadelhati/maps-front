@@ -11,12 +11,12 @@ import { removeToken, setToken } from "./service.token"
 
 const addError = (error: any):ErrorMessage[] => {
     let errorMessage: ErrorMessage[] = []
-    if (error.response.data.errors !== undefined){
-        error.response.data?.errors?.forEach((element: ErrorMessage) => {
+    if (error.response.data.validationErrors !== undefined){
+        error.response.data?.validationErrors?.forEach((element: ErrorMessage) => {
             errorMessage.push({ field: element.field, message: element.message })
         })
     } else {
-        errorMessage.push({ field: 'DTO', message: 'Unauthorized' })
+        errorMessage.push({ field: 'Error', message: 'Internal Error' })
     }
     return errorMessage
 }

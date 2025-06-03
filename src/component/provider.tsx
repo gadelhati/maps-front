@@ -1,4 +1,5 @@
 import { initialCountry } from "./country";
+import { initialHateoas } from "./identifiable";
 import { LegalEntity } from "./person";
 import { initialStock, Stock } from "./stock";
 
@@ -34,6 +35,7 @@ export const initialProviderValidation: ProviderValidation = {
 }
 export const initialProvider: Provider = {
     id: '',
+    links: initialHateoas,
     name: '',
     birth: new Date(),
     email: '',
@@ -48,8 +50,4 @@ export const initialProvider: Provider = {
     flexibility: 0,
     service: 0,
     stock: initialStock,
-	links: {
-        rel: '',
-        href: '',
-    },
 }

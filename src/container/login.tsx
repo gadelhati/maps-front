@@ -1,6 +1,5 @@
 import { GInput } from './data/GInput';
 import { GButton } from './data/GButton';
-import { useTransition } from 'react';
 import { useInput } from '../assets/hook/useInput';
 import { login } from '../service/service.crud';
 import { initialUserAuth, UserAuth } from '../component/user';
@@ -11,11 +10,10 @@ import './login.css'
 
 export const Login = () => {
     const {state, setState, handleInput} = useInput<UserAuth>(initialUserAuth)
-    const [, startTransition] = useTransition()
 
     const loginUser = async () => {
         await login('auth/login', state).then((data: any) => {
-            startTransition(() => validItem(data))
+            validItem(data)
             createToast(toastDetails[1], data)
         }).catch((error) => {
             createToast(toastDetails[1], error)
@@ -34,12 +32,15 @@ export const Login = () => {
                     <h2>Bem vindo de volta</h2>
                     <p>Entre com suas credenciais</p>
                 </div>
-                <form action={loginUser} id="captchaForm">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    loginUser(); 
+                }} id="captchaForm">
                     <GInput name='username' resource='fas fa-user' required value={state.username} onChange={handleInput}></GInput>
                     <GInput name='password' resource='fas fa-lock' type='password' required value={state.password} onChange={handleInput}></GInput>
                     <GInput name='totpKey' resource='fas fa-key' required value={state.totpKey} onChange={handleInput}></GInput>
                     <input type="hidden" id="captchaToken" name="captchaToken" />
-                    <GButton type="submit" className="submit-button" onClick={loginUser}>Entrar</GButton>
+                    <GButton type="submit" className="submit-button">Entrar</GButton>
                 </form>
                 <div className="login-footer">
                     <p>Não tem uma conta? <Link to="/register">Cadastre-se</Link></p>

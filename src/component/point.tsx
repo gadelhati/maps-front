@@ -1,6 +1,6 @@
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 
-export interface Point extends Hateoas {
+export interface Point extends Identifiable {
     readonly id: string,
     type: string,
     coordinates: [number, number],
@@ -17,10 +17,7 @@ export const initialPointValidation: PointValidation = {
 }
 export const initialPoint : Point = {
     id: '',
+    links: initialHateoas,
     type: '',
     coordinates: [0, 0],
-	links: {
-        rel: '',
-        href: '',
-    },
 }

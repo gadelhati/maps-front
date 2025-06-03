@@ -1,7 +1,7 @@
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialLot, Lot } from "./lot";
 
-export interface Item extends Hateoas {
+export interface Item extends Identifiable {
     readonly id: string,
     sku: string,
     gtin: string,
@@ -69,6 +69,7 @@ export const initialItemValidation: ItemValidation = {
 }
 export const initialItem: Item = {
     id: '',
+    links: initialHateoas,
     sku: '',
     gtin: '',
     ncm: '',
@@ -88,8 +89,4 @@ export const initialItem: Item = {
     netWeight: 0,
     url: '',
     lot: initialLot,
-	links: {
-        rel: '',
-        href: '',
-    },
 }

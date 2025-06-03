@@ -1,8 +1,8 @@
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialPolygon } from "./polygon";
 import { Polygon } from "./polygon";
 
-export interface MaritimeArea extends Hateoas {
+export interface MaritimeArea extends Identifiable {
     readonly id: string,
     code: string,
     name: string,
@@ -31,14 +31,11 @@ export const initialMaritimeAreaValidation: MaritimeAreaValidation = {
 }
 export const initialMaritimeArea : MaritimeArea = {
     id: '',
+    links: initialHateoas,
     code: '',
     name: '',
     start: '',
     finish: '',
     polygon: initialPolygon,
     multiPolygon: '',
-	links: {
-        rel: '',
-        href: '',
-    },
 }

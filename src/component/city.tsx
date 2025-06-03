@@ -1,7 +1,7 @@
-import { Hateoas } from "./hetoas";
+import { Identifiable, initialHateoas } from "./identifiable";
 import { initialState, State } from "./state";
 
-export interface City extends Hateoas {
+export interface City extends Identifiable {
     readonly id: string,
     code: string,
     name: string,
@@ -21,11 +21,8 @@ export const initialCityValidation: CityValidation = {
 }
 export const initialCity : City = {
     id: '',
+    links: initialHateoas,
     code: '',
     name: '',
     state: initialState,
-	links: {
-        rel: '',
-        href: '',
-    },
 }

@@ -1,6 +1,6 @@
-import { Hateoas } from "./hetoas"
+import { Identifiable, initialHateoas } from "./identifiable"
 
-export interface ChartArea extends Hateoas {
+export interface ChartArea extends Identifiable {
     readonly id: string,
     name: string,
 }
@@ -14,9 +14,6 @@ export const initialChartAreaValidation: ChartAreaValidation = {
 }
 export const initialChartArea : ChartArea = {
     id: '',
+    links: initialHateoas,
     name: '',
-    links: {
-        rel: '',
-        href: '',
-    },
 }
