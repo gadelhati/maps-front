@@ -20,11 +20,11 @@ aside {
     /* background-blend-mode: multiply; */
 }
 
-/* aside {
+aside {
     position: absolute;
     left: 0%;
     z-index: 1;
-} */
+}
 aside:hover {
     width: 256px;
 }

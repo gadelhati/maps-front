@@ -19,7 +19,6 @@ import { initialMaritimeArea, initialMaritimeAreaValidation } from "./component/
 import { initialRole, initialRoleValidation } from "./component/role";
 import { initialState, initialStateValidation } from "./component/state";
 import { initialUser, initialUserValidation } from "./component/user";
-// import './container/template/routes.css'
 import { initialStock, initialStockValidation } from "./component/stock";
 import { initialPerson, initialPersonValidation } from "./component/person";
 import { initialItem, initialItemValidation } from "./component/item";
@@ -41,6 +40,7 @@ import { Register } from "./container/register";
 import { ViewMap } from "./container/maps/viewMap";
 import { ResetPassword } from "./container/resetPassword";
 import { ResetTotp } from "./container/resetTotp";
+import './container/template/routes.css'
 
 export const ROLE = {
     'ADMIN': 'ADMIN',

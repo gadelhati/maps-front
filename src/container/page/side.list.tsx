@@ -3,7 +3,7 @@ import { Icon } from '../../assets/hook/useSvg'
 import { UriToScreenFormat } from '../../assets/hook/useUriFormat'
 import { logout } from '../../service/service.crud'
 import { vector } from '../data/menu'
-// import '../template/sidebar.css'
+import '../template/sidebar.css'
 
 export const SideList = () => {
   const [collapsible, setCollapsible] = useState(true)

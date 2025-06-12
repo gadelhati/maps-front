@@ -6,7 +6,7 @@ import { initialUserAuth, UserAuth } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
 import './template/toast.css'
-import './login.css'
+import './template/login.css'
 
 export const ResetTotp = () => {
     const {state, handleInput} = useInput<UserAuth>(initialUserAuth)
