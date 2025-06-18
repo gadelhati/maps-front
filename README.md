@@ -15,7 +15,7 @@
 |`visual studio code` |  IDE   |VSCodeUserSetup-x64-1.89.0	|https://code.visualstudio.com/docs
 
 ## Description
-Georeferenced information.
+A versatile platform designed for the consolidation of georeferenced data, enabling its use in spatial analysis, monitoring, decision-making, and real-time interdisciplinary applications.
 
 ![Alt Print 001](https://github.com/gadelhati/maps-front/blob/main/src/assets/image/print/print_001.png "Print 001")
 ![Alt Print 002](https://github.com/gadelhati/maps-front/blob/main/src/assets/image/print/print_002.png "Print 002")
