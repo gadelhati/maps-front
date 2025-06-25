@@ -2,9 +2,22 @@
 
 ![github](https://img.shields.io/github/stars/gadelhati/maps-front "Github")
 ![github all releases](https://img.shields.io/github/downloads/gadelhati/maps-front/total?label=Downloads&style=social)
-![typescript](https://img.shields.io/badge/typescript-5.4.5-0076c6 "Typescript")
-![node](https://img.shields.io/badge/node-20.12.2-75AC64 "Node")
-![vscode](https://img.shields.io/badge/vscode-1.89-1E97E8 "Visual Studio Code")
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-blue?logo=postgresql)
+![Python](https://img.shields.io/badge/Python-3.13.5-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115.13-009688?logo=fastapi)
+
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-2024.1.2-000000?logo=intellijidea)
+![Java](https://img.shields.io/badge/Java-17-blue?logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen?logo=springboot)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-6.2.2-brightgreen?logo=spring)
+
+![VS Code](https://img.shields.io/badge/VS%20Code-1.90.0-007ACC?logo=visualstudiocode)
+![Node.js](https://img.shields.io/badge/Node.js-22.17-339933?logo=node.js)
+![npm](https://img.shields.io/badge/npm-10.9.2-CB3837?logo=npm)
+![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?logo=vite)
+![React](https://img.shields.io/badge/React-19.1-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue?logo=typescript)
 
 ### Necessary Tech stack:
 
