@@ -30,6 +30,15 @@ export const login = async<Auth,>(url: string, object: Auth) => {
         .catch(error => { return addError(error) })
 }
 
+export const reset = async<Auth,>(url: string, object: Auth) => {
+    return await api.put<Auth>(url, object)
+        .then(response => {
+            setToken(response.data)
+            return response.data
+        })
+        .catch(error => { return addError(error) })
+}
+
 export const logout = () => {
     removeToken()
 }

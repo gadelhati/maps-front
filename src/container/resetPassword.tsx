@@ -1,7 +1,7 @@
 import { GInput } from './data/GInput';
 import { GButton } from './data/GButton';
 import { useInput } from '../assets/hook/useInput';
-import { login } from '../service/service.crud';
+import { reset } from '../service/service.crud';
 import { initialUserAuth, UserAuth } from '../component/user';
 import { Link } from 'react-router-dom';
 import { createToast, toastDetails } from './page/toast.message';
@@ -12,7 +12,7 @@ export const ResetPassword = () => {
     const {state, handleInput} = useInput<UserAuth>(initialUserAuth)
 
     const resetPassword = async () => {
-        await login('user/resetPasssword', state).then((data: any) => {
+        await reset('user/resetPassword', state).then((data: any) => {
             createToast(toastDetails[1], data)
         }).catch((error) => {
             createToast(toastDetails[1], error)
