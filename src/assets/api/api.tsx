@@ -15,7 +15,7 @@ export const apiNOAA = axios.create({
 });
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE,
+  baseURL: import.meta.env.VITE_API_RENDER,
   headers: { 'content-type': 'application/json' }
 });
 
