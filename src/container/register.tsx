@@ -27,7 +27,7 @@ export const Register = () => {
                 </div>
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    register(); 
+                    register();
                 }} id="captchaForm">
                     <GInput name='username' resource='fas fa-user' value={state.username} onChange={handleInput}></GInput>
                     <GInput name='email' resource='fas fa-envelope' value={state.email} onChange={handleInput}></GInput>
