@@ -12,7 +12,7 @@ export const Register = () => {
     const {state, handleInput} = useInput<User>(initialUser)
 
     const register = async () => {
-        await create('signup2', state).then((data: any) => {
+        await create('user/signup', state).then((data: any) => {
             createToast(toastDetails[1], data)
         }).catch((error) => {
             createToast(toastDetails[1], error)
@@ -35,7 +35,7 @@ export const Register = () => {
                     <GButton type="submit" className="submit-button">Entrar</GButton>
                 </form>
                 <div className="login-footer">
-                    <p>Entrar com minha conta? <Link to="/login">Entra</Link></p>
+                    <p>Entrar com minha conta? <Link to="/login">Entrar</Link></p>
                 </div>
                 <div className="login-footer">
                     <p><Link to="/resetPassword">Esqueci minha senha</Link></p>
