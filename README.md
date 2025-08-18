@@ -65,6 +65,18 @@ A versatile platform designed for the consolidation of georeferenced data, enabl
 type in terminal
 
 ```
+# change proxy configuration
+git config --global --list
+git config --unset http.proxy
+git config --unset https.proxy
+git config --global https.proxy http://usuario:senha@proxy.com:8080
+    @ → %40
+    : → %3A
+    # → %23
+    % → %25
+    & → %26
+    ? → %3F
+
 # check dependency version
 npm outdated
 
