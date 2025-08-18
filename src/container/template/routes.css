@@ -23,11 +23,11 @@ h1 {
     background-size: cover;
     background-blend-mode: soft-light;
 }
-.all {
+/* .all {
     align-items: stretch;
     background-color: var(--color-silver-eleven);
     background-image: url("/src/assets/image/kl_14.jpg");
-}
+} */
 .main {
     flex-basis: 0;
     flex-grow: 1.5;
