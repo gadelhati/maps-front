@@ -8,7 +8,7 @@ import { GaugeStation } from '../../component/gaugeStation';
 import { Chart } from '../../component/chart';
 import { MaritimeArea } from '../../component/maritimeArea';
 import { useComponent } from './useComponent';
-import { useMap } from './useMap';
+// import { useMap } from './useMap';
 import { initialPoint, Point } from '../../component/point';
 import { Search } from '../../component/search';
 

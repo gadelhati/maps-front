@@ -1,0 +1,20 @@
+#map, #inputFile {
+    height: 100vh;
+    width: 100vw;
+}
+nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    z-index: 1000;
+    /* background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); */
+    
+    /* display: flex;
+    gap: 16px;
+    align-items: center; */
+}

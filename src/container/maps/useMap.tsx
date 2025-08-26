@@ -4,6 +4,7 @@ import { Point } from "../../component/point"
 
 export const useMap = (index: number) => {
     const [ show, setshow ] = useState<boolean[]>([true])
+    const [ toggle, setToggle ] = useState<L.FeatureGroup>()
     const [ markers, setMarkers ] = useState<L.LayerGroup[]>([])
     const [ polygons, setPolygons ] = useState<L.Polygon[]>([])
     // const [, setOverlay ] = useState<L.ImageOverlay>()
@@ -20,11 +21,11 @@ export const useMap = (index: number) => {
         setPolygons([...polygons.slice(0, index), polygon, ...polygons.slice(index + 1)])
         return polygon
     }   
-    const addMarkers = (map: L.Map, points: Point[]):L.FeatureGroup => {
+    const addMarkers = (map: L.Map, points: L.LatLng[]):L.FeatureGroup => {
         setshow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
         let featureGroup: L.FeatureGroup = L.featureGroup()
-        points.forEach((element: Point)=>{
-            featureGroup.addLayer(L.marker([element.coordinates[1], element.coordinates[0]]).bindPopup(element.type))
+        points.forEach((element: L.LatLng)=>{
+            featureGroup.addLayer(L.marker([element.lat, element.lng]).bindPopup(element.toString()))
         })
         showFromMap(map, featureGroup)
         setMarkers([...markers.slice(0, index), featureGroup, ...markers.slice(index + 1)])
@@ -47,6 +48,10 @@ export const useMap = (index: number) => {
     const hideFromMap = (map: L.Map, element: any) => {
         map.removeLayer(element)
         setshow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
+    }
+    const toggleFromMap = (map: L.Map, element: L.FeatureGroup) => {
+        map.addLayer(element)
+        map.fitBounds(element.getBounds())
     }
     return {
         show,

@@ -3,8 +3,6 @@ import { isValidToken } from "./service/service.token"
 
 import { AuthProvider } from "./assets/hook/useProvider";
 import { Home } from "./container/page/home";
-import { LeafletMap } from "./container/maps/leaflet.map";
-// import { Login } from "./container/page/login/login";
 import { NotAllowed } from "./container/page/not.allowed";
 import { Profile } from "./container/page/profile";
 import { SideList } from "./container/page/side.list";
@@ -40,6 +38,7 @@ import { Register } from "./container/register";
 import { ViewMap } from "./container/maps/viewMap";
 import { ResetPassword } from "./container/resetPassword";
 import { ResetTotp } from "./container/resetTotp";
+import { Map } from "./container/maps/map";
 import './container/template/routes.css'
 
 export const ROLE = {
@@ -64,6 +63,7 @@ export default function AppRoutes() {
                             <Route path="*" element={<Login />}></Route>
                             <Route path="/" element={<Login />}></Route>
                             <Route path="/viewMap" element={<ViewMap />}></Route>
+                            <Route path="/map" element={<Map />}></Route>
                             <Route path="/login" element={<Login />}></Route>
                             <Route path="/register" element={<Register />}></Route>
                             <Route path="/resetPassword" element={<ResetPassword />}></Route>
@@ -90,7 +90,7 @@ export default function AppRoutes() {
                             <Route element={<RequireAuth allowedRoles={[ROLE.USER, ROLE.ADMIN, ROLE.MODERATOR]} />}>
                                 <Route path="/home" element={<Home />}></Route>
                                 <Route path="/profile" element={<Profile />}></Route>
-                                <Route path="/leafletMap" element={<LeafletMap />}></Route>
+                                {/* <Route path="/leafletMap" element={<LeafletMap />}></Route> */}
 
                                 <Route path="/blindSignal" element={<GenericComponent url={'blindSignal'} object={initialBlindSignal} validator={initialBlindSignalValidation} />}></Route>
                                 <Route path="/chart" element={<GenericComponent url={'chart'} object={initialChart} validator={initialChartValidation} />}></Route>
