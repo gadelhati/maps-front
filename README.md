@@ -83,6 +83,10 @@ npm outdated
 # updates every package
 npm update
 
+# update node
+nvm install <version-number>
+nvm use <version-number>
+
 # update to the latest available versions
 npx npm-check-updates -u
 
