@@ -10,7 +10,7 @@ export const useMap = (index: number) => {
     // const [ overlays ] = useState<L.ImageOverlay[]>([])
 
     const addPolygon = (map: L.Map, points: L.LatLng[]):L.Polygon => {
-        setShow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
+        setShow(prev => prev.map((val, i) => (i === index ? !val : val)))
         let list:[number, number][] = []
         points.forEach((point: L.LatLng)=>{
             list.push([point.lat, point.lng])
@@ -21,7 +21,7 @@ export const useMap = (index: number) => {
         return polygon
     }
     const addMarkers = (map: L.Map, points: L.LatLng[]):L.FeatureGroup => {
-        setShow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
+        setShow(prev => prev.map((val, i) => (i === index ? !val : val)))
         let featureGroup: L.FeatureGroup = L.featureGroup()
         points.forEach((point: L.LatLng)=>{
             featureGroup.addLayer(L.marker([point.lat, point.lng]).bindPopup(point.toString()))
