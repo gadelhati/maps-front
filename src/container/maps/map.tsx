@@ -9,7 +9,7 @@ export const Map = () => {
     const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
     const [zoom, setZoom] = useState<number>(11)
 
-    // const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
+    const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
 
     useEffect(() => {
         if (map) return
@@ -18,29 +18,30 @@ export const Map = () => {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             className: 'map-tiles'
         }).addTo(mapAux)
-        // mapAux.on("click", () => addMarkers(mapAux, [center]));
+        // mapAux.on("click", () => addMarkers(mapAux, [center]))
         setMap(mapAux)
         return () => {
             // mapAux.off("click")
             mapAux.remove()
         }
     }, [])
-    const handleInputFile = async (event: ChangeEvent<HTMLInputElement>): Promise<L.LatLng[]> => {
+    const handleInputFile = async (event: ChangeEvent<HTMLInputElement>, map: L.Map): Promise<L.LatLng[]> => {
         const file = event.target.files?.[0]
         if (!file) return []
         try {
-            const text = await file.text()
-            return text
-                .split(/\r?\n/)
-                .map(line => line.trim())
-                .filter(line => line.length > 0)
+            const text: string = await file.text()
+            const coords: L.LatLng[] = text
+                .split(/\r?\n/) // separa linhas
+                .map(line => line.trim()) // remove espaços em branco no início e fim da string
+                .filter(line => line.length > 0) // ignora linhas vazias
                 .map(line => {
-                    const [lat, lng] = line.split(/\s+/).map(parseFloat)
+                    const [lat, lng] = line.split(/\s+/).map(parseFloat) // separa lat e lng por espaço
                     return !isNaN(lat) && !isNaN(lng) ? L.latLng(lat, lng) : null
                 })
                 .filter((coord): coord is L.LatLng => coord !== null)
-            // addMarkers(map, text)
-        } catch {
+            addMarkers(map, coords)
+            return coords
+        } catch(error) {
             return []
         }
     }
@@ -48,7 +49,7 @@ export const Map = () => {
         <>
         <nav>2234234234234</nav>
         <div id='map'>
-            <input type="file" id='inputFile' onChange={handleInputFile} ></input>
+            <input type="file" id='inputFile' onChange={(e)=>map && handleInputFile(e, map)} ></input>
         </div>
         </>
     )
