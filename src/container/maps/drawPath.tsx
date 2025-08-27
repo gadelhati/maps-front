@@ -1,18 +1,32 @@
 import * as L from 'leaflet'
 
-const exclusionBounds = L.latLngBounds([
-    [-14, -48.5],
-    [-13, -47.5]
-]);
+const exclusionPolygon: L.LatLng[] = [
+    L.latLng(-14, -48.5),
+    L.latLng(-13.5, -48),
+    L.latLng(-14, -47.5)
+];
 
-export const exclusionArea = L.rectangle(exclusionBounds, {
+export const exclusionArea = L.polygon(exclusionPolygon, {
     color: "red",
     weight: 1,
     fillOpacity: 0.5
 });
 
 export const isInsideExclusion = (latlng: L.LatLng) => {
-    return exclusionBounds.contains(latlng);
+    return isPointInPolygon(latlng, exclusionPolygon);
+}
+
+export function isPointInPolygon(point: L.LatLng, polygon: L.LatLng[]): boolean {
+    let inside = false;
+    const { lat: y, lng: x } = point;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const xi = polygon[i].lng, yi = polygon[i].lat;
+        const xj = polygon[j].lng, yj = polygon[j].lat;
+        const intersect =
+            (yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+        if (intersect) inside = !inside;
+    }
+    return inside;
 }
 
 const crossesExclusion = (a: L.LatLng, b: L.LatLng) => {
