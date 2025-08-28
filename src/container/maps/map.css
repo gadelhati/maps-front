@@ -1,4 +1,4 @@
-#map, #inputFile {
+#map {
     height: 100vh;
     width: 100vw;
 }
@@ -6,15 +6,26 @@ nav {
     position: absolute;
     bottom: 20px;
     left: 50%;
-    /* transform: translateX(-50%); */
     z-index: 1000;
-    /* background: rgba(255, 255, 255, 0.9);
+    display: flex;
+}
+.feat div {
+    height: 8rem;
+    width: 8rem;
+    margin-left: -5rem;
+    color: blue;
     backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 12px 24px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); */
-    
-    /* display: flex;
-    gap: 16px;
-    align-items: center; */
+    border-radius: 0.3rem;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: perspective(800px) rotateY(50deg);
+    transition: 1s;
+}
+.feat div:hover {
+    transform: perspective(800px) rotateY(50deg) translateY(-1rem);
+    box-shadow: 0 8px 15px rgba(255, 155, 5, 0.2);
+    /* margin-right: 0rem;
+    margin-left: 0rem; */
 }
