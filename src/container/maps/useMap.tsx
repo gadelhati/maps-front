@@ -20,11 +20,9 @@ export const useMap = (index: number) => {
         return polygon
     }
     const addMarkers = (points: L.LatLng[]):L.FeatureGroup => {
-        setShow(prev => prev.map((val, i) => (i === index ? !val : val)))
         let featureGroup: L.FeatureGroup = L.featureGroup()
-        points.forEach((point: L.LatLng)=>{
-            featureGroup.addLayer(L.marker([point.lat, point.lng]).bindPopup(point.toString()))
-        })
+        const markers = L.layerGroup(points.map(point => L.marker([point.lat, point.lng])));
+        featureGroup.addLayer(markers)
         setFeature(featureGroup)
         return featureGroup
     }

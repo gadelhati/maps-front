@@ -9,7 +9,7 @@ export const Map = () => {
     const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
     const [zoom, setZoom] = useState<number>(11)
 
-    const { show, markers, polygons, addPolygon, addMarkers, addOverlay, showFromMap, hideFromMap } = useMap(0)
+    const { show, feature, polygons, addPolygon, addMarkers, addOverlay, showFromMap, hideFromMap } = useMap(0)
 
     useEffect(() => {
         if (map) return
@@ -25,6 +25,14 @@ export const Map = () => {
             mapAux.remove()
         }
     }, [])
+    useEffect(() => {
+        feature?.eachLayer((layer: L.Layer) => {
+            if (layer instanceof L.Marker) {
+                const marker = layer as L.Marker;
+                console.log("Forçado a Marker:", marker.getLatLng());
+            }
+        })
+    }, [feature])
     const handleInputFile = async (event: ChangeEvent<HTMLInputElement>, map: L.Map): Promise<L.LatLng[]> => {
         const file = event.target.files?.[0]
         if (!file) return []
@@ -40,18 +48,45 @@ export const Map = () => {
                 })
                 .filter((coord): coord is L.LatLng => coord !== null)
             // showFromMap(map, addMarkers(coords))
-            showFromMap(map, addPolygon(coords))
+            // showFromMap(map, addPolygon(coords))
+            let lay: L.FeatureGroup = L.featureGroup()
+            lay.addLayer(addMarkers(coords))
+            map.addLayer(lay)
+            map.fitBounds(lay.getBounds())
             return coords
-        } catch(error) {
+        } catch (error) {
             return []
         }
     }
     return (
         <>
-        <nav>2234234234234</nav>
-        <div id='map'>
-            <input type="file" id='inputFile' onChange={(e)=>map && handleInputFile(e, map)} ></input>
-        </div>
+            {/* <>
+        {markers && markers.eachLayer((marker)=>{
+            return <div>{marker instanceof L.Marker && JSON.stringify(marker.getLatLng())}</div>
+        })}</> */}
+            {/* {feature?.eachLayer((layer: L.Layer) => {
+            if (layer instanceof L.Marker) {
+                const marker = layer as L.Marker;
+                console.log("Forçado a Marker:", marker.getLatLng());
+            }
+        })} */}
+            {/* {feature ? 1 : feature} */}
+            <nav className='feat'>
+            {feature && feature.getLayers().map((layer: L.Layer, index: number) => {
+                // if (layer instanceof L.Marker) {
+                    return (
+                        <>
+                            <div>{index}</div>
+                        </>
+                    );
+                // }
+                // return null;
+            })}
+            <input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input>
+            <button onClick={(e) => map && hideFromMap(map, feature)}></button>
+            </nav>
+            {/* <nav className='feat'><div></div><div>654</div><div>987</div><input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input><button onClick={(e) => map && hideFromMap(map, feature)}></button></nav> */}
+            <div id='map'></div>
         </>
     )
 }
