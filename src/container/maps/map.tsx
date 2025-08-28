@@ -9,7 +9,7 @@ export const Map = () => {
     const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
     const [zoom, setZoom] = useState<number>(11)
 
-    const { show, markers, polygons, addPolygon, addMarkers, addOverlay, hideFromMap } = useMap(0)
+    const { show, markers, polygons, addPolygon, addMarkers, addOverlay, showFromMap, hideFromMap } = useMap(0)
 
     useEffect(() => {
         if (map) return
@@ -39,7 +39,8 @@ export const Map = () => {
                     return !isNaN(lat) && !isNaN(lng) ? L.latLng(lat, lng) : null
                 })
                 .filter((coord): coord is L.LatLng => coord !== null)
-            addMarkers(map, coords)
+            // showFromMap(map, addMarkers(coords))
+            showFromMap(map, addPolygon(coords))
             return coords
         } catch(error) {
             return []
