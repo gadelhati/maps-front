@@ -4,7 +4,7 @@ import { useState } from "react"
 export const useMap = (index: number) => {
     const [ show, setShow ] = useState<boolean[]>([true])
     const [ toggle, setToggle ] = useState<L.FeatureGroup>()
-    const [ markers, setMarkers ] = useState<L.LayerGroup[]>([])
+    const [feature, setFeature] = useState<L.FeatureGroup>()
     const [ polygons, setPolygons ] = useState<L.Polygon[]>([])
     // const [, setOverlay ] = useState<L.ImageOverlay>()
     // const [ overlays ] = useState<L.ImageOverlay[]>([])
@@ -25,7 +25,7 @@ export const useMap = (index: number) => {
         points.forEach((point: L.LatLng)=>{
             featureGroup.addLayer(L.marker([point.lat, point.lng]).bindPopup(point.toString()))
         })
-        setMarkers([...markers.slice(0, index), featureGroup, ...markers.slice(index + 1)])
+        setFeature(featureGroup)
         return featureGroup
     }
     const addOverlay = (ne: any, sw: any, number: string) => {
@@ -52,7 +52,7 @@ export const useMap = (index: number) => {
     }
     return {
         show,
-        markers,
+        feature,
         polygons,
         addPolygon,
         addMarkers,
