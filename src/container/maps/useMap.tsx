@@ -1,29 +1,20 @@
 import * as L from 'leaflet'
 import { useState } from "react"
 
-export const useMap = (index: number) => {
-    const [ show, setShow ] = useState<boolean[]>([true])
-    const [ toggle, setToggle ] = useState<L.FeatureGroup>()
-    const [ feature, setFeature ] = useState<L.FeatureGroup>()
-    const [ polygons, setPolygons ] = useState<L.Polygon[]>([])
-    // const [, setOverlay ] = useState<L.ImageOverlay>()
-    // const [ overlays ] = useState<L.ImageOverlay[]>([])
+export const useMap = () => {
+    const [ features, setFeatures ] = useState<L.FeatureGroup[]>([])
 
-    const addPolygon = (points: L.LatLng[]):L.Polygon => {
-        setShow(prev => prev.map((val, i) => (i === index ? !val : val)))
-        let list:[number, number][] = []
-        points.forEach((point: L.LatLng)=>{
-            list.push([point.lat, point.lng])
-        })
+    const addPolygon = (points: L.LatLng[]):L.FeatureGroup => {
+        let list:[number, number][] = points.map(p=>[p.lat, p.lng])
         let polygon = L.polygon(list, {color: 'green'})
-        setPolygons([...polygons.slice(0, index), polygon, ...polygons.slice(index + 1)])
-        return polygon
+        const featureGroup: L.FeatureGroup = L.featureGroup([polygon])
+        setFeatures(prev => [...prev, featureGroup])
+        return featureGroup
     }
     const addMarkers = (points: L.LatLng[]):L.FeatureGroup => {
-        let featureGroup: L.FeatureGroup = L.featureGroup()
-        const markers = L.layerGroup(points.map(point => L.marker([point.lat, point.lng])));
-        featureGroup.addLayer(markers)
-        setFeature(featureGroup)
+        const markers = points.map(point => L.marker([point.lat, point.lng]))
+        const featureGroup: L.FeatureGroup = L.featureGroup(markers)
+        setFeatures(prev => [...prev, featureGroup])
         return featureGroup
     }
     const addOverlay = (ne: any, sw: any, number: string) => {
@@ -42,16 +33,10 @@ export const useMap = (index: number) => {
     }
     const hideFromMap = (map: L.Map, element: any) => {
         map.removeLayer(element)
-        setShow([...show.slice(0, index), !show[index], ...show.slice(index + 1)])
-    }
-    const toggleFromMap = (map: L.Map, element: L.FeatureGroup) => {
-        map.addLayer(element)
-        map.fitBounds(element.getBounds())
+        setFeatures(prev => prev.filter(f => f !== element))
     }
     return {
-        show,
-        feature,
-        polygons,
+        features,
         addPolygon,
         addMarkers,
         addOverlay,
