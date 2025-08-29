@@ -9,7 +9,7 @@ export const Map = () => {
     const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
     const [zoom, setZoom] = useState<number>(11)
 
-    const { show, feature, polygons, addPolygon, addMarkers, addOverlay, showFromMap, hideFromMap } = useMap(0)
+    const { features, addPolygon, addMarkers, addOverlay, showFromMap, hideFromMap } = useMap()
 
     useEffect(() => {
         if (map) return
@@ -25,14 +25,6 @@ export const Map = () => {
             mapAux.remove()
         }
     }, [])
-    useEffect(() => {
-        feature?.eachLayer((layer: L.Layer) => {
-            if (layer instanceof L.Marker) {
-                const marker = layer as L.Marker;
-                console.log("Forçado a Marker:", marker.getLatLng());
-            }
-        })
-    }, [feature])
     const handleInputFile = async (event: ChangeEvent<HTMLInputElement>, map: L.Map): Promise<L.LatLng[]> => {
         const file = event.target.files?.[0]
         if (!file) return []
@@ -47,12 +39,8 @@ export const Map = () => {
                     return !isNaN(lat) && !isNaN(lng) ? L.latLng(lat, lng) : null
                 })
                 .filter((coord): coord is L.LatLng => coord !== null)
-            // showFromMap(map, addMarkers(coords))
+            showFromMap(map, addMarkers(coords))
             // showFromMap(map, addPolygon(coords))
-            let lay: L.FeatureGroup = L.featureGroup()
-            lay.addLayer(addMarkers(coords))
-            map.addLayer(lay)
-            map.fitBounds(lay.getBounds())
             return coords
         } catch (error) {
             return []
@@ -60,16 +48,20 @@ export const Map = () => {
     }
     return (
         <>
-            <nav className='feat'>
-                {feature && feature.getLayers().map((layer: L.Layer, index: number) => {
-                    return (
-                        <div>{index}</div>
-                    );
-                })}
-                <input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input>
-                <button onClick={(e) => map && hideFromMap(map, feature)}></button>
-            </nav>
             <div id='map'></div>
+            <nav className="feat">
+                {features.map((layer: L.FeatureGroup, index: number) => (
+                    <div key={index}>
+                        {`Layer ${index + 1}`}
+                        <button onClick={() => map && hideFromMap(map, layer)}>✖</button>
+                    </div>
+                ))}
+                <input
+                    type="file"
+                    id="inputFile"
+                    onChange={(e) => map && handleInputFile(e, map)}
+                />
+            </nav>
         </>
     )
 }

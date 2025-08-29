@@ -2,30 +2,65 @@
     height: 100vh;
     width: 100vw;
 }
+
 nav {
+    height: 6rem;
+    width: 50%;
     position: absolute;
-    bottom: 20px;
+    bottom: 1rem;
     left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     display: flex;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
 }
+
 .feat div {
-    height: 8rem;
-    width: 8rem;
-    margin-left: -5rem;
-    color: blue;
-    backdrop-filter: blur(10px);
-    border-radius: 0.3rem;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 6rem;
+    width: 6rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0.7rem;
+    background: linear-gradient(135deg, #3a7bd5, #3a6073);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-left: -4rem;
     transform: perspective(800px) rotateY(50deg);
     transition: 1s;
 }
+
 .feat div:hover {
-    transform: perspective(800px) rotateY(50deg) translateY(-1rem);
-    box-shadow: 0 8px 15px rgba(255, 155, 5, 0.2);
-    /* margin-right: 0rem;
-    margin-left: 0rem; */
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.feat div button {
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.feat div button:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
