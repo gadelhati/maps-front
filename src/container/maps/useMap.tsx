@@ -4,7 +4,7 @@ import { useState } from "react"
 export const useMap = (index: number) => {
     const [ show, setShow ] = useState<boolean[]>([true])
     const [ toggle, setToggle ] = useState<L.FeatureGroup>()
-    const [feature, setFeature] = useState<L.FeatureGroup>()
+    const [ feature, setFeature ] = useState<L.FeatureGroup>()
     const [ polygons, setPolygons ] = useState<L.Polygon[]>([])
     // const [, setOverlay ] = useState<L.ImageOverlay>()
     // const [ overlays ] = useState<L.ImageOverlay[]>([])

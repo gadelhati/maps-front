@@ -60,32 +60,15 @@ export const Map = () => {
     }
     return (
         <>
-            {/* <>
-        {markers && markers.eachLayer((marker)=>{
-            return <div>{marker instanceof L.Marker && JSON.stringify(marker.getLatLng())}</div>
-        })}</> */}
-            {/* {feature?.eachLayer((layer: L.Layer) => {
-            if (layer instanceof L.Marker) {
-                const marker = layer as L.Marker;
-                console.log("Forçado a Marker:", marker.getLatLng());
-            }
-        })} */}
-            {/* {feature ? 1 : feature} */}
             <nav className='feat'>
-            {feature && feature.getLayers().map((layer: L.Layer, index: number) => {
-                // if (layer instanceof L.Marker) {
+                {feature && feature.getLayers().map((layer: L.Layer, index: number) => {
                     return (
-                        <>
-                            <div>{index}</div>
-                        </>
+                        <div>{index}</div>
                     );
-                // }
-                // return null;
-            })}
-            <input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input>
-            <button onClick={(e) => map && hideFromMap(map, feature)}></button>
+                })}
+                <input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input>
+                <button onClick={(e) => map && hideFromMap(map, feature)}></button>
             </nav>
-            {/* <nav className='feat'><div></div><div>654</div><div>987</div><input type="file" id='inputFile' onChange={(e) => map && handleInputFile(e, map)} ></input><button onClick={(e) => map && hideFromMap(map, feature)}></button></nav> */}
             <div id='map'></div>
         </>
     )
