@@ -5,7 +5,7 @@ import './map.css'
 import { useMap } from './useMap'
 
 export const Map = () => {
-    const { map, features, addFeature, addPolygon, addOverlay, toggleFromMap} = useMap()
+    const { map, features, addFeature, addMarkers, addPolygon, addOverlay, toggleFromMap} = useMap()
 
     const handleInputFile = async (event: ChangeEvent<HTMLInputElement>, map: L.Map): Promise<L.LatLng[]> => {
         const file = event.target.files?.[0]
@@ -21,9 +21,8 @@ export const Map = () => {
                     return !isNaN(lat) && !isNaN(lng) ? L.latLng(lat, lng) : null
                 })
                 .filter((coord): coord is L.LatLng => coord !== null)
-            // showFromMap(map, addFeature(coords.map(point => L.marker([point.lat, point.lng]))))
-            // showFromMap(map, addFeature([L.polygon(coords.map(p=>[p.lat, p.lng]))]))
-            toggleFromMap(map, addPolygon(coords))
+            // toggleFromMap(map, addPolygon(coords))
+            toggleFromMap(map, addMarkers(coords))
             return coords
         } catch (error) {
             return []

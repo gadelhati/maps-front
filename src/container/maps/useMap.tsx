@@ -21,8 +21,12 @@ export const useMap = () => {
             mapAux.remove()
         }
     }, [])
+    const addMarkers = (points: L.LatLng[]): L.FeatureGroup => {
+        let markers: L.Marker[] = points.map(point => L.marker([point.lat, point.lng]))
+        return addFeature(markers)
+    }
     const addPolygon = (points: L.LatLng[]): L.FeatureGroup => {
-        let polygon: L.Polygon[] = [L.polygon(points.map(p=>[p.lat, p.lng]))]
+        let polygon: L.Polygon[] = [L.polygon(points.map(point =>[point.lat, point.lng]))]
         return addFeature(polygon)
     }
     const addFeature = (points: Array<L.Marker | L.Polygon>): L.FeatureGroup => {
@@ -54,6 +58,7 @@ export const useMap = () => {
         map,
         features,
         addFeature,
+        addMarkers,
         addPolygon,
         addOverlay,
         toggleFromMap,
