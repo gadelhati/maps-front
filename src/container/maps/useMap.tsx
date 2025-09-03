@@ -1,9 +1,26 @@
 import * as L from 'leaflet'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const useMap = () => {
+    const [ map, setMmap ] = useState<L.Map>()
+    const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
+    const [zoom, setZoom] = useState<number>(11)
     const [ features, setFeatures ] = useState<L.FeatureGroup[]>([])
 
+    useEffect(() => {
+        if (map) return
+        let mapAux = L.map('map').setView(center, zoom)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            className: 'map-tiles'
+        }).addTo(mapAux)
+        // mapAux.on("click", () => addMarkers(mapAux, [center]))
+        setMmap(mapAux)
+        return () => {
+            // mapAux.off("click")
+            mapAux.remove()
+        }
+    }, [])
     const addPolygon = (points: L.LatLng[]): L.FeatureGroup => {
         let polygon: L.Polygon[] = [L.polygon(points.map(p=>[p.lat, p.lng]))]
         return addFeature(polygon)
@@ -11,6 +28,7 @@ export const useMap = () => {
     const addFeature = (points: Array<L.Marker | L.Polygon>): L.FeatureGroup => {
         const featureGroup = L.featureGroup();
         points.forEach(p => featureGroup.addLayer(p));
+        setFeatures(prev => [...prev, featureGroup])
         return featureGroup;
     }
     const addOverlay = (ne: any, sw: any, number: string) => {
@@ -23,20 +41,21 @@ export const useMap = () => {
             // interactive: true
         })
     }
-    const showFromMap = (map: L.Map, element: L.FeatureGroup | L.Polygon) => {
-        map.addLayer(element)
-        map.fitBounds(element.getBounds())
-    }
-    const hideFromMap = (map: L.Map, element: any) => {
-        map.removeLayer(element)
-        setFeatures(prev => prev.filter(f => f !== element))
+    const toggleFromMap = (map: L.Map, element: L.FeatureGroup) => {
+        if (map.hasLayer(element)) {
+            map.removeLayer(element)
+            setFeatures(prev => prev.filter(f => f !== element))
+        } else {
+            map.addLayer(element)
+            map.fitBounds(element.getBounds())
+        }
     }
     return {
+        map,
         features,
         addFeature,
         addPolygon,
         addOverlay,
-        showFromMap,
-        hideFromMap,
+        toggleFromMap,
     }
 }

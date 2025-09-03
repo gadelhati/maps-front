@@ -1,30 +1,12 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent } from 'react'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './map.css'
 import { useMap } from './useMap'
 
 export const Map = () => {
-    const [map, setMap] = useState<L.Map>()
-    const [center, setCenter] = useState<L.LatLng>(L.latLng(-22.8, -43))
-    const [zoom, setZoom] = useState<number>(11)
+    const { map, features, addFeature, addPolygon, addOverlay, toggleFromMap} = useMap()
 
-    const { features, addFeature, addPolygon, addOverlay, showFromMap, hideFromMap } = useMap()
-
-    useEffect(() => {
-        if (map) return
-        let mapAux = L.map('map').setView(center, zoom)
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            className: 'map-tiles'
-        }).addTo(mapAux)
-        // mapAux.on("click", () => addMarkers(mapAux, [center]))
-        setMap(mapAux)
-        return () => {
-            // mapAux.off("click")
-            mapAux.remove()
-        }
-    }, [])
     const handleInputFile = async (event: ChangeEvent<HTMLInputElement>, map: L.Map): Promise<L.LatLng[]> => {
         const file = event.target.files?.[0]
         if (!file) return []
@@ -41,7 +23,7 @@ export const Map = () => {
                 .filter((coord): coord is L.LatLng => coord !== null)
             // showFromMap(map, addFeature(coords.map(point => L.marker([point.lat, point.lng]))))
             // showFromMap(map, addFeature([L.polygon(coords.map(p=>[p.lat, p.lng]))]))
-            showFromMap(map, addPolygon(coords))
+            toggleFromMap(map, addPolygon(coords))
             return coords
         } catch (error) {
             return []
@@ -54,7 +36,7 @@ export const Map = () => {
                 {features.map((layer: L.FeatureGroup, index: number) => (
                     <div key={index}>
                         {`Layer ${index + 1}`}
-                        <button onClick={() => map && hideFromMap(map, layer)}>✖</button>
+                        <button onClick={() => map && toggleFromMap(map, layer)}>✖</button>
                     </div>
                 ))}
                 <input
