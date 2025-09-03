@@ -4,18 +4,14 @@ import { useState } from "react"
 export const useMap = () => {
     const [ features, setFeatures ] = useState<L.FeatureGroup[]>([])
 
-    const addPolygon = (points: L.LatLng[]):L.FeatureGroup => {
-        let list:[number, number][] = points.map(p=>[p.lat, p.lng])
-        let polygon = L.polygon(list, {color: 'green'})
-        const featureGroup: L.FeatureGroup = L.featureGroup([polygon])
-        setFeatures(prev => [...prev, featureGroup])
-        return featureGroup
+    const addPolygon = (points: L.LatLng[]): L.FeatureGroup => {
+        let polygon: L.Polygon[] = [L.polygon(points.map(p=>[p.lat, p.lng]))]
+        return addFeature(polygon)
     }
-    const addMarkers = (points: L.LatLng[]):L.FeatureGroup => {
-        const markers = points.map(point => L.marker([point.lat, point.lng]))
-        const featureGroup: L.FeatureGroup = L.featureGroup(markers)
-        setFeatures(prev => [...prev, featureGroup])
-        return featureGroup
+    const addFeature = (points: Array<L.Marker | L.Polygon>): L.FeatureGroup => {
+        const featureGroup = L.featureGroup();
+        points.forEach(p => featureGroup.addLayer(p));
+        return featureGroup;
     }
     const addOverlay = (ne: any, sw: any, number: string) => {
         //ref.: vectorized in https://vectorization.eu/
@@ -37,8 +33,8 @@ export const useMap = () => {
     }
     return {
         features,
+        addFeature,
         addPolygon,
-        addMarkers,
         addOverlay,
         showFromMap,
         hideFromMap,
