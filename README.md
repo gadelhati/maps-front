@@ -84,8 +84,8 @@ npm outdated
 npm update
 
 # update node
-nvm install <version-number>
-nvm use <version-number>
+npm install <version-number>
+npm use <version-number>
 
 # update to the latest available versions
 npx npm-check-updates -u
