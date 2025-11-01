@@ -271,3 +271,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Flow Diagram 
+```mermaid
+graph TD
+    A[Initial] --> B{Decision}
+    B --> |YES| C[Proccess A]
+    B --> |NO| D[Proccess B]
+    C --> E[Fim]
+    D --> E[Fim]
+```
+
+## Class Diagram
+```mermaid
+erDiagram
+    CLIENT ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CLIENT {
+        string name
+    }
+```
+## Gantt Diagram
+```mermaid
+gantt
+    title   Project
+    dateFormat  YYYY-MM-DD
+    section Development
+    Task 1  :a1, 2025-01-01, 30d
+    Task 1  :after a1, 20d
+    section Test
+    Task 1  :2025-02-15, 12d
+    Task 1  :24d
+```
